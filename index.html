@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
 		<link type="stylesheet" src="./style.css">
-		<title> Projeto | Letícia </title>
+		<title> Controle | Letícia </title>
 
 		<style scoped>
 
@@ -198,6 +198,41 @@
               padding: 0px;
             }
 
+            /* ALERTA MODIFICADO */
+      .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .swal-title {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
+
 
             </style>
            </head>
@@ -205,13 +240,6 @@
            <body>
 
                 <main class="container">
-
-                  <header class="local">
-
-                    <h1 id="local">Projeto</h1>
-                    <ion-icon onclick="configuracao()" name="settings"></ion-icon>
-
-                  </header>
 
                   <!-- Formularios -->
                   <section class="content formularios">
@@ -283,40 +311,11 @@
 
                 </main>
 
-                <nav class="navgation">
-
-                  <!-- HOME -->
-                  <ion-icon onclick="home()" id="home"  name="home"></ion-icon>
-
-                  <!-- NOTIFICATION -->
-                  <ion-icon onclick="notificacao()" name="notifications"></ion-icon>
-
-                  <!-- MENSAGEM -->
-                  <ion-icon onclick="enviar()" name="mail"></ion-icon>
-
-                  <!-- CALL -->
-                  <ion-icon class="selecionado" id="informacao" onclick="projeto()" name="newspaper-outline"></ion-icon>
-
-                  <!-- PERFIL -->
-                  <ion-icon onclick="perfil()" name="person"></ion-icon>
-
-              </nav>
 
             </body>
 
        <!-- JavaScript -->
        <script>
-
-        // TEMA ARRUMADO
-        const tema = localStorage.getItem('tema');
-        const root = document.documentElement;
-        if (tema === "light") {
-          root.style.setProperty('--one', '#002242');
-          root.style.setProperty('--white', 'white');
-        } else if (tema === "dark") {
-          root.style.setProperty('--one', 'white');
-          root.style.setProperty('--white', '#002242');
-        }
 
 
         // Abrir ocorrencias
@@ -380,31 +379,7 @@
           ocorrencia.innerHTML = `Em Breva...`;
         }
 
-       // HREF
-       function perfil() {
-        window.location.href = "../perfil";
-       }
-
-       function home() {
-        window.location.href = "../home";
-       }
-
-       // Enviar Comunicado
-       function enviar() {
-         window.location.href = "../mensagens";
-       }
-
-       function notificacao() {
-        window.location.href = "../notificacao";
-       }
-
-        function projeto() {
-          window.location.href = "../projeto";
-        }
-
-        function configuracao() {
-          window.location.href = "../configuracao";
-      }
+      
 
        </script>
 
@@ -412,8 +387,6 @@
        <!-- LINKS DO BANCO DE DADOS -->
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-messaging.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
 
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
@@ -433,20 +406,18 @@
           firebase.initializeApp(firebaseConfig);
           const db = firebase.firestore();
 
-          const logado = localStorage.getItem('logado');
-          if (!logado){
-            window.location.href = "../login";
-          } else if (logado === "DIRECAO" || logado === "COORDENACAO") {
-            formularios.style.display = "none";
-          } else if (logado === "PROFESSOR") {
-            graficos.style.display = "none";
-          }
+          swal({
+            title: 'AVISO',
+            text: 'Digite o Usuario',
+            content: "input"
+          });
 
        </script>
 
 
 
-       <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </html>
