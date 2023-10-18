@@ -45,47 +45,40 @@
 				overflow: hidden;
            		 }
 
-            .local {
-              width: 100%;
-              height: 70px;
-              color: var(--white);
-              background: var(--one);
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding: 0px 20px 0px 20px;
-              z-index: 100;
-              box-shadow: 0px 5px 15px var(--one);
-            }
+            /* ALERTA MODIFICADO */
+      .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
 
-            .local ion-icon {
-              font-size: 35px;
-              margin: 0px;
-              cursor: pointer;
-            }
+        .swal-title {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+            letter-spacing: 0.5px;
+        }
 
-            .local ion-icon:hover {
-              color: var(--two);
-              transition: all .3s ease-in-out;
-            }
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
 
-            .local h1 {
-              font-size: 24px;
-              font-weight: 700;
-              letter-spacing: 0.5px;
-              display: flex;
-            }
-
-
-
-            /* SELECIONADO */
-
-            .selecionado {
-                background: var(--white);
-                color: var(--one);
-                border-radius: 50%;
-                padding: 15px;
-            }
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
 
             /* CONTAINER */
             .container {
@@ -118,7 +111,6 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-              text-align: center;
               box-shadow: 0px 0px 7px var(--white);
               border-radius: 10px;
               padding: 0px 0px 25px 0px;
@@ -157,41 +149,33 @@
             }
 
 
-            /* ALERTA MODIFICADO */
-      .swal-modal {
-            background-color: var(--one);
-            border: 3px solid white;
-            border-radius: 10px;
+            
+
+        /* AMBIENTE */
+
+        .content div {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
         }
 
-        .swal-title {
-            width: 100%;
-            height: 100%;
-            font-size: 22px;
-            color: var(--white);
-            border-bottom: 2px solid var(--white);
-            padding: 0px 0px 20px 0px;
-            letter-spacing: 0.5px;
+        .content .none {
+          display: none;
         }
 
-        .swal-text {
-            color: var(--white);
-            margin: 20px 0px 0px 0px;
-            font-size: 20px;
-            letter-spacing: 0.5px;
+        #voltar {
+          background-color: var(--white);
+          color: var(--two);
+          border: 2px solid var(--white);
         }
 
-        .swal-button {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--confirm {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--cancel {
-            background-color: var(--red);
-            color: white;
+        #voltar:hover {
+          background: transparent;
+          color: var(--white);
         }
-
 
             </style>
            </head>
@@ -203,11 +187,32 @@
                   <!-- Login -->
                   <section class="content">
                     <img src="./img/icon.png" alt="">
-                    <p>Selecione o ambiente em que deseja fazer o login!</p>
-                    <button>Aluno</button>
-                    <button>Professor</button>
-                    <button>Servidor</button>
+                    <div class="ambiente">
+                      <p>Selecione o ambiente em que deseja fazer o login!</p>
+                      <button onclick="ambiente('aluno')">Aluno</button>
+                      <button onclick="ambiente('professor')">Professor</button>
+                      <button onclick="ambiente('servidor')">Servidor</button>
+                    </div>
+                    <div class="professor none">
+                      <label>Usuario:</label>
+                      <input id="usuarioProfessor" type="text">
 
+                      <label>Senha:</label>
+                      <input id="senhaProfessor" type="text">
+
+                      <button>Entrar</button>
+                      <button id="voltar" onclick="voltar()">Voltar</button>
+                    </div>
+                    <div class="servidor none">
+                      <label>Usuario:</label>
+                      <input id="usuarioServidor" type="text">
+
+                      <label>Senha:</label>
+                      <input id="senhaServidor" type="text">
+
+                      <button>Entrar</button>
+                      <button id="voltar" onclick="voltar()">Voltar</button>
+                    </div>
                   </section>
 
                 </main>
@@ -218,69 +223,20 @@
        <!-- JavaScript -->
        <script>
 
-
-        // Abrir ocorrencias
-        const contents = document.querySelectorAll('.content');
-        const formularios = document.querySelector('.formularios');
-        const graficos = document.querySelector('.graficos');
-
-        // [ Formulario ]
-        function ocorrenciaManha() {
-          const ocorrencia = document.querySelector('.form-ocorrencia');
-          contents.forEach((content) => {
-            content.style.display = "none";
-          });
-          ocorrencia.style.display = "flex";
-          ocorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfpXoEAdEsFfqiqCv2Up94_rnkLe3qUOlcfrTrKiIMhGbh4Sg/viewform?usp=sf_link">Carregando…</iframe>`;
+        function ambiente(dado) {
+          const divs = document.querySelectorAll('.none');
+          divs.forEach((div) => {
+            div.style.display = 'none';
+          })
+          const ambiente = document.querySelector(`.${dado}`);
+          const content = document.querySelector('.ambiente');
+          ambiente.style.display = 'flex';
+          content.style.display = 'none';
         }
 
-        // [ Grafico ]
-        function ocorrenciaManhaGrafico() {
-          contents.forEach((content) => {
-            content.style.display = "none";
-          });
-          window.location.href = "https://docs.google.com/forms/d/1NQw84_13o27Mqf5fHOT1HmfEeGMKl90IU1v7p9piaEc/edit?pli=0#responses";
+        function voltar() {
+          window.location.reload();
         }
-
-        // [ Formulario ]
-        function ocorrenciaTarde() {
-          const ocorrencia = document.querySelector('.form-ocorrencia');
-          contents.forEach((content) => {
-            content.style.display = "none";
-          });
-          ocorrencia.style.display = "flex";
-          ocorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-rkzN3cahehAtgZMRxO8zd-G-n-kbSLBXCarr7_DJXVFlAg/viewform">Carregando...</iframe>`;
-        }
-
-        // [ Grafico ]
-        function ocorrenciaTardeGrafico() {
-          contents.forEach((content) => {
-            content.style.display = "none";
-          });
-          window.location.href = "https://docs.google.com/forms/d/1I8seFviqaXe1hoxLFiccY3qcjAoFSg72f4OkhIbHM5o/edit?pli=1#responses";
-        }
-
-
-        // [ Formulario ]
-        function entrada() {
-          const ocorrencia = document.querySelector('.form-ocorrencia');
-          contents.forEach((content) => {
-            content.style.display = "none";
-          });
-          ocorrencia.style.display = "flex";
-          ocorrencia.innerHTML = `<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfJ3mBCThRUQ9Twizgb19PjlfpaKmNQisqtHIdmcb0_2hYS_w/viewform">Carregando...</iframe>`;
-        }
-
-        function saida() {
-          const ocorrencia = document.querySelector('.form-ocorrencia');
-          contents.forEach((content) => {
-            content.style.display = "none";
-          });
-          ocorrencia.style.display = "flex";
-          ocorrencia.innerHTML = `Em Breva...`;
-        }
-
-      
 
        </script>
 
