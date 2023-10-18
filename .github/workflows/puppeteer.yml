@@ -1,0 +1,25 @@
+name: Executar Puppeteer
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  puppeteer:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Verificar código
+      uses: actions/checkout@v2
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Instalar Dependências
+      run: npm install
+
+    - name: Executar Puppeteer
+      run: node index.js
