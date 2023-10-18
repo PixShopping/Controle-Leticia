@@ -111,7 +111,7 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-              box-shadow: 0px 0px 7px var(--white);
+              /*box-shadow: 0px 0px 7px var(--white);*/
               border-radius: 10px;
               padding: 0px 0px 25px 0px;
             }
@@ -162,9 +162,48 @@
           text-align: center;
         }
 
+        .content div label {
+          text-align: start;
+          align-self: flex-start;
+          margin: 0px 0px 0px 10%;
+        }
+
+        .content div input {
+          width: 80%;
+          height: 35px;
+          background: transparent;
+          outline: none;
+          border: none;
+          border-bottom: 2px solid var(--white);
+          margin: 0px 0px 20px 0px;
+          color: var(--white);
+          font-size: 16px;
+          font-weight: 500;
+        }
+
         .content .none {
           display: none;
         }
+
+        .content div .flex {
+          width: 80%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          position: relative;
+        }
+
+        .content div .flex ion-icon {
+          position: absolute;
+          right: 10px;
+          bottom: 30px;
+          font-size: 24px;
+          cursor: pointer;
+        }
+
+        .content div .flex input {
+          width: 100%;
+        }  
 
         #voltar {
           background-color: var(--white);
@@ -198,7 +237,10 @@
                       <input id="usuarioProfessor" type="text">
 
                       <label>Senha:</label>
-                      <input id="senhaProfessor" type="text">
+                      <div class="flex">
+                        <input id="senhaProfessor" type="text">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
 
                       <button>Entrar</button>
                       <button id="voltar" onclick="voltar()">Voltar</button>
@@ -208,7 +250,10 @@
                       <input id="usuarioServidor" type="text">
 
                       <label>Senha:</label>
-                      <input id="senhaServidor" type="text">
+                      <div class="flex">
+                        <input id="senhaServidor" type="text">
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </div>
 
                       <button>Entrar</button>
                       <button id="voltar" onclick="voltar()">Voltar</button>
