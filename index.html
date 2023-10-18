@@ -238,8 +238,9 @@
 
                       <label>Senha:</label>
                       <div class="flex">
-                        <input id="senhaProfessor" type="text">
-                        <ion-icon name="eye-outline"></ion-icon>
+                        <input id="senhaProfessor" type="password">
+                        <ion-icon class="mostrarsenhaProfessor none" onclick="esconderSenha('senhaProfessor')" name="eye-outline"></ion-icon>
+                        <ion-icon class="escondersenhaProfessor" onclick="mostrarSenha('senhaProfessor')" name="eye-off-outline"></ion-icon>
                       </div>
 
                       <button>Entrar</button>
@@ -251,8 +252,9 @@
 
                       <label>Senha:</label>
                       <div class="flex">
-                        <input id="senhaServidor" type="text">
-                        <ion-icon name="eye-outline"></ion-icon>
+                        <input id="senhaServidor" type="password">
+                        <ion-icon class="mostrarsenhaServidor none" onclick="esconderSenha('senhaServidor')" name="eye-outline"></ion-icon>
+                        <ion-icon class="escondersenhaServidor" onclick="mostrarSenha('senhaServidor')" name="eye-off-outline"></ion-icon>
                       </div>
 
                       <button>Entrar</button>
@@ -281,6 +283,25 @@
 
         function voltar() {
           window.location.reload();
+        }
+
+        function mostrarSenha(id) {
+          const mostrar = document.querySelector(`.mostrar${id}`);
+          const esconder = document.querySelector(`.esconder${id}`);
+          const input = document.getElementById(`${id}`);
+          input.type = 'text';
+          esconder.style.display = 'none';
+          mostrar.style.display = 'flex';
+        }
+
+        function esconderSenha(id) {
+          const mostrar = document.querySelector(`.mostrar${id}`);
+          const esconder = document.querySelector(`.esconder${id}`);
+          const input = document.getElementById(`${id}`);
+          input.type = 'password';
+          esconder.style.display = 'flex';
+          mostrar.style.display = 'none';
+          
         }
 
        </script>
