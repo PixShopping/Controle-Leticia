@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" href="./img/icon.png" type="x-icon">
+		<link rel="icon" href="./src/img/icon.png" type="x-icon">
 		<link type="stylesheet" src="./style.css">
 		<title> Controle | Letícia </title>
 
@@ -232,6 +232,13 @@
                       <button onclick="ambiente('professor')">Professor</button>
                       <button onclick="ambiente('servidor')">Servidor</button>
                     </div>
+                    <div class="aluno none">
+                      <label>Usuario:</label>
+                      <input id="usuarioAluno" type="text">
+
+                      <button onclick="loginAluno()">Entrar</button>
+                      <button id="voltar" onclick="voltar()">Voltar</button>
+                    </div>
                     <div class="professor none">
                       <label>Usuario:</label>
                       <input id="usuarioProfessor" type="text">
@@ -243,7 +250,7 @@
                         <ion-icon class="escondersenhaProfessor" onclick="mostrarSenha('senhaProfessor')" name="eye-off-outline"></ion-icon>
                       </div>
 
-                      <button>Entrar</button>
+                      <button onclick="loginProfessor()">Entrar</button>
                       <button id="voltar" onclick="voltar()">Voltar</button>
                     </div>
                     <div class="servidor none">
@@ -257,14 +264,14 @@
                         <ion-icon class="escondersenhaServidor" onclick="mostrarSenha('senhaServidor')" name="eye-off-outline"></ion-icon>
                       </div>
 
-                      <button>Entrar</button>
+                      <button onclick="loginServidor()">Entrar</button>
                       <button id="voltar" onclick="voltar()">Voltar</button>
                     </div>
                   </section>
 
                 </main>
 
-
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             </body>
 
        <!-- JavaScript -->
@@ -317,23 +324,163 @@
 
        <script>
 
-        const firebaseConfig = {
-          apiKey: "AIzaSyDycp-UivNqvo5h5PdjYwL0UyCzCvKGgNw",
-          authDomain: "banco-de-dados-leticia.firebaseapp.com",
-          projectId: "banco-de-dados-leticia",
-          storageBucket: "banco-de-dados-leticia.appspot.com",
-          messagingSenderId: "230701596733",
-          appId: "1:230701596733:web:4c52051fd1e7290e282a54"
-        };
+          const firebaseConfig = {
+            apiKey: "AIzaSyC6aMNEjsgeGK-rw4hzLUximzh1YQ6OEII",
+            authDomain: "banco-de-dados-32cac.firebaseapp.com",
+            projectId: "banco-de-dados-32cac",
+            storageBucket: "banco-de-dados-32cac.appspot.com",
+            messagingSenderId: "1001209948956",
+            appId: "1:1001209948956:web:e28198053d747377aee8d9"
+          };
 
           firebase.initializeApp(firebaseConfig);
           const db = firebase.firestore();
 
-          swal({
-            title: 'AVISO',
-            text: 'Digite o Usuario',
-            content: "input",
-          });
+          // Pegar o ANO LETICO ATUAL
+          const dataAtual = new Date();
+          const anoAtual = dataAtual.getFullYear();
+          localStorage.setItem('ano', anoAtual);
+          const ANO = localStorage.getItem('ano');
+
+          // LOGIN COM O SERVIDOR
+          function loginServidor() {
+            const inputUSUARIO = document.getElementById('usuarioServidor');
+            const USUARIO = inputUSUARIO.value;
+            const inputSENHA = document.getElementById('senhaServidor');
+            const SENHA = inputSENHA.value;
+            db.collection(`controle${ANO}`)
+            .doc('servidor')
+            .get().then((doc) => {
+              var usuario = doc.data().usuario;
+              var senha = doc.data().senha;
+              if (usuario === USUARIO) {
+                if (senha === SENHA) {
+                  localStorage.setItem('logado', 'SERVIDOR');
+                  localStorage.setItem('usuario', USUARIO);
+                  localStorage.setItem('senha', SENHA);
+                  window.location.href = './home.html';
+                } else {
+                  swal({
+                    title: 'AVISO',
+                    text: 'Senha Incorreta',
+                    buttons: {
+                      confirm: 'Ok'
+                    },
+                  }).then((response) => {
+                    inputSENHA.value = '';
+                  });
+                }
+              } else {
+                swal({
+                  title: 'AVISO',
+                  text: 'Usuario Incorreto',
+                  buttons: {
+                    confirm: 'Ok'
+                  },
+                })
+              }
+              
+            });
+          }
+
+          // LOGIN COM O PROFESSOR
+          function loginProfessor() {
+            const inputUSUARIO = document.getElementById('usuarioProfessor');
+            const USUARIO = inputUSUARIO.value;
+            const inputSENHA = document.getElementById('senhaProfessor');
+            const SENHA = inputSENHA.value;
+            db.collection(`controle${ANO}`)
+            .doc('professor')
+            .get().then((doc) => {
+              var usuario = doc.data().usuario;
+              var senha = doc.data().senha;
+              if (usuario === USUARIO) {
+                if (senha === SENHA) {
+                  localStorage.setItem('logado', 'PROFESSOR');
+                  localStorage.setItem('usuario', USUARIO);
+                  localStorage.setItem('senha', SENHA);
+                  window.location.href = './home.html';
+                } else {
+                  swal({
+                    title: 'AVISO',
+                    text: 'Senha Incorreta',
+                    buttons: {
+                      confirm: 'Ok'
+                    },
+                  }).then((response) => {
+                    inputSENHA.value = '';
+                  });
+                }
+              } else {
+                swal({
+                  title: 'AVISO',
+                  text: 'Usuario Incorreto',
+                  buttons: {
+                    confirm: 'Ok'
+                  },
+                })
+              }
+              
+            });
+          }
+
+
+          // LOGIN COM O SERVIDOR
+          function loginAluno() {
+            const inputUSUARIO = document.getElementById('usuarioAluno');
+            const usuario = inputUSUARIO.value;
+            const USUARIO = capitalizar(usuario)
+            db.collection(ANO)
+            .doc('series')
+            .collection('existente')
+            .onSnapshot((data) => {
+              data.docs.map((val) => {
+                var serie = val.id;
+                db.collection(ANO)
+                .doc('series')
+                .collection(serie)
+                .onSnapshot((data) => {
+                  data.docs.map((val) => {
+                    var aluno = val.data().aluno;
+                    if (aluno  === USUARIO) {
+                      localStorage.setItem('logado', 'ALUNO');
+                      localStorage.setItem('usuario', USUARIO);
+                      window.location.href = './home.html';
+                    } else {
+                      swal({
+                        title: 'AVISO',
+                        text: 'Usuario Incorreto',
+                        buttons: {
+                          confirm: 'Ok'
+                        },
+                      });
+                    }
+                  });
+                });  
+              })
+            })
+          }
+
+          // CAPITALIZAR
+          function capitalizar(val) {
+            var texto = val;
+            // Verifica se a entrada não está vazia
+            if (texto.length === 0) {
+              return texto;
+            }
+            // Divide a string em palavras
+            var palavras = texto.split(' ');
+            // Capitaliza a primeira letra de cada palavra
+            for (var i = 0; i < palavras.length; i++) {
+              palavras[i] = palavras[i].charAt(0).toUpperCase() + palavras[i].slice(1).toLowerCase();
+            }
+            // Junta as palavras de volta em uma única string
+            var resultado = palavras.join(' ');
+            resultado = resultado.replace(/\s+/g, ' ');
+            resultado = resultado.trim();
+
+            return resultado;
+          }
 
        </script>
 
@@ -341,6 +488,6 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    
+    
 </html>
