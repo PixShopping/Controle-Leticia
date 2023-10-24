@@ -18,11 +18,11 @@
 				--tree: #336FA5;
 				--four: #4E8BB8;
 				--five: #6FADD2;
-        --six: #9ECAE3;
-        --gray: #b3abab;
-        --white: white;
-        --font: 'Ubuntu', sans-serif;
-        --green: rgb(20, 218, 20);
+                --six: #9ECAE3;
+                --gray: #b3abab;
+                --white: white;
+                --font: 'Ubuntu', sans-serif;
+                --green: rgb(20, 218, 20);
 				--red: rgb(240, 36, 36);
 			}
 
@@ -271,11 +271,11 @@
                             </div>
                         </li>
 
-                        <!-- OCORRENCIA -->
-                        <li onclick="ocorrencia()" class="selecionado"> 
-                            <ion-icon name="book-outline"></ion-icon>
+                        <!-- FORMULARIOS -->
+                        <li onclick="formularios()">
+                            <span class="material-symbols-outlined">assignment</span>
                             <div class="none">
-                                <p>Ocorrências</p>
+                                <p>Formulários</p>
                             </div>
                         </li>
 
@@ -333,8 +333,8 @@
             window.location.href = "./home.html";
         }
 
-        function ocorrencia() {
-            window.location.href = "./ocorrencia.html";
+        function formularios() {
+            window.location.href = "./formularios.html";
         }
 
         const menu = document.querySelector('.menu-lateral');
@@ -370,6 +370,7 @@
 
 
        <!-- LINKS DO BANCO DE DADOS -->
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
 
