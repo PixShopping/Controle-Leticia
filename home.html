@@ -103,6 +103,7 @@
                 width: 200px;
                 height: 200px;
                 margin: -50px 0px 0px 0px;
+                cursor: pointer;
             }
 
             .navgation .perfil {
@@ -163,6 +164,62 @@
                 }
             }
 
+            /* MENU LATERAL */
+
+            .menu-lateral {
+                width: 65px;
+                height: 100vh;
+                background: var(--one);
+            }
+
+            .menu-lateral ul {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .menu-lateral ul li {
+                width: 100%;
+                height: auto;
+                list-style: none;
+                padding: 15px;
+                cursor: pointer;
+                color: var(--white);
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            } .menu-lateral ul li:hover {
+                color: var(--tree);
+                transition: all .1s linear;
+                border-left: 4px solid var(--tree);
+            }
+
+            .menu-lateral ul li ion-icon {
+                font-size: 30px;
+            }
+
+            .menu-lateral ul li div p {
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 0.2px;
+                margin: 0px 0px 0px 8px;
+                
+            }
+
+            
+            
+            .menu-lateral ul li.selecionado {
+                border-left: 4px solid var(--tree);
+                color: var(--tree);
+            }
+
+            .none {
+                display: none;
+            }
+
+
             </style>
            </head>
 
@@ -170,7 +227,7 @@
 
                 <nav class="navgation">
 
-                    <img src="./img/logo.png" alt="LOGO">
+                    <img onclick="home()" src="./img/logo.png" alt="LOGO">
                     
                     <perfil onclick="menuPerfil()" class="perfil">
                         <ion-icon name="person-circle"></ion-icon>
@@ -191,9 +248,50 @@
                     
                     </perfil>
 
-                    
 
                 </nav>
+
+                <article class="menu-lateral">
+
+                    <ul>
+
+                        <!-- HOME -->
+                        <li onclick="home()" class="selecionado">
+                            <ion-icon name="home"></ion-icon>
+                            <div class="none">
+                                <p>Página Inicial</p>
+                            </div>
+                        </li>
+
+                        <!-- CHAT -->
+                        <li>
+                            <ion-icon name="chatbubbles-outline"></ion-icon>
+                            <div class="none">
+                                <p>Conversas</p>
+                            </div>
+                        </li>
+
+                        <!-- OCORRENCIA -->
+                        <li onclick="ocorrencia()">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <div class="none">
+                                <p>Ocorrências</p>
+                            </div>
+                        </li>
+
+                        <!-- ESTATISTICAS -->
+                        <li>
+                            <ion-icon name="stats-chart-outline"></ion-icon>
+                            <div class="none">
+                                <p>Estatísticas</p>
+                            </div>
+                        </li>
+
+                        
+
+                    </ul>
+
+                </article>
 
                 <main class="container">
 
@@ -229,6 +327,44 @@
             await localStorage.clear();
             await window.location.reload();
         }
+
+        // PAGINAS
+        function home() {
+            window.location.href = "./home.html";
+        }
+
+        function ocorrencia() {
+            window.location.href = "./ocorrencia.html";
+        }
+
+        const menu = document.querySelector('.menu-lateral');
+        const selecionado = document.querySelector('.selecionado');
+        const lis = document.querySelectorAll('.menu-lateral ul li');
+        const divs = document.querySelectorAll('.menu-lateral ul li div')
+        lis.forEach((li) => {
+            li.addEventListener('mouseover', () => {
+                lis.forEach((li) => {
+                    li.style.justifyContent = "flex-start";
+                })
+        
+                menu.style.width = "200px";
+                selecionado.style.border = "none";
+                divs.forEach((div) => {
+                    div.style.display = 'flex';
+                });
+            });
+            li.addEventListener('mouseout', () => {
+                lis.forEach((li) => {
+                    li.style.justifyContent = "center";
+                })
+                menu.style.width = "65px";
+                selecionado.style.borderLeft = "4px solid var(--tree)";
+                divs.forEach((div) => {
+                    div.style.display = 'none';
+                });
+            });
+
+        });
 
        </script>
 
