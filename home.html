@@ -227,7 +227,7 @@
 
                 <nav class="navgation">
 
-                    <img onclick="home()" src="./img/logo.png" alt="LOGO">
+                    <img src="./img/logo.png" alt="LOGO">
                     
                     <perfil onclick="menuPerfil()" class="perfil">
                         <ion-icon name="person-circle"></ion-icon>
@@ -431,6 +431,21 @@
 
             if (!logado) {
                 window.location.href = './index.html';
+            }
+            
+            // VERIFICANDO IDENTIDADE
+            const ul = document.querySelector('.menu-lateral ul');
+            if (logado === 'ALUNO') {
+                ul.innerHTML = `
+                        <!-- HOME -->
+                        <li onclick="home()" class="selecionado">
+                            <ion-icon name="home"></ion-icon>
+                            <div class="none">
+                                <p>Página Inicial</p>
+                            </div>
+                        </li>
+
+                `;
             }
 
        </script>
