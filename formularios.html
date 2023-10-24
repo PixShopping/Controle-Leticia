@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="./src/img/icon.png" type="x-icon">
 		<link type="stylesheet" src="./style.css">
-		<title> Controle Letícia | Ocorrências </title>
+		<title> Controle Letícia | Formulários </title>
 
 		<style scoped>
 
@@ -80,14 +80,6 @@
             color: white;
         }
 
-            /* CONTAINER */
-            .container {
-                width: 100vw;
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
 
             /* NAVGATION */
 
@@ -207,8 +199,6 @@
                 margin: 0px 0px 0px 8px;
                 
             }
-
-            
             
             .menu-lateral ul li.selecionado {
                 border-left: 4px solid var(--tree);
@@ -217,6 +207,86 @@
 
             .none {
                 display: none;
+            }
+
+            /* CONTAINER E CONTENT */
+
+            /* CONTAINER */
+            .container {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                flex-direction: row;
+            }
+
+            .content {
+                width: auto;
+                max-width: auto;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                gap: 00px;
+                padding: 20px 15px;
+            }
+
+            .content section {
+                width: auto;
+                height: 75px;
+                background: var(--one);
+                color: var(--white);
+                position: relative;
+                cursor: pointer;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 15px;
+                box-shadow: 0px 5px 15px var(--one);
+                margin: 32px 15px 0px 15px;
+            } .content section:hover {
+                box-shadow: 0px 5px 15px var(--six);
+                background: var(--six);
+                color: var(--one);
+                transition: all .3s ease-in-out;
+            }
+
+            .content section h1 {
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 0.2px;
+                margin: 0px 15px 0px 0px;
+            }
+
+            .content section ion-icon {
+                font-size: 28px;
+                margin: 0px 8px 0px 0px;
+            }
+
+            .content section .seta {
+                font-size: 26px;
+                margin: 0px 0px 0px auto;
+            }
+
+            .content section div {
+                width: auto;
+                height: 32px;
+                padding: 5px 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: var(--white);
+                color: var(--one);
+                position: absolute;
+                top: -32px;
+                left: 0px;
+            }
+
+            .content section div p {
+                font-size: 16px;
+                font-weight: 500;
             }
 
 
@@ -251,52 +321,70 @@
 
                 </nav>
 
-                <article class="menu-lateral">
-
-                    <ul>
-
-                        <!-- HOME -->
-                        <li onclick="home()">
-                            <ion-icon name="home"></ion-icon>
-                            <div class="none">
-                                <p>Página Inicial</p>
-                            </div>
-                        </li>
-
-                        <!-- CHAT -->
-                        <li>
-                            <ion-icon name="chatbubbles-outline"></ion-icon>
-                            <div class="none">
-                                <p>Conversas</p>
-                            </div>
-                        </li>
-
-                        <!-- FORMULARIOS -->
-                        <li id="LIformularios" class="selecionado" onclick="formularios()">
-                            <span class="material-symbols-outlined">assignment</span>
-                            <div class="none">
-                                <p>Formulários</p>
-                            </div>
-                        </li>
-
-                        <!-- ESTATISTICAS -->
-                        <li>
-                            <ion-icon name="stats-chart-outline"></ion-icon>
-                            <div class="none">
-                                <p>Estatísticas</p>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </article>
-
                 <main class="container">
+
+                    <article class="menu-lateral">
+
+                        <ul>
+    
+                            <!-- HOME -->
+                            <li onclick="home()">
+                                <ion-icon name="home"></ion-icon>
+                                <div class="none">
+                                    <p>Página Inicial</p>
+                                </div>
+                            </li>
+    
+                            <!-- CHAT -->
+                            <li>
+                                <ion-icon name="chatbubbles-outline"></ion-icon>
+                                <div class="none">
+                                    <p>Conversas</p>
+                                </div>
+                            </li>
+    
+                            <!-- FORMULARIOS -->
+                            <li id="LIformularios" class="selecionado" onclick="formularios()">
+                                <span class="material-symbols-outlined">assignment</span>
+                                <div class="none">
+                                    <p>Formulários</p>
+                                </div>
+                            </li>
+    
+                            <!-- ESTATISTICAS -->
+                            <li>
+                                <ion-icon name="stats-chart-outline"></ion-icon>
+                                <div class="none">
+                                    <p>Estatísticas</p>
+                                </div>
+                            </li>
+    
+                        </ul>
+    
+                    </article>
 
                   <!-- CONTENT -->
                   <section class="content">
                   
+                    <section>
+                        <div>
+                            <p>Professores</p>
+                        </div>
 
+                        <ion-icon name="book-outline"></ion-icon>
+                        <h1>Ocorrências</h1>
+                        <ion-icon class="seta" name="chevron-forward-outline"></ion-icon>
+                    </section>
+
+                    <section>
+                        <div>
+                            <p>Professores</p>
+                        </div>
+
+                        <ion-icon name="book-outline"></ion-icon>
+                        <h1>Registro de faltas</h1>
+                        <ion-icon class="seta" name="chevron-forward-outline"></ion-icon>
+                    </section>
                 
                   </section>
 
@@ -336,6 +424,7 @@
             window.location.href = "./formularios.html";
         }
 
+        const container = document.querySelector('.container');
         const menu = document.querySelector('.menu-lateral');
         const selecionado = document.querySelector('.selecionado');
         const lis = document.querySelectorAll('.menu-lateral ul li');
