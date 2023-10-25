@@ -292,6 +292,10 @@
                 font-weight: 500;
             }
 
+            .form {
+                display: none;
+            }
+
 
             </style>
            </head>
@@ -370,7 +374,7 @@
                   <section class="content">
                   
                     <!-- CONTROLE DE AGUA -->
-                    <section>
+                    <section onclick="abrirFormulario('agua')">
                         <div>
                             <p>Direção</p>
                         </div>
@@ -381,7 +385,7 @@
                     </section>
 
                     <!-- MEDIDAS DICIPLINARES -->
-                    <section>
+                    <section onclick="abrirFormulario('medidasDisciplinares')">
                         <div>
                             <p>Direção</p>
                         </div>
@@ -471,6 +475,9 @@
                   <!-- FIM DO CONTENT -->
                   </section>
 
+                  <iframe class="form" id="agua" src="https://docs.google.com/forms/d/e/1FAIpQLSdH5TmKkUEqafLl7iTDGJJLg9QhEU4espKCqrqaa2SoJ1HV6A/viewform?embedded=true" width="640" height="379" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+                  <iframe class="form" id="medidasDisciplinares" src="https://docs.google.com/forms/d/e/1FAIpQLSdCZdnkCecUwiwYaRd5EhBRXReIQO5dvgyi8RTyM-BlRGrZSQ/viewform?embedded=true" width="640" height="379" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+
                 </main>
 
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -479,6 +486,13 @@
        <!-- JavaScript -->
        <script>
 
+
+        function abrirFormulario(id) {
+            const content = document.querySelector('.content');
+            const iframe = document.getElementById(id);
+            iframe.style.display = "flex";
+            content.style.display = "none";
+        }
         
         var c = 0;
         function menuPerfil() {
