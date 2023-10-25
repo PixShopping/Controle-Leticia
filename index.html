@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="./src/img/icon.png" type="x-icon">
+		<link type="stylesheet" src="./style.css">
+		<title> Controle Letícia </title>
+
+		<style scoped>
+
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
+
+			:root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+        --six: #9ECAE3;
+        --gray: #b3abab;
+        --white: white;
+        --font: 'Ubuntu', sans-serif;
+        --green: rgb(20, 218, 20);
+				--red: rgb(240, 36, 36);
+			}
+
+			*  {
+				padding: 0px;
+				margin: 0px;
+				box-sizing: border-box;
+				font-family: var(--font);
+			}
+
+			*::-webkit-scrollbar {
+			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+			}
+
+			body {
+				background: var(--one);
+				color: var(--white);
+				user-select: none;
+				font-family: 'Arial', sans-serif;
+				overflow: hidden;
+           		 }
+
+            /* ALERTA MODIFICADO */
+      .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .swal-title {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
+
+            /* CONTAINER */
+            .container {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container::before {
+              content: '';
+              width: 100%;
+              height: 100%;
+              background-image: url(./img/background.png);
+              background-repeat: repeat;
+              background-size: 175px;
+              z-index: -1;
+              position: absolute;
+              top: 10px;
+            }
+
+
+            /* CONTENT */
+
+            .content {
+              width: 350px;
+              height: auto;
+              background: var(--one);
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              /*box-shadow: 0px 0px 7px var(--white);*/
+              border-radius: 10px;
+              padding: 0px 0px 25px 0px;
+            }
+
+            .content img {
+              width: 280px;
+              height: 280px;
+              margin: 0px 0px -42.5px 0px;
+            }
+
+            .content p {
+              margin: 0px 0px 12.5px 0px;
+              width: 90%;
+              font-size: 17px;
+            }
+
+            .content button {
+              width: 80%;
+              height: 40px;
+              margin: 10px 0px;
+              background: var(--two);
+              border: 2px solid var(--two);
+              outline: #336FA5;
+              color: var(--white);
+              border-radius: 5px;
+              font-size: 16px;
+              font-weight: 500;
+              cursor: pointer;
+            } .content button:hover {
+              background: transparent;
+              color: var(--two);
+              text-shadow: 0px 0px 10px var(--two);
+              box-shadow: 0px 5px 15px var(--two);
+              transition: all .3s ease-in-out;
+            }
+
+
+            
+
+        /* AMBIENTE */
+
+        .content div {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .content div label {
+          text-align: start;
+          align-self: flex-start;
+          margin: 0px 0px 0px 10%;
+        }
+
+        .content div input {
+          width: 80%;
+          height: 35px;
+          background: transparent;
+          outline: none;
+          border: none;
+          border-bottom: 2px solid var(--white);
+          margin: 0px 0px 20px 0px;
+          color: var(--white);
+          font-size: 16px;
+          font-weight: 500;
+        }
+
+        .content .none {
+          display: none;
+        }
+
+        .content div .flex {
+          width: 80%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          position: relative;
+        }
+
+        .content div .flex ion-icon {
+          position: absolute;
+          right: 10px;
+          bottom: 30px;
+          font-size: 24px;
+          cursor: pointer;
+        }
+
+        .content div .flex input {
+          width: 100%;
+        }  
+
+        #voltar {
+          background-color: var(--white);
+          color: var(--two);
+          border: 2px solid var(--white);
+        }
+
+        #voltar:hover {
+          background: transparent;
+          color: var(--white);
+        }
+
+            </style>
+           </head>
+
+           <body>
+
+                <main class="container">
+
+                  <!-- Login -->
+                  <section class="content">
+                    <img src="./img/icon.png" alt="">
+                    <div class="ambiente">
+                      <p>Selecione o ambiente em que deseja fazer o login!</p>
+                      <button onclick="ambiente('aluno')">Aluno</button>
+                      <button onclick="ambiente('professor')">Professor</button>
+                      <button onclick="ambiente('servidor')">Servidor</button>
+                    </div>
+                    <div class="aluno none">
+                      <label>Usuario:</label>
+                      <input id="usuarioAluno" type="text">
+
+                      <button onclick="loginAluno()">Entrar</button>
+                      <button id="voltar" onclick="voltar()">Voltar</button>
+                    </div>
+                    <div class="professor none">
+                      <label>Usuario:</label>
+                      <input id="usuarioProfessor" type="text">
+
+                      <label>Senha:</label>
+                      <div class="flex">
+                        <input id="senhaProfessor" type="password">
+                        <ion-icon class="mostrarsenhaProfessor none" onclick="esconderSenha('senhaProfessor')" name="eye-outline"></ion-icon>
+                        <ion-icon class="escondersenhaProfessor" onclick="mostrarSenha('senhaProfessor')" name="eye-off-outline"></ion-icon>
+                      </div>
+
+                      <button onclick="loginProfessor()">Entrar</button>
+                      <button id="voltar" onclick="voltar()">Voltar</button>
+                    </div>
+                    <div class="servidor none">
+                      <label>Usuario:</label>
+                      <input id="usuarioServidor" type="text">
+
+                      <label>Senha:</label>
+                      <div class="flex">
+                        <input id="senhaServidor" type="password">
+                        <ion-icon class="mostrarsenhaServidor none" onclick="esconderSenha('senhaServidor')" name="eye-outline"></ion-icon>
+                        <ion-icon class="escondersenhaServidor" onclick="mostrarSenha('senhaServidor')" name="eye-off-outline"></ion-icon>
+                      </div>
+
+                      <button onclick="loginServidor()">Entrar</button>
+                      <button id="voltar" onclick="voltar()">Voltar</button>
+                    </div>
+                  </section>
+
+                </main>
+
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            </body>
+
+       <!-- JavaScript -->
+       <script>
+
+        function ambiente(dado) {
+          const divs = document.querySelectorAll('.none');
+          divs.forEach((div) => {
+            div.style.display = 'none';
+          })
+          const ambiente = document.querySelector(`.${dado}`);
+          const content = document.querySelector('.ambiente');
+          ambiente.style.display = 'flex';
+          content.style.display = 'none';
+        }
+
+        function voltar() {
+          window.location.reload();
+        }
+
+        function mostrarSenha(id) {
+          const mostrar = document.querySelector(`.mostrar${id}`);
+          const esconder = document.querySelector(`.esconder${id}`);
+          const input = document.getElementById(`${id}`);
+          input.type = 'text';
+          esconder.style.display = 'none';
+          mostrar.style.display = 'flex';
+        }
+
+        function esconderSenha(id) {
+          const mostrar = document.querySelector(`.mostrar${id}`);
+          const esconder = document.querySelector(`.esconder${id}`);
+          const input = document.getElementById(`${id}`);
+          input.type = 'password';
+          esconder.style.display = 'flex';
+          mostrar.style.display = 'none';
+          
+        }
+
+       </script>
+
+
+       <!-- LINKS DO BANCO DE DADOS -->
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+
+       <!------------------------------->
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
+
+       <script>
+
+          const firebaseConfig = {
+            apiKey: "AIzaSyC6aMNEjsgeGK-rw4hzLUximzh1YQ6OEII",
+            authDomain: "banco-de-dados-32cac.firebaseapp.com",
+            projectId: "banco-de-dados-32cac",
+            storageBucket: "banco-de-dados-32cac.appspot.com",
+            messagingSenderId: "1001209948956",
+            appId: "1:1001209948956:web:e28198053d747377aee8d9"
+          };
+
+          firebase.initializeApp(firebaseConfig);
+          const db = firebase.firestore();
+
+          // Pegar o ANO LETICO ATUAL
+          const dataAtual = new Date();
+          const anoAtual = dataAtual.getFullYear();
+          localStorage.setItem('ano', anoAtual);
+          const ANO = localStorage.getItem('ano');
+
+          // LOGIN COM O SERVIDOR
+          function loginServidor() {
+            const inputUSUARIO = document.getElementById('usuarioServidor');
+            const USUARIO = inputUSUARIO.value;
+            const inputSENHA = document.getElementById('senhaServidor');
+            const SENHA = inputSENHA.value;
+            db.collection(`controle${ANO}`)
+            .doc('servidor')
+            .get().then((doc) => {
+              var usuario = doc.data().usuario;
+              var senha = doc.data().senha;
+              if (usuario === USUARIO) {
+                if (senha === SENHA) {
+                  localStorage.setItem('logado', 'SERVIDOR');
+                  localStorage.setItem('usuario', USUARIO);
+                  localStorage.setItem('senha', SENHA);
+                  window.location.href = './servidor/';
+                } else {
+                  swal({
+                    title: 'AVISO',
+                    text: 'Senha Incorreta',
+                    buttons: {
+                      confirm: 'Ok'
+                    },
+                  }).then((response) => {
+                    inputSENHA.value = '';
+                  });
+                }
+              } else {
+                swal({
+                  title: 'AVISO',
+                  text: 'Usuario Incorreto',
+                  buttons: {
+                    confirm: 'Ok'
+                  },
+                })
+              }
+              
+            });
+          }
+
+          // LOGIN COM O PROFESSOR
+          function loginProfessor() {
+            const inputUSUARIO = document.getElementById('usuarioProfessor');
+            const USUARIO = inputUSUARIO.value;
+            const inputSENHA = document.getElementById('senhaProfessor');
+            const SENHA = inputSENHA.value;
+            db.collection(`controle${ANO}`)
+            .doc('professor')
+            .get().then((doc) => {
+              var usuario = doc.data().usuario;
+              var senha = doc.data().senha;
+              if (usuario === USUARIO) {
+                if (senha === SENHA) {
+                  localStorage.setItem('logado', 'PROFESSOR');
+                  localStorage.setItem('usuario', USUARIO);
+                  localStorage.setItem('senha', SENHA);
+                  window.location.href = './professor/';
+                } else {
+                  swal({
+                    title: 'AVISO',
+                    text: 'Senha Incorreta',
+                    buttons: {
+                      confirm: 'Ok'
+                    },
+                  }).then((response) => {
+                    inputSENHA.value = '';
+                  });
+                }
+              } else {
+                swal({
+                  title: 'AVISO',
+                  text: 'Usuario Incorreto',
+                  buttons: {
+                    confirm: 'Ok'
+                  },
+                })
+              }
+              
+            });
+          }
+
+
+          // LOGIN COM O SERVIDOR
+          function loginAluno() {
+            const inputUSUARIO = document.getElementById('usuarioAluno');
+            const usuario = inputUSUARIO.value;
+            const USUARIO = capitalizar(usuario)
+            db.collection(ANO)
+            .doc('series')
+            .collection('existente')
+            .onSnapshot((data) => {
+              data.docs.map((val) => {
+                var serie = val.id;
+                db.collection(ANO)
+                .doc('series')
+                .collection(serie)
+                .onSnapshot((data) => {
+                  data.docs.map((val) => {
+                    var aluno = val.data().aluno;
+                    if (aluno  === USUARIO) {
+                      localStorage.setItem('logado', 'ALUNO');
+                      localStorage.setItem('usuario', USUARIO);
+                      window.location.href = './aluno/';
+                    } else {
+                      swal({
+                        title: 'AVISO',
+                        text: 'Usuario Incorreto',
+                        buttons: {
+                          confirm: 'Ok'
+                        },
+                      });
+                    }
+                  });
+                });  
+              })
+            })
+          }
+
+          // CAPITALIZAR
+          function capitalizar(val) {
+            var texto = val;
+            // Verifica se a entrada não está vazia
+            if (texto.length === 0) {
+              return texto;
+            }
+            // Divide a string em palavras
+            var palavras = texto.split(' ');
+            // Capitaliza a primeira letra de cada palavra
+            for (var i = 0; i < palavras.length; i++) {
+              palavras[i] = palavras[i].charAt(0).toUpperCase() + palavras[i].slice(1).toLowerCase();
+            }
+            // Junta as palavras de volta em uma única string
+            var resultado = palavras.join(' ');
+            resultado = resultado.replace(/\s+/g, ' ');
+            resultado = resultado.trim();
+
+            return resultado;
+          }
+
+       </script>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    
+</html>
