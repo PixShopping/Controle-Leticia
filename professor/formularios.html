@@ -292,6 +292,10 @@
                 font-weight: 500;
             }
 
+            .form {
+                display: none;
+            }
+
 
             </style>
            </head>
@@ -370,7 +374,7 @@
                   <section class="content">
                   
                     <!-- OCORRENCIAS -->
-                    <section>
+                    <section onclick="abrirFormulario('ocorrencia')">
                         <div>
                             <p>Professores</p>
                         </div>
@@ -416,6 +420,8 @@
                   <!-- FIM DO CONTENT -->
                   </section>
 
+                  <iframe class="form" id="ocorrencia" src="https://docs.google.com/forms/d/e/1FAIpQLSdiZkofRQxzw4FSPju7XgqxXTRpo2O0QGr3UEapwjOugDc7Cw/viewform?embedded=true" width="640" height="1518" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+
                 </main>
 
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -424,6 +430,12 @@
        <!-- JavaScript -->
        <script>
 
+        function abrirFormulario(id) {
+            const content = document.querySelector('.content');
+            const iframe = document.getElementById(id);
+            iframe.style.display = "flex";
+            content.style.display = "none";
+        }
         
         var c = 0;
         function menuPerfil() {
