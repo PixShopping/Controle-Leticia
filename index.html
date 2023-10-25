@@ -146,6 +146,12 @@
               text-shadow: 0px 0px 10px var(--two);
               box-shadow: 0px 5px 15px var(--two);
               transition: all .3s ease-in-out;
+            } .content button:focus {
+              background: transparent;
+              color: var(--two);
+              text-shadow: 0px 0px 10px var(--two);
+              box-shadow: 0px 5px 15px var(--two);
+              transition: all .3s ease-in-out;
             }
 
 
@@ -214,7 +220,10 @@
         #voltar:hover {
           background: transparent;
           color: var(--white);
-        }
+        } #voltar:focus {
+          background: transparent;
+          color: var(--white);
+        } 
 
             </style>
            </head>
@@ -345,7 +354,8 @@
           // LOGIN COM O SERVIDOR
           function loginServidor() {
             const inputUSUARIO = document.getElementById('usuarioServidor');
-            const USUARIO = inputUSUARIO.value;
+            const usuario = inputUSUARIO.value;
+            const USUARIO = capitalizar(usuario);
             const inputSENHA = document.getElementById('senhaServidor');
             const SENHA = inputSENHA.value;
             db.collection(`controle${ANO}`)
@@ -386,7 +396,8 @@
           // LOGIN COM O PROFESSOR
           function loginProfessor() {
             const inputUSUARIO = document.getElementById('usuarioProfessor');
-            const USUARIO = inputUSUARIO.value;
+            const usuario = inputUSUARIO.value;
+            const USUARIO = capitalizar(usuario);
             const inputSENHA = document.getElementById('senhaProfessor');
             const SENHA = inputSENHA.value;
             db.collection(`controle${ANO}`)
@@ -429,7 +440,7 @@
           function loginAluno() {
             const inputUSUARIO = document.getElementById('usuarioAluno');
             const usuario = inputUSUARIO.value;
-            const USUARIO = capitalizar(usuario)
+            const USUARIO = capitalizar(usuario);
             db.collection(ANO)
             .doc('series')
             .collection('existente')
