@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" href="../src/img/icon.png" type="x-icon">
-		<title> Controle Letícia | Inicio </title>
+		<link rel="icon" href="../img/icon.png" type="x-icon">
+        <title> Controle Letícia | Inicio </title>
 
 		<style scoped>
 
@@ -256,8 +256,8 @@
 
                         <ul>
     
-                            <!-- HOME -->
-                            <li onclick="home()" class="selecionado">
+                             <!-- HOME -->
+                             <li onclick="irPagina('index')" class="selecionado">
                                 <ion-icon name="home"></ion-icon>
                                 <div class="none">
                                     <p>Página Inicial</p>
@@ -265,7 +265,7 @@
                             </li>
     
                             <!-- CHAT -->
-                            <li>
+                            <li onclick="irPagina('conversas')">
                                 <ion-icon name="chatbubbles-outline"></ion-icon>
                                 <div class="none">
                                     <p>Conversas</p>
@@ -273,7 +273,7 @@
                             </li>
     
                             <!-- FORMULARIOS -->
-                            <li onclick="formularios()">
+                            <li onclick="irPagina('formularios')">
                                 <span class="material-symbols-outlined">assignment</span>
                                 <div class="none">
                                     <p>Formulários</p>
@@ -281,7 +281,7 @@
                             </li>
     
                             <!-- ESTATISTICAS -->
-                            <li>
+                            <li onclick="irPagina('estatisticas')">
                                 <ion-icon name="stats-chart-outline"></ion-icon>
                                 <div class="none">
                                     <p>Estatísticas</p>
@@ -308,6 +308,11 @@
        <!-- JavaScript -->
        <script>
 
+        // IR PARA A PAGINA
+        function irPagina(pagina) {
+            window.location.href = `./${pagina}.html`;
+        }
+
         var c = 0;
         function menuPerfil() {
             const div = document.querySelector('.menuPerfil');
@@ -333,6 +338,10 @@
 
         function formularios() {
             window.location.href = "./formularios.html";
+        }
+
+        function estatisticas() {
+            window.location.href = "./estatisticas.html";
         }
 
         const menu = document.querySelector('.menu-lateral');

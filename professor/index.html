@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" href="../src/img/icon.png" type="x-icon">
+		<link rel="icon" href="../img/icon.png" type="x-icon">
 		<title> Controle Letícia | Inicio </title>
 
 		<style scoped>
@@ -47,39 +47,39 @@
            	}
 
             /* ALERTA MODIFICADO */
-      .swal-modal {
-            background-color: var(--one);
-            border: 3px solid white;
-            border-radius: 10px;
-        }
+            .swal-modal {
+                background-color: var(--one);
+                border: 3px solid white;
+                border-radius: 10px;
+            }
 
-        .swal-title {
-            width: 100%;
-            height: 100%;
-            font-size: 22px;
-            color: var(--white);
-            border-bottom: 2px solid var(--white);
-            padding: 0px 0px 20px 0px;
-            letter-spacing: 0.5px;
-        }
+            .swal-title {
+                width: 100%;
+                height: 100%;
+                font-size: 22px;
+                color: var(--white);
+                border-bottom: 2px solid var(--white);
+                padding: 0px 0px 20px 0px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-text {
-            color: var(--white);
-            margin: 20px 0px 0px 0px;
-            font-size: 20px;
-            letter-spacing: 0.5px;
-        }
+            .swal-text {
+                color: var(--white);
+                margin: 20px 0px 0px 0px;
+                font-size: 20px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-button {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--confirm {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--cancel {
-            background-color: var(--red);
-            color: white;
-        }
+            .swal-button {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--confirm {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--cancel {
+                background-color: var(--red);
+                color: white;
+            }
 
             /* NAVGATION */
 
@@ -258,23 +258,15 @@
                         <ul>
     
                             <!-- HOME -->
-                            <li onclick="home()" class="selecionado">
+                            <li onclick="irPagina('index')" class="selecionado">
                                 <ion-icon name="home"></ion-icon>
                                 <div class="none">
                                     <p>Página Inicial</p>
                                 </div>
                             </li>
     
-                            <!-- CHAT -->
-                            <li>
-                                <ion-icon name="chatbubbles-outline"></ion-icon>
-                                <div class="none">
-                                    <p>Conversas</p>
-                                </div>
-                            </li>
-    
                             <!-- FORMULARIOS -->
-                            <li onclick="formularios()">
+                            <li onclick="irPagina('formularios')">
                                 <span class="material-symbols-outlined">assignment</span>
                                 <div class="none">
                                     <p>Formulários</p>
@@ -282,14 +274,12 @@
                             </li>
     
                             <!-- ESTATISTICAS -->
-                            <li>
+                            <li onclick="irPagina('estatisticas')">
                                 <ion-icon name="stats-chart-outline"></ion-icon>
                                 <div class="none">
                                     <p>Estatísticas</p>
                                 </div>
                             </li>
-    
-                            
     
                         </ul>
     
@@ -310,6 +300,11 @@
        <!-- JavaScript -->
        <script>
 
+        // IR PARA A PAGINA
+        function irPagina(pagina) {
+            window.location.href = `./${pagina}.html`;
+        }
+
         var c = 0;
         function menuPerfil() {
             const div = document.querySelector('.menuPerfil');
@@ -326,15 +321,6 @@
         async function sairDaConta() {
             await localStorage.clear();
             await window.location.reload();
-        }
-
-        // PAGINAS
-        function home() {
-            window.location.href = "./index.html";
-        }
-
-        function formularios() {
-            window.location.href = "./formularios.html";
         }
 
         const menu = document.querySelector('.menu-lateral');

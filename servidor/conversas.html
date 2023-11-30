@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="../img/icon.png" type="x-icon">
-        <title> Controle Letícia | Formulários </title>
+        <title> Controle Letícia | Conversas </title>
 
 		<style scoped>
 
@@ -26,6 +26,7 @@
 			}
 
 			*  {
+                border: 0px;
 				padding: 0px;
 				margin: 0px;
 				box-sizing: border-box;
@@ -42,50 +43,49 @@
 				user-select: none;
 				font-family: 'Arial', sans-serif;
 				overflow-x: hidden;
-                height: auto;
                 width: auto;
-            }
+                height: auto;
+           	}
 
             /* ALERTA MODIFICADO */
-      .swal-modal {
-            background-color: var(--one);
-            border: 3px solid white;
-            border-radius: 10px;
-        }
+            .swal-modal {
+                background-color: var(--one);
+                border: 3px solid white;
+                border-radius: 10px;
+            }
 
-        .swal-title {
-            width: 100%;
-            height: 100%;
-            font-size: 22px;
-            color: var(--white);
-            border-bottom: 2px solid var(--white);
-            padding: 0px 0px 20px 0px;
-            letter-spacing: 0.5px;
-        }
+            .swal-title {
+                width: 100%;
+                height: 100%;
+                font-size: 22px;
+                color: var(--white);
+                border-bottom: 2px solid var(--white);
+                padding: 0px 0px 20px 0px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-text {
-            color: var(--white);
-            margin: 20px 0px 0px 0px;
-            font-size: 20px;
-            letter-spacing: 0.5px;
-        }
+            .swal-text {
+                color: var(--white);
+                margin: 20px 0px 0px 0px;
+                font-size: 20px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-button {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--confirm {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--cancel {
-            background-color: var(--red);
-            color: white;
-        }
-
+            .swal-button {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--confirm {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--cancel {
+                background-color: var(--red);
+                color: white;
+            }
 
             /* NAVGATION */
 
             .navgation {
-                width: 100vw;
+                width: 100vw;   
                 height: 100px;
                 display: flex;
                 background: var(--one);
@@ -132,7 +132,6 @@
                 color: var(--white);
                 border: 2px solid var(--white);
                 cursor: pointer;
-                z-index: 20;
             }
 
             .menuPerfil .column {
@@ -201,7 +200,7 @@
                 margin: 0px 0px 0px 8px;
                 
             }
-            
+
             .menu-lateral ul li.selecionado {
                 border-left: 4px solid var(--tree);
                 color: var(--tree);
@@ -211,135 +210,25 @@
                 display: none;
             }
 
-            /* CONTAINER E CONTENT */
-
             /* CONTAINER */
             .container {
                 width: 100vw;
                 height: auto;
-                min-height: 90vh;
                 display: flex;
                 flex-direction: row;
+                padding: 0px;
+                margin: 0px;
             }
 
             .content {
-                width: auto;
-                max-width: auto;
-                height: auto;
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-start;
-                align-items: flex-start;
-                flex-wrap: wrap;
-                gap: 40px;
-                padding: 45px 35px 200px 35px;
-            }
-
-            .content section {
-                width: auto;
-                height: 75px;
-                background: var(--one);
-                color: var(--white);
-                position: relative;
-                cursor: pointer;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-                padding: 15px;
-                box-shadow: 0px 5px 15px var(--one);
-                margin: 10px 0px 10px 0px;
-            } .content section:hover {
-                box-shadow: 0px 5px 15px var(--six);
-                background: var(--six);
-                color: var(--one);
-                transition: all .3s ease-in-out;
-            }
-
-            .content section h1 {
-                font-size: 18px;
-                font-weight: 500;
-                letter-spacing: 0.2px;
-                margin: 0px 15px 0px 0px;
-            }
-
-            .content section ion-icon {
-                font-size: 28px;
-                margin: 0px 8px 0px 0px;
-            }
-
-            .content section .seta {
-                font-size: 26px;
-                margin: 0px 0px 0px auto;
-            }
-
-            .content section div {
-                width: auto;
-                height: 32px;
-                padding: 5px 10px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background: var(--white);
-                color: var(--one);
-                position: absolute;
-                top: -32px;
-                left: 0px;
-            }
-
-            .content section div p {
-                font-size: 16px;
-                font-weight: 500;
-            }
-            
-            .iframes {
-                display: none;
                 width: 100%;
                 height: auto;
+                min-height: 100vh;
             }
 
-            .form {
-                display: flex;
+            .content iframe {
                 width: 100%;
-                height: auto;
-                min-height: 90vh;
-                margin: 20px 0px;
-            }
-
-
-            /* Animacao de carregando */
-            .carregando {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
-                width: auto;
-                height: auto;
-                display: flex;
-                align-items: center;
-                color: var(--white);
-            }
-
-            .carregando span {
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-                border: 20px solid var(--white);
-                border-top: 21px solid transparent;
-                animation: loading 1.5s linear infinite;
-            }
-
-            .carregando h2 {
-                margin: 0px 0px 0px 20px;
-            }
-
-            @keyframes loading {
-                0% {
-                    transform: rotate(0deg);
-                }
-                100% {
-                    transform: rotate(360deg);
-                }
+                height: 100%;
             }
 
             </style>
@@ -373,6 +262,7 @@
 
                 </nav>
 
+                
                 <main class="container">
 
                     <article class="menu-lateral">
@@ -388,7 +278,7 @@
                             </li>
     
                             <!-- CHAT -->
-                            <li onclick="irPagina('conversas')">
+                            <li onclick="irPagina('conversas')" class="selecionado">
                                 <ion-icon name="chatbubbles-outline"></ion-icon>
                                 <div class="none">
                                     <p>Conversas</p>
@@ -396,7 +286,7 @@
                             </li>
     
                             <!-- FORMULARIOS -->
-                            <li onclick="irPagina('formularios')" class="selecionado">
+                            <li onclick="irPagina('formularios')">
                                 <span class="material-symbols-outlined">assignment</span>
                                 <div class="none">
                                     <p>Formulários</p>
@@ -411,6 +301,7 @@
                                 </div>
                             </li>
     
+    
                         </ul>
     
                     </article>
@@ -418,16 +309,9 @@
                   <!-- CONTENT -->
                   <section class="content">
                   
-
-
+                    <iframe src="https://app-leticia.netlify.app/mensagens/" frameborder="0"></iframe>
+                
                   </section>
-                  
-                  <!-- PLANILHAS DE FORMULARIOS -->
-                  <div class="iframes">
-
-                    
-
-                  </div>
 
                 </main>
 
@@ -437,25 +321,6 @@
        <!-- JavaScript -->
        <script>
 
-        // IR PARA A PAGINA
-        function irPagina(pagina) {
-            window.location.href = `./${pagina}.html`;
-        }
-
-        function abrirFormulario(url) {
-            const content = document.querySelector('.content');
-            const iframe = document.querySelector('.iframes');
-            content.style.display = "none";
-            iframe.style.display = "flex";
-            iframe.innerHTML = `
-                <iframe class="form" src="${url}" frameborder="0" marginheight="0" marginwidth="0">
-                    <section class="carregando">
-                        <span></span>
-                        <h2>Carregando..</h2>
-                    </section>
-                </iframe>  
-            `;
-        }
         var c = 0;
         function menuPerfil() {
             const div = document.querySelector('.menuPerfil');
@@ -474,20 +339,11 @@
             await window.location.reload();
         }
 
-        // PAGINAS
-        function home() {
-            window.location.href = "./index.html";
+        // IR PARA A PAGINA
+        function irPagina(pagina) {
+            window.location.href = `./${pagina}.html`;
         }
 
-        function formularios() {
-            window.location.href = "./formularios.html";
-        }
-
-        function estatisticas() {
-            window.location.href = "./estatisticas.html";
-        }
-
-        const container = document.querySelector('.container');
         const menu = document.querySelector('.menu-lateral');
         const selecionado = document.querySelector('.selecionado');
         const lis = document.querySelectorAll('.menu-lateral ul li');
@@ -497,6 +353,7 @@
                 lis.forEach((li) => {
                     li.style.justifyContent = "flex-start";
                 })
+        
                 menu.style.width = "200px";
                 selecionado.style.border = "none";
                 divs.forEach((div) => {
@@ -580,41 +437,9 @@
             });
 
             if (!logado) {
-                window.location.href = './index.html';
+                window.location.href = '../index.html';
             }
-
-            // VERIFICANDO IDENTIDADE
-            const ul = document.querySelector('.menu-lateral ul');
-            if (logado === 'ALUNO') {
-                localStorage.clear();
-                window.location.href = './index.html';
-            }
-
-            const content = document.querySelector('.content');
-            const user = logado.toLowerCase();
-            db.collection(`controle${ANO}`)
-            .doc(user)
-            .collection('formularios')
-            .onSnapshot((data) => {
-                data.docs.map((val) => {
-                    const nome = val.id;
-                    const icon = val.data().icon;
-                    const url = val.data().url;
-                    content.innerHTML += `
-                        <section onclick="abrirFormulario('${url}')">
-                            
-                            <div>
-                                <p>Direção</p>
-                            </div>
-
-                            <ion-icon name="${icon}"></ion-icon>
-                            <h1>${nome}</h1>
-                            <ion-icon class="seta" name="chevron-forward-outline"></ion-icon>
-                        
-                        </section>
-                    `;
-                });
-            });
+            
 
        </script>
 
