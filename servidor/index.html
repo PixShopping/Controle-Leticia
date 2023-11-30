@@ -420,19 +420,9 @@
                             }
                         }
                     });
-                } else if (logado === 'PROFESSOR') {
-                    db.collection(`controle${ANO}`)
-                    .doc('professor')
-                    .get().then((doc) => {
-                        if (doc.data().usuario === usuario) {
-                            if (doc.data().senha === senha) {
-                                perfil.innerHTML = `Olá, ${usuario}`;
-                            }
-                        }
-                    });
-                } else if (logado === 'ALUNO') {
-                    const usuario = localStorage.getItem('usuario');
-                    perfil.innerHTML = `Olá, ${usuario}`;
+                } else {
+                    localStorage.clear();
+                    window.location.reload();
                 }
             });
 
