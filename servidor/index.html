@@ -218,7 +218,263 @@
                 flex-direction: row;
             }
 
+            .content {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 35px 0px;
+            }
+
+            .content article {
+                width: 46%;
+                height: auto;
+                min-height: max-content;
+                background: var(--white);
+                color: var(--one);
+                margin: 10px;
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0px 0px 10px var(--one);
+                padding: 30px 20px 5px 20px;
+                border-radius: 12px;
+            }
+
+            @media (max-width: 782px) {
+                .content article {
+                    width: 85%;
+                }
+            }
+
+            .content article .titulo {
+                width: 100%;
+                height: auto;
+                border-radius: 0px 0px 10px 10px;
+                background: var(--white);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                position: relative;
+            }
+
+            .content article .titulo .detalhe {
+                width: 100.6%;
+                height: 15px;
+                background: var(--one);
+                position: absolute;
+                top: -15px;
+                border-radius: 10px 10px 0px 0px;
+            }
+
+            .content article .titulo h1 {
+                width: 100%;
+                color: var(--one);
+                font-size: 17px;
+                font-weight: 600;
+                letter-spacing: 0px;
+                margin: 12px 0px 15px 0px;
+            }
+
+            .content article .gerenciador {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 20px 0px;
+                padding: 0px;
+            }
+            
+
+            .content article .gerenciador .pergunta {
+                width: 100%;
+                height: auto;
+                background: var(--white);
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                padding: 12px 20px;
+                border-radius: 10px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            }
+
+            .content article .gerenciador .pergunta h1 {
+                width: 100%;
+                color: var(--one);
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin: 5px 0px 8px 0px;
+            }
+
+            .content article .gerenciador .pergunta  button {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                border-radius: 8px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                cursor: pointer;
+                font-size: 13px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 10px 0px;
+                padding: 10px;
+            } .content article .gerenciador button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .2s ease-in-out;
+            }
+
+            .formulario {
+                width: 100%;
+                max-width: 500px;
+                height: auto;
+                display: none;
+                flex-direction: column;
+                padding: 0px 20px;
+                position: relative;
+                padding: 10px 20px;
+                color: var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                border-radius: 10px;
+                border: 1px solid var(--one);
+                margin: 20px 0px;
+            }
+
+            .formulario h1 {
+                width: 100%;
+                color: var(--one);
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin: 5px 0px 18px 0px;
+            }
+
+            .formulario label {
+                font-size: 15.5px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 0px 0px 0px 0px;
+                text-transform: uppercase;
+            }
+
+            .formulario input {
+                width: 95%;
+                height: 40px;
+                background: transparent;
+                color: var(--one);
+                border-radius: 4px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                outline: none;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 5px 0px 15px 0px;
+                padding: 6px 12px;
+            } .formulario input:focus {
+                background: transparent;
+                transition: all .2s ease-in-out;
+            }
+
+            .formulario button {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 15px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 5px 0px;
+                border-radius: 4px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            } .formulario button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
+            }
+
+            .verAvisoSite {
+                width: 100%;
+                height: auto;
+                flex-direction: column-reverse;
+                align-items: center;
+                border-radius: 10px;
+                color: var(--one);
+                margin: 20px 0px 0px 0px;
+                padding: 10px 0px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            }
+
+            .verAvisoSite li {
+                width: 90%;
+                height: auto;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                margin: 12px 0px;
+                border: 1.5px solid var(--one);
+                box-shadow: 0px 0px 5px var(--one);
+                border-radius: 10px;
+            }
+
+            .verAvisoSite h1 {
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin: 0px 0px 0px 5px;
+                text-shadow: 0px 0px 5px var(--white);
+            }
+
+            .verAvisoSite ion-icon {
+                font-size: 25px;
+                padding: 3px;
+                border-radius: 8px;
+                margin: 0px 10px 0px auto;
+                background: var(--red);
+                color: white;
+                cursor: pointer;
+                border: 2px solid var(--red);
+            } .verAvisoSite ion-icon:hover {
+                background: transparent;
+                color: var(--red);
+                transition: all .3s ease-in-out;
+            } 
+
+            /* BTN PLATAFORMAS */
+
+            .btn-plataformas {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 14.5px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 20px 0px 0px 5px;
+                border-radius: 7px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                align-self: flex-start;
+            }
+
             </style>
+
            </head>
 
            <body>
@@ -296,11 +552,89 @@
                   <!-- CONTENT -->
                   <section class="content">
                   
+                    <article class="site">
 
+                        <div class="titulo">
+                            <div class="detalhe"></div>
+                            <h1>Gerenciador do Site</h1>
+                        </div>
+                        
+                        <div class="gerenciador">
+
+                            <div class="pergunta">
+                                <h1>O que você deseja gerenciar?</h1>
+                                <button onclick="abrirForm('addAvisoSite', 'site')">Enviar Aviso ao Site</button>
+                                <button onclick="lerAvisoSite(), abrirForm('verAvisoSite', 'site')">Ver Avisos existentes no Site</button>
+                            </div>
+                            
+                            <button onclick="website()" class="btn-plataformas">Abrir Website</button>
+
+                        </div>
+                        
+                        <section class="formulario addAvisoSite">
+
+                            <h1>Enviar Comunicado ao Site</h1>
+        
+                            <label>Título</label>
+                            <input id="titulo" placeholder="Digite um título" type="text">
+        
+                            <label>Imagem</label>
+                            <input id="imagem" type="file" accept="image">
+        
+                            <button onclick="enviarComunicadoSite()">Enviar Comunicado</button>
+        
+        
+                        </section>
+
+                        <section class="formulario verAvisoSite"></section>
+                    
+                    </article>
+
+                    <article class="aplicativo">
+
+                        <div class="titulo">
+                            <div class="detalhe"></div>
+                            <h1>Gerenciador do Aplicativo</h1>
+                        </div>
+                        
+                        <div class="gerenciador">
+
+                            <div class="pergunta">
+                                <h1>O que você deseja gerenciar?</h1>
+                                <button onclick="abrirForm('', 'aplicativ')">Em breve</button>
+                                <button onclick="abrirForm('', 'aplicativ')">Em breve</button>
+                            </div>
+
+                            <button onclick="aplicativo()" class="btn-plataformas">Abrir Aplicativo</button>
+                            
+                        </div>
+
+                    </article>
+
+                    <article class="banco-de-dados">
+                        
+                        <div class="titulo">
+                            <div class="detalhe"></div>
+                            <h1>Gerenciador do Banco de Dados</h1>
+                        </div>
+                        
+                        <div class="gerenciador">
+
+                            <h1>Em breve</h1>
+
+                        </div>
+
+                    </article>
                 
                   </section>
 
                 </main>
+
+
+                
+                
+                
+
 
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             </body>
@@ -308,9 +642,24 @@
        <!-- JavaScript -->
        <script>
 
+        function aplicativo() {
+            window.open('https://app-leticia.netlify.app/');
+        }
+
+        function website() {
+            window.open('https://escola-leticia.netlify.app/');
+        }
+
         // IR PARA A PAGINA
         function irPagina(pagina) {
             window.location.href = `./${pagina}.html`;
+        }
+
+        // ABRIR FORMULARIO COM A CLASSE
+        function abrirForm(classe, gerenciador) {
+            const gerenciado = document.querySelector(`.${gerenciador} .gerenciador`);
+            gerenciado.style.display = "none"
+            document.querySelector(`.${classe}`).style.display = "flex";
         }
 
         var c = 0;
@@ -380,6 +729,7 @@
        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-storage-compat.js"></script>
 
        <!------------------------------->
        <!-- BANCO DE DADOS (FIREBASE) -->
@@ -398,6 +748,7 @@
 
           firebase.initializeApp(firebaseConfig);
           const db = firebase.firestore();
+          const storage = firebase.storage();
 
           // Pegar o ANO LETICO ATUAL
           const dataAtual = new Date();
@@ -429,7 +780,110 @@
             if (!logado) {
                 window.location.href = '../index.html';
             }
-            
+
+
+            function lerAvisoSite() {
+                const div = document.querySelector('.verAvisoSite');
+                db.collection(ANO)
+                .doc('site')
+                .collection('comunicados')
+                .orderBy("data")
+                .onSnapshot((data) => {
+                    div.innerHTML = '';
+                    data.docs.map((val) => {
+                        const titulo = val.data().titulo;
+                        const imagem = val.data().imagem;
+                        div.innerHTML += `
+                            <li>
+                                <h1>${titulo}</h1>
+                                <ion-icon onclick="excluirComunicado('${titulo}', '${imagem}')" name="trash"></ion-icon>
+                            </li>
+                        `;
+                    });
+                });
+            }
+
+            // ENVIAR COMUNICADO AO SITE
+            async function enviarComunicadoSite() {
+                document.body.style.cursor = "wait";
+                const titulo = document.getElementById('titulo').value;
+                const imagem = document.getElementById('imagem');
+                const file = imagem.files[0];
+                if (file) {
+                    
+                    // Crie uma referência para o local de armazenamento da imagem
+                    const nomeImagem = file.name;
+                    const storageRef = storage.ref("site/comunicados/" + nomeImagem);
+                    
+                    // Faça o upload da imagem para o Firebase Storage
+                    db.collection(ANO)
+                    .doc('site')
+                    .collection('comunicados')
+                    .doc(titulo).set({
+                        data: firebase.firestore.FieldValue.serverTimestamp(),
+                        titulo: titulo,
+                        imagem: nomeImagem
+                    }).then((response) => {
+                        storageRef.put(file).then(function (snapshot) {
+                            document.body.style.cursor = "default";
+                            swal({
+                                title: 'Parabens',
+                                text: 'Comunicado enviado com sucesso!',
+                                buttons: {
+                                    confirm: 'Ok',
+                                },
+                            }).then((res) => {
+                                window.location.reload();
+                            })
+                        }).catch(function (error) {
+                            console.error("Erro ao enviar a imagem:", error);
+                        });
+                    })
+                    
+                } else {
+                    swal({
+                        title: 'Aviso',
+                        text: 'Digite um título e adicione uma imagem!',
+                        buttons: {
+                            confirm: 'Ok',
+                        },
+                    });
+                }
+            }
+
+            function excluirComunicado(titulo, imagem) {
+                document.body.style.cursor = "wait";
+                swal({
+                    title: 'Aviso',
+                    text: `Você deseja excluir o comunicado ${titulo}`,
+                    buttons: {
+                        confirm: 'Sim',
+                        cancel: 'Não',
+                    },
+                }).then((resposta) => {
+                    if (resposta) {
+                        db.collection(ANO)
+                        .doc('site')
+                        .collection('comunicados')
+                        .doc(titulo).delete().then((resposne) => {
+                            const storageRef = storage.ref().child(`site/comunicados/${imagem}`);
+                            storageRef.delete().then((res) => {
+                                document.body.style.cursor = "default";
+                                swal({
+                                    title: 'Parabens',
+                                    text: 'Comunicado excluido com sucesso!',
+                                    buttons: {
+                                        confirm: 'Ok',
+                                    },
+                                }).then((res) => {
+                                    window.location.reload();
+                                });
+                            });
+                        });
+                    }
+                });
+            }
+                
 
        </script>
 
