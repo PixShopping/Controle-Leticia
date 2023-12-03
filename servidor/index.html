@@ -407,7 +407,7 @@
                 transition: all .3s ease-in-out;
             }
 
-            .verAvisoSite, .series {
+            .verAvisoSite, .lista {
                 width: 100%;
                 height: auto;
                 display: none;
@@ -421,7 +421,7 @@
                 box-shadow: 0px 0px 1px var(--one);
             }
 
-            .verAvisoSite li, .series li {
+            .verAvisoSite li, .lista li {
                 width: 90%;
                 height: auto;
                 display: flex;
@@ -433,7 +433,7 @@
                 border-radius: 10px;
             }
 
-            .verAvisoSite h1, .series h1 {
+            .verAvisoSite h1, .lista h1 {
                 font-size: 16px;
                 font-weight: 600;
                 letter-spacing: 0.3px;
@@ -441,7 +441,7 @@
                 text-shadow: 0px 0px 5px var(--white);
             }
 
-            .verAvisoSite ion-icon, .series ion-icon {
+            .verAvisoSite ion-icon, .lista ion-icon {
                 font-size: 25px;
                 padding: 3px;
                 border-radius: 8px;
@@ -450,13 +450,13 @@
                 color: white;
                 cursor: pointer;
                 border: 2px solid var(--red);
-            } .verAvisoSite ion-icon:hover, .series ion-icon:hover {
+            } .verAvisoSite ion-icon:hover, .lista ion-icon:hover {
                 background: transparent;
                 color: var(--red);
                 transition: all .3s ease-in-out;
             } 
 
-            .verAvisoSite button, .series button {
+            .verAvisoSite button, .lista button {
                 width: max-content;
                 height: max-content;
                 background: var(--one);
@@ -470,7 +470,7 @@
                 padding: 10px 15px;
                 border: 1px solid var(--one);
                 box-shadow: 0px 0px 1px var(--one);
-            } .verAvisoSite button:hover, .series button:hover {
+            } .verAvisoSite button:hover, .lista button:hover {
                 background: transparent;
                 color: var(--one);
                 transition: all .3s ease-in-out;
@@ -586,7 +586,7 @@
                             <div class="pergunta">
                                 <h1>O que você deseja gerenciar?</h1>
                                 <button onclick="abrirForm('addAvisoSite', 'site')">Enviar Aviso ao Site</button>
-                                <button onclick="lerAvisoSite(), abrirForm('verAvisoSite', 'site')">Ver Avisos existentes no Site</button>
+                                <button onclick="lerAvisoSite(), abrirForm('verAvisoSite', 'site')">Ver Avisos Existentes</button>
                             </div>
                             
                             <button onclick="website()" class="btn-plataformas">Abrir Website</button>
@@ -619,12 +619,35 @@
                             <h1>Gerenciador do Aplicativo</h1>
                         </div>
                         
+                        <!-- FORM DE ADICIONAR PLANILHA -->
+                        <section class="formulario addPlanilha">
+
+                            <h1>Adicionar Planilha no Aplicativo</h1>
+
+                            <label>Serie</label>
+                            <input id="serie" placeholder="ex: 9anoA" type="text">
+
+                            <label>Planilha</label>
+                            <input id="planilha" type="file" accept="*">
+        
+                            <button onclick="adicionarPlanilha()">Enviar</button>
+        
+        
+                        </section>
+
+                        <!-- FORM DE ADICIONAR PLANILHA -->
+                        <section class="lista verPlanilhas">
+
+
+
+                        </section>
+
                         <div class="gerenciador">
 
                             <div class="pergunta">
                                 <h1>O que você deseja gerenciar?</h1>
-                                <button onclick="abrirForm('', 'aplicativo')">Em breve</button>
-                                <button onclick="abrirForm('', 'aplicativo')">Em breve</button>
+                                <button onclick="abrirForm('addPlanilha', 'aplicativo')">Adicionar Planilha</button>
+                                <button onclick="verPlanilhas(), abrirForm('verPlanilhas', 'aplicativo')">Ver Planilhas Existentes</button>
                             </div>
 
                             <button onclick="aplicativo()" class="btn-plataformas">Abrir Aplicativo</button>
@@ -653,7 +676,7 @@
                         </section>
 
                         <!-- Ler Series -->
-                        <section class="formulario series">
+                        <section class="lista series">
 
                         </section>
 
@@ -852,7 +875,7 @@
 
             function addSerie() {
                 const div = document.querySelector('.series');
-                const serie = document.getElementById('serie').value;
+                const serie = document.querySelector('.addSerie input[id="serie"]').value;
                 document.body.style.cursor = "wait";
                 db.collection(ANO)
                 .doc('restrito')
@@ -1004,13 +1027,124 @@
                 });
             }
                 
+            // ADICIONAR PLANILHA
+            function adicionarPlanilha() {
+                const serie = document.querySelector('.addPlanilha input[id="serie"]').value;
+                const planilhaInput = document.getElementById('planilha');
+                const file = planilhaInput.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        const arrayBuffer = e.target.result;
+
+                        // Agora você pode trabalhar com o arrayBuffer, por exemplo, usar o SheetJS para ler a planilha
+                        var workbook = XLSX.read(arrayBuffer, { type: 'array' });
+                        var nomeDaPrimeiraFolha = workbook.SheetNames[0];
+                        var dadosJson = XLSX.utils.sheet_to_json(workbook.Sheets[nomeDaPrimeiraFolha]);
+
+                        // Faça algo com os dados, por exemplo, envie para o Firestore
+                        db.collection(ANO)
+                            .doc('planilhas')
+                            .collection('existente')
+                            .doc(serie).set({})
+                            .then((response) => {
+                                db.collection(ANO)
+                                    .doc('planilhas')
+                                    .collection(serie)
+                                    .doc().set({
+                                        json: JSON.stringify(dadosJson)
+                                    })
+                                    .then((res) => {
+                                        swal({
+                                            title: 'Parabens',
+                                            text: `Planilha do ${serie} adicionada com sucesso!`,
+                                            buttons: {
+                                                confirm: 'Ok',
+                                            },
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    })
+                                    .catch(error => {
+                                        console.error('Erro ao adicionar a planilha:', error);
+                                    });
+                            });
+                    };
+
+                    reader.readAsArrayBuffer(file);
+                }
+            }
+
+            // VER PLANILHAS
+            function verPlanilhas() {
+                const div = document.querySelector('.verPlanilhas');
+                db.collection(ANO)
+                .doc('planilhas')
+                .collection('existente')
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        const serie = val.id;
+                        db.collection(ANO)
+                        .doc('planilhas')
+                        .collection(serie)
+                        .onSnapshot((data) => {
+                            data.docs.map((val) => {
+                                const id = val.id;
+                                div.innerHTML += `
+                                    <li>
+                                        <h1>${serie}</h1>
+                                        <ion-icon onclick="excluirPlanilha('${serie}', '${id}')" name="trash"></ion-icon>
+                                    </li>
+                                `;
+                            });
+                        });
+                    });
+                });
+            }
+
+            function excluirPlanilha(serie, id) {
+                swal({
+                    title: 'AVISO',
+                    text: `Você deseje excluir a planilha "${serie}"?`,
+                    buttons: {
+                        confirm: 'Sim',
+                        cancel: 'Não',
+                    },
+                }).then((resposta) => {
+                    if (resposta) {
+                        db.collection(ANO)
+                        .doc('planilhas')
+                        .collection('existente')
+                        .doc(serie).delete().then((response) => {
+                            db.collection(ANO)
+                            .doc('planilhas')
+                            .collection(serie)
+                            .doc(id).delete().then((res) => {
+                                swal({
+                                    title: 'Parabens',
+                                    text: `Planilha do ${serie} excluida com sucesso!`,
+                                    buttons: {
+                                        confirm: 'Ok',
+                                    },
+                                }).then(() => {
+                                    window.location.reload();
+                                });
+                            });
+                        });
+                    }
+                });
+            }
+
 
        </script>
 
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-	  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     
     
 </html>
