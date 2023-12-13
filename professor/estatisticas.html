@@ -504,15 +504,18 @@
             const perfis = document.querySelectorAll('.nome');
             perfis.forEach((perfil) => {
                 if (logado === 'PROFESSOR') {
-                    db.collection(`controle${ANO}`)
-                    .doc('professor')
-                    .get().then((doc) => {
+                    db.collection(ANO)
+                    .doc('restrito')
+                    .collection('professor')
+                    .doc('login').get().then((doc) => {
                         if (doc.data().usuario === usuario) {
                             if (doc.data().senha === senha) {
                                 perfil.innerHTML = `Olá, ${usuario}`;
+                                return;
                             }
                         }
                     });
+                    
                 } else {
                     localStorage.clear();
                     window.location.reload();

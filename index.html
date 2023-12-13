@@ -114,6 +114,7 @@
               /*box-shadow: 0px 0px 7px var(--white);*/
               border-radius: 10px;
               padding: 0px 0px 25px 0px;
+              box-shadow: 0px 0px 10px var(--white);
             }
 
             .content img {
@@ -225,6 +226,84 @@
           color: var(--white);
         } 
 
+
+        /* POPUP LOGAR */
+
+        .popup-logar {
+          width: 80%;
+          max-width: 670px;
+          height: auto;
+          min-height: 300px;
+          background: var(--one);
+          color: var(--white);
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          padding: 15px;
+          border-radius: 15px;
+          z-index: 500;
+          border: 2px solid var(--white);
+        }
+
+        .popup-logar h1 {
+          font-size: 20px;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+          margin: 10px 0px 0px 0px;
+          text-transform: uppercase;
+          text-align: center;
+          width: 90%;
+          line-height: 24px;
+        }
+
+        .popup-logar ul {
+          margin: 10px 0px 0px 0px;
+          width: 90%;
+          height: auto;
+        }
+
+        .popup-logar ul li {
+          list-style: none;
+          width: 100%;
+          height: auto;
+          padding: 15px;
+          cursor: pointer;
+          background: var(--white);
+          color: var(--one);
+          margin: 20px 0px;
+          border-radius: 10px;
+          border: 2px solid var(--white);
+        } .popup-logar ul li:hover {
+          background: transparent;
+          color: var(--white);
+          box-shadow: 0px 0px 15px var(--white);
+          transition: all .3s ease-in-out;
+        }
+
+        .popup-logar ul li h2 {
+          font-size: 20px;
+          font-weight: 800;
+          letter-spacing: 0.5px;
+          text-transform: capitalize;
+        }
+
+        .fosco {
+          width: 100%;
+          height: auto;
+          min-height: 100vh;
+          background: var(--one);
+          opacity: 0.55;
+          display: none;
+          z-index: 400;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+        }
+
             </style>
            </head>
 
@@ -237,11 +316,11 @@
                     <img src="./img/icon.png" alt="">
                     <div class="ambiente">
                       <p>Selecione o ambiente em que deseja fazer o login!</p>
-                      <!--<button onclick="ambiente('aluno')">Aluno</button>-->
-                      <button onclick="ambiente('professor')">Professor</button>
+                      <!--<button onclick="ambiente('aluno')">Aluno</button>
+                      <button onclick="ambiente('professor')">Professor</button>-->
                       <button onclick="ambiente('servidor')">Servidor</button>
                     </div>
-                    <div class="aluno none">
+                    <!--<div class="aluno none">
                       <label>Usuario:</label>
                       <input id="usuarioAluno" type="text">
 
@@ -259,9 +338,9 @@
                         <ion-icon class="escondersenhaProfessor" onclick="mostrarSenha('senhaProfessor')" name="eye-off-outline"></ion-icon>
                       </div>
 
-                      <button onclick="loginProfessor()">Entrar</button>
+                      <button onclick="enviarLoginProfessor()">Entrar</button>
                       <button id="voltar" onclick="voltar()">Voltar</button>
-                    </div>
+                    </div>-->
                     <div class="servidor none">
                       <label>Usuario:</label>
                       <input id="usuarioServidor" type="text">
@@ -273,7 +352,7 @@
                         <ion-icon class="escondersenhaServidor" onclick="mostrarSenha('senhaServidor')" name="eye-off-outline"></ion-icon>
                       </div>
 
-                      <button onclick="loginServidor()">Entrar</button>
+                      <button onclick="enviarLoginServidor()">Entrar</button>
                       <button id="voltar" onclick="voltar()">Voltar</button>
                     </div>
                   </section>
@@ -281,7 +360,19 @@
                 </main>
 
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            
+                <section class="popup-logar">
+                  <!-- POPUP DE LOGIN -->
+            
+                </section>
+            
+                <div onclick="fecharPopup()" class="fosco">
+            
+                </div>
+            
             </body>
+
+            
 
        <!-- JavaScript -->
        <script>
@@ -468,8 +559,15 @@
                     }
                   });
                 });  
-              })
-            })
+              });
+            });
+          }
+
+          function tirarEspaco(val) {
+            var resultado = val;
+            resultado = resultado.replace(/\s+/g, ' ');
+            resultado = resultado.trim();
+            return resultado;
           }
 
           // CAPITALIZAR
@@ -492,6 +590,189 @@
 
             return resultado;
           }
+
+
+
+          // ENVIAR LOGIN SERVIDOR
+          function enviarLoginServidor() {
+            const inputRESPONSAVEL = document.getElementById("usuarioServidor").value;
+            const RESPONSAVEL = capitalizar(inputRESPONSAVEL);
+            const inputSENHA = document.getElementById("senhaServidor").value;
+            const SENHA = tirarEspaco(inputSENHA);
+            
+              db.collection(ANO)
+              .doc("restrito")
+              .collection("direcao")
+              .onSnapshot((data) => {
+                data.docs.forEach((val) => {
+                  const usuario = val.data().usuario;
+                  const senha = val.data().senha;
+                  if (RESPONSAVEL === usuario && SENHA === senha) {
+                    logarComDirecao(usuario, senha);
+                  }
+                });
+              });
+
+              db.collection(ANO)
+              .doc("restrito")
+              .collection("coordenacao")
+              .doc('login').get().then((doc) => {
+                const usuario = doc.data().usuario;
+                const senha = doc.data().senha;
+                if (RESPONSAVEL === usuario && SENHA === senha) {
+                  logarComCoordenacao(usuario, senha);
+                }
+              });
+
+              db.collection(ANO)
+              .doc("restrito")
+              .collection("professor")
+              .onSnapshot((data) => {
+                data.docs.forEach((val) => {
+                  const usuario = val.data().usuario;
+                  const senha = val.data().senha;
+                  if (RESPONSAVEL === usuario && SENHA === senha) {
+                    logarComProfessor(usuario, senha);
+                  }
+                });
+              });
+          }
+
+          // LOGAR COM A DIREÇÃO
+          function logarComDirecao(usuario, senha) {
+              const popup = document.querySelector('.popup-logar');
+              const fosco = document.querySelector('.fosco');
+              var acessos = ``;
+              db.collection(ANO)
+              .doc('restrito')
+              .collection('direcao')
+              .doc('login')
+              .collection('acessos')
+              .onSnapshot((data) => {
+                data.docs.map((val) => {
+                  const nome = val.id;
+                  acessos += `
+                    <li onclick="entrarComDirecao('${usuario}','${senha}')">
+                      <h2>${nome}</h2>
+                    </li>
+                  `;
+                });
+                popup.innerHTML = `
+                  <h1>Selecione qual conta logar</h1>
+                  <ul>
+                    ${acessos}
+                  </ul>
+                `;
+              });
+              
+              
+              // MOSTRAR POPUP
+              popup.style.display = "flex";
+              fosco.style.display = "flex";
+
+              setTimeout(() => {
+                popup.style.opacity = 1;
+              }, 1500);
+          }
+
+          // ENTRAR COM DIRECAO
+          function entrarComDirecao(usuario, senha) {
+            localStorage.setItem('logado', 'SERVIDOR');
+            localStorage.setItem('usuario', usuario);
+            localStorage.setItem('senha', senha);
+            window.location.href = './servidor/';
+          }
+
+          // LOGAR COM A COORDENACAO
+          function logarComCoordenacao(usuario, senha) {
+              const popup = document.querySelector('.popup-logar');
+              const fosco = document.querySelector('.fosco');
+              var acessos = ``;
+              db.collection(ANO)
+              .doc('restrito')
+              .collection('coordenacao')
+              .doc('login')
+              .collection('acessos')
+              .onSnapshot((data) => {
+                data.docs.map((val) => {
+                  const nome = val.id;
+                  acessos += `
+                    <li onclick="entrarComCoordenacao('${usuario}', '${senha}')">
+                      <h2>${nome}</h2>
+                    </li>
+                  `;
+                });
+                popup.innerHTML = `
+                  <h1>Selecione qual conta logar</h1>
+                  <ul>
+                    ${acessos}
+                  </ul>
+                `;
+              });
+              
+              
+              // MOSTRAR POPUP
+              popup.style.display = "flex";
+              fosco.style.display = "flex";
+
+              setTimeout(() => {
+                popup.style.opacity = 1;
+              }, 1500);
+          }
+
+          // ENTRAR COM DIRECAO
+          function entrarComCoordenacao(usuario, senha) {
+            localStorage.setItem('logado', 'SERVIDOR');
+            localStorage.setItem('usuario', usuario);
+            localStorage.setItem('senha', senha);
+            window.location.href = './servidor/';
+          }
+
+          // LOGAR COMO PROFESSOR
+          function logarComProfessor(usuario, senha) {
+              const popup = document.querySelector('.popup-logar');
+              const fosco = document.querySelector('.fosco');
+              var acessos = ``;
+              db.collection(ANO)
+              .doc('restrito')
+              .collection('professor')
+              .doc('login')
+              .collection('acessos')
+              .onSnapshot((data) => {
+                data.docs.map((val) => {
+                  const nome = val.id;
+                  acessos += `
+                    <li onclick="entrarComProfessor('${nome}', '${usuario}', '${senha}')">
+                      <h2>${nome}</h2>
+                    </li>
+                  `;
+                });
+                popup.innerHTML = `
+                  <h1>Selecione qual conta logar</h1>
+                  <ul>
+                    ${acessos}
+                  </ul>
+                `;
+              });
+              
+              // MOSTRAR POPUP
+              popup.style.display = "flex";
+              fosco.style.display = "flex";
+
+              setTimeout(() => {
+                popup.style.opacity = 1;
+              }, 1500);
+          }
+
+          // ENTRAR COMO PROFESSOR
+          function entrarComProfessor(nome, usuario, senha) {
+            localStorage.setItem('logado', 'PROFESSOR');
+            localStorage.setItem('usuario', usuario);
+            localStorage.setItem('senha', senha);
+            window.location.href = './professor/';
+          }
+
+          
 
        </script>
 

@@ -510,21 +510,36 @@
           localStorage.setItem('ano', anoAtual);
           const ANO = localStorage.getItem('ano');
 
-            const logado = localStorage.getItem('logado');
+          const logado = localStorage.getItem('logado');
             const usuario = localStorage.getItem('usuario');
             const senha = localStorage.getItem('senha');
             const perfis = document.querySelectorAll('.nome');
             perfis.forEach((perfil) => {
                 if (logado === 'SERVIDOR') {
-                    db.collection(`controle${ANO}`)
-                    .doc('servidor')
-                    .get().then((doc) => {
+                    db.collection(ANO)
+                    .doc('restrito')
+                    .collection('direcao')
+                    .doc('login').get().then((doc) => {
                         if (doc.data().usuario === usuario) {
                             if (doc.data().senha === senha) {
                                 perfil.innerHTML = `Olá, ${usuario}`;
+                                return;
                             }
                         }
                     });
+
+                    db.collection(ANO)
+                    .doc('restrito')
+                    .collection('coordenacao')
+                    .doc('login').get().then((doc) => {
+                        if (doc.data().usuario === usuario) {
+                            if (doc.data().senha === senha) {
+                                perfil.innerHTML = `Olá, ${usuario}`;
+                                return;
+                            }
+                        }
+                    });
+                    
                 } else {
                     localStorage.clear();
                     window.location.reload();
