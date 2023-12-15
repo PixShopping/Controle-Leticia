@@ -335,68 +335,165 @@
                 transition: all .2s ease-in-out;
             }
 
-            
-            /* POPUP LOGAR */
-
-            .popup-logar {
-                width: 80%;
-                max-width: 670px;
-                height: max-content;
-                min-height: 300px;
-                background: var(--one);
-                color: var(--white);
-                position: relative;
+            .formulario {
+                width: 100%;
+                max-width: 500px;
+                height: auto;
+                display: none;
                 flex-direction: column;
-                align-items: center;
-                padding: 15px;
-                border-radius: 15px;
-                z-index: 500;
+                padding: 0px 20px;
+                position: relative;
+                padding: 10px 20px;
+                color: var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                border-radius: 10px;
+                border: 1px solid var(--one);
                 margin: 20px 0px;
-                border: 2px solid var(--white);
             }
 
-            .popup-logar h1 {
+            .formulario h1 {
+                width: 100%;
+                color: var(--one);
                 font-size: 20px;
                 font-weight: 600;
                 letter-spacing: 0.3px;
-                margin: 10px 0px 0px 0px;
+                margin: 5px 0px 18px 0px;
+            }
+
+            .formulario label {
+                font-size: 15.5px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 0px 0px 0px 0px;
                 text-transform: uppercase;
-                text-align: center;
+            }
+
+            .formulario input {
+                width: 95%;
+                height: 40px;
+                background: transparent;
+                color: var(--one);
+                border-radius: 4px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                outline: none;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 5px 0px 15px 0px;
+                padding: 6px 12px;
+            } .formulario input:focus {
+                background: transparent;
+                transition: all .2s ease-in-out;
+            }
+
+            .formulario button {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 15px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 5px 0px;
+                border-radius: 4px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            } .formulario button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
+            }
+
+            .verAvisoSite, .lista {
+                width: 100%;
+                height: auto;
+                display: none;
+                flex-direction: column-reverse;
+                align-items: center;
+                border-radius: 10px;
+                color: var(--one);
+                margin: 20px 0px 20px 0px;
+                padding: 10px 0px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            }
+
+            .verAvisoSite li, .lista li {
                 width: 90%;
-                line-height: 24px;
+                height: auto;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                margin: 12px 0px;
+                border: 1.5px solid var(--one);
+                box-shadow: 0px 0px 5px var(--one);
+                border-radius: 10px;
             }
 
-            .popup-logar ul {
-            margin: 10px 0px 0px 0px;
-            width: 90%;
-            height: auto;
+            .verAvisoSite h1, .lista h1 {
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin: 0px 0px 0px 5px;
+                text-shadow: 0px 0px 5px var(--white);
             }
 
-            .popup-logar ul li {
-            list-style: none;
-            width: 100%;
-            height: auto;
-            padding: 15px;
-            cursor: pointer;
-            background: var(--white);
-            color: var(--one);
-            margin: 20px 0px;
-            border-radius: 10px;
-            border: 2px solid var(--white);
-            } .popup-logar ul li:hover {
-            background: transparent;
-            color: var(--white);
-            box-shadow: 0px 0px 15px var(--white);
-            transition: all .3s ease-in-out;
+            .verAvisoSite ion-icon, .lista ion-icon {
+                font-size: 25px;
+                padding: 3px;
+                border-radius: 8px;
+                margin: 0px 10px 0px auto;
+                background: var(--red);
+                color: white;
+                cursor: pointer;
+                border: 2px solid var(--red);
+            } .verAvisoSite ion-icon:hover, .lista ion-icon:hover {
+                background: transparent;
+                color: var(--red);
+                transition: all .3s ease-in-out;
+            } 
+
+            .verAvisoSite button, .lista button {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 15px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 5px 0px;
+                border-radius: 4px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            } .verAvisoSite button:hover, .lista button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
             }
 
-            .popup-logar ul li h2 {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-transform: capitalize;
-            }
+            /* BTN PLATAFORMAS */
 
+            .btn-plataformas {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 14.5px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 20px 0px 0px 5px;
+                border-radius: 7px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                align-self: flex-start;
+            }
 
             </style>
 
@@ -477,25 +574,43 @@
                   <!-- CONTENT -->
                   <section class="content">
                   
-                    <div class="popup-logar" style="display: flex; opacity: 1;">
-                        <h1>Selecione o que você gostaria de gerenciar</h1>
-                        <ul>
-                          
-                          <li onclick="irPagina('site')">
-                            <h2>Website</h2>
-                          </li>
+                    <article class="banco-de-dados">
                         
-                          <li onclick="irPagina('app')">
-                            <h2>Aplicativo</h2>
-                          </li>
+                        <div class="titulo">
+                            <div class="detalhe"></div>
+                            <h1>Gerenciador do Banco de Dados</h1>
+                        </div>
                         
-                          <li onclick="irPagina('banco')">
-                            <h2>Banco de Dados</h2>
-                          </li>
-                        
-                        </ul>
-                    </div>
+                        <!-- Adicionar Serie -->
+                        <section class="formulario addSerie">
 
+                            <h1>Adicionar Serie</h1>
+        
+                            <label>Serie</label>
+                            <input id="serie" placeholder="ex: 9anoA" type="text">
+        
+                            <button onclick="addSerie()">Enviar</button>
+        
+                        </section>
+
+                        <!-- Ler Series -->
+                        <section class="lista series">
+
+                        </section>
+
+                        <div class="gerenciador">
+
+                            <div class="pergunta">
+                                <h1>O que você deseja gerenciar?</h1>
+                                <button onclick="lerSeries(), abrirForm('series', 'banco-de-dados')">Series</button>
+                            </div>
+
+                            <button onclick="bancodedados()" class="btn-plataformas">Abrir Banco de Dados</button>
+
+                        </div>
+
+                    </article>
+                
                   </section>
 
                 </main>
@@ -670,6 +785,88 @@
                 window.location.href = '../index.html';
             }
 
+
+            function addSerie() {
+                const div = document.querySelector('.series');
+                const serie = document.querySelector('.addSerie input[id="serie"]').value;
+                document.body.style.cursor = "wait";
+                db1.collection(ANO)
+                .doc('restrito')
+                .collection('series')
+                .doc(serie).set({})
+                .then((response) => {
+                    document.body.style.cursor = "default";
+                    swal({
+                        title: 'Parabens',
+                        text: 'Serie adicionada com sucesso!',
+                        buttons: {
+                            confirm: 'Ok',
+                        },
+                    }).then((res) => {
+                        window.location.reload();
+                    });
+                })
+            }
+
+            function fecharSeries() {
+                const div = document.querySelector('.series');
+                div.style.display = "none";
+            }
+
+            function lerSeries() {
+                const div = document.querySelector('.series');
+                db1.collection(ANO)
+                .doc('restrito')
+                .collection('series')
+                .onSnapshot((data) => {
+                    div.innerHTML = `
+                        <button onclick="fecharSeries(), abrirForm('addSerie', 'banco-de-dados')">Adicionar Serie</button>
+                    `;
+                    data.docs.map((val) => {
+                        const serie = val.id;
+                        div.innerHTML += `
+                            <li>
+                                <h1>${serie}</h1>
+                                <ion-icon onclick="excluirSerie('${serie}')" name="trash"></ion-icon>
+                            </li>
+                        `;
+                    });
+                });
+            }
+
+            function excluirSerie(serie) {
+                swal({
+                    title: 'Aviso',
+                    text: `Você deseja excluir a serie ${serie}`,
+                    buttons: {
+                        confirm: 'Sim',
+                        cancel: 'Não',
+                    },
+                }).then((resposta) => {
+                    if (resposta) {
+                        document.body.style.cursor = "wait";
+                        db1.collection(ANO)
+                        .doc('restrito')
+                        .collection('series')
+                        .doc(serie).delete().then((resposne) => {
+                            document.body.style.cursor = "default";
+                            swal({
+                                title: 'Parabens',
+                                text: 'Comunicado excluido com sucesso!',
+                                buttons: {
+                                    confirm: 'Ok',
+                                },
+                            }).then((res) => {
+                                window.location.reload();
+                            });
+                        });
+                    }
+                });
+            }
+
+            
+
+
        </script>
 
 
@@ -677,5 +874,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
 
 </html>

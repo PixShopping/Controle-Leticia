@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="../img/icon.png" type="x-icon">
+        <title> Controle Letícia | Inicio </title>
+
+		<style scoped>
+
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Ubuntu:wght@400;500;700&display=swap');
+
+			:root {
+				/* Cores do aplicativo */
+				--one: #002242;
+				--two: #144774;
+				--tree: #336FA5;
+				--four: #4E8BB8;
+				--five: #6FADD2;
+                --six: #9ECAE3;
+                --gray: #b3abab;
+                --white: white;
+                --font: 'Ubuntu', sans-serif;
+                --green: rgb(20, 218, 20);
+				--red: rgb(240, 36, 36);
+			}
+
+			*  {
+				padding: 0px;
+				margin: 0px;
+				box-sizing: border-box;
+				font-family: var(--font);
+			}
+
+			*::-webkit-scrollbar {
+			    display: none; /* Oculta a barra de rolagem padrão no Chrome e Safari */
+			}
+
+			body {
+				background: var(--two);
+				color: var(--white);
+				user-select: none;
+				font-family: 'Arial', sans-serif;
+				overflow-x: hidden;
+                width: auto;
+                height: auto;
+           	}
+
+            /* ALERTA MODIFICADO */
+      .swal-modal {
+            background-color: var(--one);
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        .swal-title {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: var(--white);
+            border-bottom: 2px solid var(--white);
+            padding: 0px 0px 20px 0px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-text {
+            color: var(--white);
+            margin: 20px 0px 0px 0px;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .swal-button {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--confirm {
+            background-color: var(--white);
+            color: var(--one);
+        } .swal-button--cancel {
+            background-color: var(--red);
+            color: white;
+        }
+
+            /* NAVGATION */
+
+            .navgation {
+                width: 100vw;
+                height: 100px;
+                display: flex;
+                background: var(--one);
+                padding: 0px 10px;
+            }
+
+            .navgation img {
+                width: 200px;
+                height: 200px;
+                margin: -50px 0px 0px 0px;
+                cursor: pointer;
+            }
+
+            .navgation .perfil {
+                width: auto;
+                height: 100%;
+                padding: 0px 5px;
+                display: flex;
+                align-items: center;
+                margin: 0px 15px 0px auto;
+                cursor: pointer;
+            }
+
+            .navgation .perfil ion-icon {
+                font-size: 45px;
+                margin: 0px 9px 0px 0px;
+            } .navgation .perfil:hover {
+                color: var(--six);
+                transition: all .3s ease-in-out;
+            }
+
+            .menuPerfil {
+                width: auto;
+                height: auto;
+                position: absolute;
+                top: 100px;
+                right: 4px;
+                padding: 10px;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: var(--two);
+                color: var(--white);
+                border: 2px solid var(--white);
+                cursor: pointer;
+                z-index: 800;
+            }
+
+            .menuPerfil .column {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin: 10px 0px 0px 0px;
+            }
+
+            .menuPerfil .column ion-icon {
+                font-size: 35px;
+                margin: 0px 5px 0px 5px;
+            }
+
+            .menuPerfil p {
+                font-size: 20px;
+                font-weight: 500;
+            }
+
+            @media (max-width: 670px) {
+                .perfil h1 {
+                    display: none;
+                }
+            }
+
+            /* MENU LATERAL */
+
+            .menu-lateral {
+                width: 65px;
+                height: auto;
+                background: var(--one);
+            }
+
+            .menu-lateral ul {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .menu-lateral ul li {
+                width: 100%;
+                height: auto;
+                list-style: none;
+                padding: 15px;
+                cursor: pointer;
+                color: var(--white);
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            } .menu-lateral ul li:hover {
+                color: var(--tree);
+                transition: all .1s linear;
+                border-left: 4px solid var(--tree);
+            }
+
+            .menu-lateral ul li ion-icon {
+                font-size: 30px;
+            }
+
+            .menu-lateral ul li div p {
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 0.2px;
+                margin: 0px 0px 0px 8px;
+                
+            }
+
+            .menu-lateral ul li.selecionado {
+                border-left: 4px solid var(--tree);
+                color: var(--tree);
+            }
+
+            .none {
+                display: none;
+            }
+
+            /* CONTAINER */
+            .container {
+                width: 100vw;
+                height: auto;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: row;
+            }
+
+            .content {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 15px 0px;
+            }
+
+            .content article {
+                width: 46%;
+                height: auto;
+                min-height: max-content;
+                background: var(--white);
+                color: var(--one);
+                margin: 10px;
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0px 0px 10px var(--one);
+                padding: 30px 20px 5px 20px;
+                border-radius: 12px;
+            }
+
+            @media (max-width: 782px) {
+                .content article {
+                    width: 85%;
+                }
+            }
+
+            .content article .titulo {
+                width: 100%;
+                height: auto;
+                border-radius: 0px 0px 10px 10px;
+                background: var(--white);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                position: relative;
+            }
+
+            .content article .titulo .detalhe {
+                width: 100.6%;
+                height: 15px;
+                background: var(--one);
+                position: absolute;
+                top: -15px;
+                border-radius: 10px 10px 0px 0px;
+            }
+
+            .content article .titulo h1 {
+                width: 100%;
+                color: var(--one);
+                font-size: 17px;
+                font-weight: 600;
+                letter-spacing: 0px;
+                margin: 12px 0px 15px 0px;
+            }
+
+            .content article .gerenciador {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 20px 0px;
+                padding: 0px;
+            }
+            
+
+            .content article .gerenciador .pergunta {
+                width: 100%;
+                height: auto;
+                background: var(--white);
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                padding: 12px 20px;
+                border-radius: 10px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            }
+
+            .content article .gerenciador .pergunta h1 {
+                width: 100%;
+                color: var(--one);
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin: 5px 0px 8px 0px;
+            }
+
+            .content article .gerenciador .pergunta  button {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                border-radius: 8px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                cursor: pointer;
+                font-size: 13px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 10px 0px;
+                padding: 10px;
+            } .content article .gerenciador button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .2s ease-in-out;
+            }
+
+            .formulario {
+                width: 100%;
+                max-width: 500px;
+                height: auto;
+                display: none;
+                flex-direction: column;
+                padding: 0px 20px;
+                position: relative;
+                padding: 10px 20px;
+                color: var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                border-radius: 10px;
+                border: 1px solid var(--one);
+                margin: 20px 0px;
+            }
+
+            .formulario h1 {
+                width: 100%;
+                color: var(--one);
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin: 5px 0px 18px 0px;
+            }
+
+            .formulario label {
+                font-size: 15.5px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 0px 0px 0px 0px;
+                text-transform: uppercase;
+            }
+
+            .formulario input {
+                width: 95%;
+                height: 40px;
+                background: transparent;
+                color: var(--one);
+                border-radius: 4px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                outline: none;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 5px 0px 15px 0px;
+                padding: 6px 12px;
+            } .formulario input:focus {
+                background: transparent;
+                transition: all .2s ease-in-out;
+            }
+
+            .formulario button {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 15px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 5px 0px;
+                border-radius: 4px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            } .formulario button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
+            }
+
+            .verAvisoApp, .lista {
+                width: 100%;
+                height: auto;
+                display: none;
+                flex-direction: column-reverse;
+                align-items: center;
+                border-radius: 10px;
+                color: var(--one);
+                margin: 20px 0px 20px 0px;
+                padding: 10px 0px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            }
+
+            .verAvisoApp li, .lista li {
+                width: 90%;
+                height: auto;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                margin: 12px 0px;
+                border: 1.5px solid var(--one);
+                box-shadow: 0px 0px 5px var(--one);
+                border-radius: 10px;
+            }
+
+            .verAvisoApp h1, .lista h1 {
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin: 0px 0px 0px 5px;
+                text-shadow: 0px 0px 5px var(--white);
+            }
+
+            .verAvisoApp ion-icon, .lista ion-icon {
+                font-size: 25px;
+                padding: 3px;
+                border-radius: 8px;
+                margin: 0px 10px 0px auto;
+                background: var(--red);
+                color: white;
+                cursor: pointer;
+                border: 2px solid var(--red);
+            } .verAvisoApp ion-icon:hover, .lista ion-icon:hover {
+                background: transparent;
+                color: var(--red);
+                transition: all .3s ease-in-out;
+            } 
+
+            .verAvisoApp button, .lista button {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 15px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 5px 0px;
+                border-radius: 4px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            } .verAvisoApp button:hover, .lista button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
+            }
+
+            /* BTN PLATAFORMAS */
+
+            .btn-plataformas {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 14.5px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 20px 0px 0px 5px;
+                border-radius: 7px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                align-self: flex-start;
+            }
+
+            </style>
+
+           </head>
+
+           <body>
+
+                <nav class="navgation">
+
+                    <img src="../img/logo.png" alt="LOGO">
+                    
+                    <perfil onclick="menuPerfil()" class="perfil">
+                        <ion-icon name="person-circle"></ion-icon>
+                        <h1 class="nome"></h1>
+                    
+                        <div onclick="sairDaConta()" class="menuPerfil">
+
+                            <div>
+                                <h2 class="nome"></h2>
+                            </div>
+                            
+                            <div class="column">
+                                <ion-icon name="log-out"></ion-icon>
+                                <p>Sair da Conta</p>
+                            </div>
+    
+                        </div>
+                    
+                    </perfil>
+
+
+                </nav>
+
+                
+                <main class="container">
+
+                    <article class="menu-lateral">
+
+                        <ul>
+    
+                             <!-- HOME -->
+                             <li onclick="irPagina('index')" class="selecionado">
+                                <ion-icon name="home"></ion-icon>
+                                <div class="none">
+                                    <p>Página Inicial</p>
+                                </div>
+                            </li>
+    
+                            <!-- CHAT -->
+                            <li onclick="irPagina('conversas')">
+                                <ion-icon name="chatbubbles-outline"></ion-icon>
+                                <div class="none">
+                                    <p>Conversas</p>
+                                </div>
+                            </li>
+    
+                            <!-- FORMULARIOS -->
+                            <li onclick="irPagina('formularios')">
+                                <span class="material-symbols-outlined">assignment</span>
+                                <div class="none">
+                                    <p>Formulários</p>
+                                </div>
+                            </li>
+    
+                            <!-- ESTATISTICAS -->
+                            <li onclick="irPagina('estatisticas')">
+                                <ion-icon name="stats-chart-outline"></ion-icon>
+                                <div class="none">
+                                    <p>Estatísticas</p>
+                                </div>
+                            </li>
+    
+    
+                        </ul>
+    
+                    </article>
+
+                  <!-- CONTENT -->
+                  <section class="content">
+                  
+                    <article class="aplicativo">
+
+                        <div class="titulo">
+                            <div class="detalhe"></div>
+                            <h1>Gerenciador do Aplicativo</h1>
+                        </div>
+                        
+                        <!-- FORM DE ADICIONAR PLANILHA -->
+                        <section class="formulario addPlanilha">
+
+                            <h1>Adicionar Planilha no Aplicativo</h1>
+
+                            <label>Serie</label>
+                            <input id="serie" placeholder="ex: 9anoA" type="text">
+
+                            <label>Planilha</label>
+                            <input id="planilha" type="file" accept="*">
+        
+                            <button onclick="adicionarPlanilha()">Enviar</button>
+        
+        
+                        </section>
+
+                        <!-- FORM DE ADICIONAR PLANILHA -->
+                        <section class="lista verPlanilhas">
+
+
+
+                        </section>
+
+                        <div class="gerenciador">
+
+                            <div class="pergunta">
+                                <h1>O que você deseja gerenciar?</h1>
+                                <button onclick="abrirForm('addPlanilha', 'aplicativo')">Adicionar Planilha</button>
+                                <button onclick="verPlanilhas(), abrirForm('verPlanilhas', 'aplicativo')">Ver Planilhas Existentes</button>
+                                
+                                
+                                <button onclick="abrirForm('addAvisoApp', 'aplicativo')">Enviar Aviso ao App</button>
+                                <button onclick="lerAvisoApp(), abrirForm('verAvisoApp', 'aplicativo')">Ver Avisos Existentes</button>
+                            
+                            </div>
+
+                            <button onclick="aplicativo()" class="btn-plataformas">Abrir Aplicativo</button>
+                            
+                        </div>
+
+                        <section class="formulario addAvisoApp">
+
+                            <h1>Enviar Comunicado ao Aplicativo</h1>
+        
+                            <label>Título</label>
+                            <input id="tituloApp" placeholder="Digite um título" type="text">
+         
+                            <label>Mensagem</label>
+                            <input id="mensagemApp" placeholder="Digite uma mensagem" type="text">
+        
+                            <label>Imagem</label>
+                            <input id="imagemApp" type="file" accept="image">
+        
+                            <button onclick="enviarComunicadoApp()">Enviar</button>
+        
+        
+                        </section>
+
+                        <section class="formulario verAvisoApp"></section>
+
+                    </article>
+                
+                  </section>
+
+                </main>
+
+
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            </body>
+
+       <!-- JavaScript -->
+       <script>
+
+        function aplicativo() {
+            window.open('https://app-leticia.netlify.app/');
+        }
+
+        function website() {
+            window.open('https://escola-leticia.netlify.app/');
+        }
+
+        function bancodedados() {
+            window.open('https://console.firebase.google.com/');
+        }
+
+        // IR PARA A PAGINA
+        function irPagina(pagina) {
+            window.location.href = `./${pagina}.html`;
+        }
+
+        // ABRIR FORMULARIO COM A CLASSE
+        function abrirForm(classe, gerenciador) {
+            const gerenciado = document.querySelector(`.${gerenciador} .gerenciador`);
+            const forms = document.querySelectorAll(`.${gerenciador} .formulario`);
+            forms.forEach((form) => {
+                form.style.display = "none";
+            });
+            gerenciado.style.display = "none";
+            document.querySelector(`.${classe}`).style.display = "flex";
+        }
+
+        var c = 0;
+        function menuPerfil() {
+            const div = document.querySelector('.menuPerfil');
+            if (c === 1) {
+                div.style.display = 'none';
+                c=0;
+            } else {
+                div.style.display = 'flex';
+                c++;
+            }
+            
+        }
+
+        async function sairDaConta() {
+            await localStorage.clear();
+            await window.location.reload();
+        }
+
+        // PAGINAS
+        function home() {
+            window.location.href = "./index.html";
+        }
+
+        function formularios() {
+            window.location.href = "./formularios.html";
+        }
+
+        function estatisticas() {
+            window.location.href = "./estatisticas.html";
+        }
+
+        const menu = document.querySelector('.menu-lateral');
+        const selecionado = document.querySelector('.selecionado');
+        const lis = document.querySelectorAll('.menu-lateral ul li');
+        const divs = document.querySelectorAll('.menu-lateral ul li div')
+        lis.forEach((li) => {
+            li.addEventListener('mouseover', () => {
+                lis.forEach((li) => {
+                    li.style.justifyContent = "flex-start";
+                })
+        
+                menu.style.width = "200px";
+                selecionado.style.border = "none";
+                divs.forEach((div) => {
+                    div.style.display = 'flex';
+                });
+            });
+            li.addEventListener('mouseout', () => {
+                lis.forEach((li) => {
+                    li.style.justifyContent = "center";
+                })
+                menu.style.width = "65px";
+                selecionado.style.borderLeft = "4px solid var(--tree)";
+                divs.forEach((div) => {
+                    div.style.display = 'none';
+                });
+            });
+
+        });
+
+       </script>
+
+
+       <!-- LINKS DO BANCO DE DADOS -->
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-storage-compat.js"></script>
+
+       <!------------------------------------->
+       <!-- BANCO DE DADOS GERAL (FIREBASE) -->
+       <!------------------------------------->
+
+       <script>
+
+          // BANCO DE DADOS DO APLICATIVO EM GERAL
+          const firebaseConfig1 = {
+            apiKey: "AIzaSyC6aMNEjsgeGK-rw4hzLUximzh1YQ6OEII",
+            authDomain: "banco-de-dados-32cac.firebaseapp.com",
+            projectId: "banco-de-dados-32cac",
+            storageBucket: "banco-de-dados-32cac.appspot.com",
+            messagingSenderId: "1001209948956",
+            appId: "1:1001209948956:web:e28198053d747377aee8d9"
+          };
+
+          firebase.initializeApp(firebaseConfig1);
+          const db1 = firebase.firestore();
+          const storage1 = firebase.storage();
+
+          // Pegar o ANO LETICO ATUAL
+          const dataAtual = new Date();
+          const anoAtual = dataAtual.getFullYear();
+          localStorage.setItem('ano', anoAtual);
+          const ANO = localStorage.getItem('ano');
+
+          const logado = localStorage.getItem('logado');
+            const usuario = localStorage.getItem('usuario');
+            const senha = localStorage.getItem('senha');
+            const perfis = document.querySelectorAll('.nome');
+            perfis.forEach((perfil) => {
+                if (logado === 'SERVIDOR') {
+                    db1.collection(ANO)
+                    .doc('restrito')
+                    .collection('direcao')
+                    .doc('login').get().then((doc) => {
+                        if (doc.data().usuario === usuario) {
+                            if (doc.data().senha === senha) {
+                                perfil.innerHTML = `Olá, ${usuario}`;
+                                return;
+                            }
+                        }
+                    });
+
+                    db1.collection(ANO)
+                    .doc('restrito')
+                    .collection('coordenacao')
+                    .doc('login').get().then((doc) => {
+                        if (doc.data().usuario === usuario) {
+                            if (doc.data().senha === senha) {
+                                perfil.innerHTML = `Olá, ${usuario}`;
+                                return;
+                            }
+                        }
+                    });
+                    
+                } else {
+                    localStorage.clear();
+                    window.location.reload();
+                }
+            });
+
+            if (!logado) {
+                window.location.href = '../index.html';
+            }
+
+
+            function lerAvisoApp() {
+                const div = document.querySelector('.verAvisoApp');
+                db1.collection(ANO)
+                .doc('avisos')
+                .collection('avisos')
+                .onSnapshot((data) => {
+                    div.innerHTML = '';
+                    data.docs.map((val) => {
+                        const titulo = val.data().titulo;
+                        const imagem = val.data().imagem;
+                        const id = val.id;
+                        div.innerHTML += `
+                            <li>
+                                <h1>${titulo}</h1>
+                                <ion-icon onclick="excluirAviso('${id}', '${imagem}')" name="trash"></ion-icon>
+                            </li>
+                        `;
+                    });
+                });
+            }
+
+            // ENVIAR COMUNICADO AO APLICATIVO (APP)
+            async function enviarComunicadoApp() {
+                document.body.style.cursor = "wait";
+                const titulo = document.getElementById('tituloApp').value;
+                const mensagem = document.getElementById('mensagemApp').value;
+                
+                // Enviar Imagem
+                const inputFile = document.getElementById("imagemApp");
+                const file = inputFile.files[0];
+                if (file) {
+                    // Crie uma referência para o local de armazenamento da imagem
+                    const storageRef = storage1.ref("imagens/" + file.name);
+
+                    // Faça o upload da imagem para o Firebase Storage
+                    await storageRef.put(file).then(function (snapshot) {
+                        
+                    }).catch(function (error) {
+                        console.error("Erro ao enviar a imagem:", error);
+                    });
+                }
+
+                var imagem = '';
+                // Coletando valores
+                if (file) {
+                    imagem = file.name;
+                } else {
+                    imagem = 'null';
+                }
+                const corFundo = '#002242';
+                const corTitulo = '#ffffff';
+                const corTexto = '#ffffff';
+                // Enviando Valores
+                if (imagem === 'null') {
+                    db1.collection(ANO)
+                    .doc('avisos')
+                    .collection('avisos')
+                    .doc(titulo)
+                    .set({
+                        titulo: titulo,
+                        mensagem: mensagem,
+                        corFundo: corFundo,
+                        corTitulo: corTitulo,
+                        corTexto: corTexto,
+                        imagem: imagem,
+                        icon: 'school'
+                    }).then((response) => {
+                        swal({
+                            title: "AVISO",
+                            text: "Comunicado enviado com sucesso!",
+                            buttons: {
+                                confirm: "Ok!",
+                            },
+                        }).then((resposta) => {
+                            window.location.reload();
+                        });
+                    });
+                } else {
+                    db1.collection(ANO)
+                    .doc('avisos')
+                    .collection('avisos')
+                    .add({
+                        titulo: titulo,
+                        mensagem: mensagem,
+                        corFundo: corFundo,
+                        corTitulo: corTitulo,
+                        corTexto: corTexto,
+                        imagem: imagem
+                    }).then((response) => {
+                        swal({
+                            title: "AVISO",
+                            text: "Comunicado enviado com sucesso!",
+                            buttons: {
+                                confirm: "Ok!",
+                            },
+                        }).then((resposta) => {
+                            window.location.reload();
+                        });
+                    });
+                }
+                
+            }
+
+            // EXCLUIR AVISO
+        function excluirAviso(id, imagem) {
+            swal({
+                title: "AVISO",
+                text: "Deseja excluir mesmo?",
+                buttons: {
+                    cancel: "Cancelar",
+                    confirm: "Ok!",
+                },
+            }).then((res) => {
+                if (res) {
+                    db1.collection(ANO)
+                    .doc('avisos')
+                    .collection('avisos')
+                    .doc(id).delete();
+                    
+                    // DELETAR IMAGEM
+                    const arquivo = storage1.ref().child(`site/comunicados/${imagem}`);
+                    arquivo.delete().then((response) => {
+                        swal({
+                            title: "AVISO",
+                            text: "Comunicado excluido com sucesso!",
+                            buttons: {
+                                confirm: "Ok!"
+                            },
+                        }).then((resposta) => {
+                            window.location.reload();
+                        });
+                    });
+                }
+            });
+            
+        }
+
+            
+            
+            // EXCLUIR COMUNICADO DO APP
+            function excluirComunicadoApp(titulo, imagem) {
+                swal({
+                    title: 'Aviso',
+                    text: `Você deseja excluir o comunicado ${titulo}`,
+                    buttons: {
+                        confirm: 'Sim',
+                        cancel: 'Não',
+                    },
+                }).then((resposta) => {
+                    if (resposta) {
+                        document.body.style.cursor = "wait";
+                        db1.collection(ANO)
+                        .doc('site')
+                        .collection('comunicados')
+                        .doc(titulo).delete().then((resposne) => {
+                            const storageRef = storage1.ref().child(`site/comunicados/${imagem}`);
+                            storageRef.delete().then((res) => {
+                                document.body.style.cursor = "default";
+                                swal({
+                                    title: 'Parabens',
+                                    text: 'Comunicado excluido com sucesso!',
+                                    buttons: {
+                                        confirm: 'Ok',
+                                    },
+                                }).then((res) => {
+                                    window.location.reload();
+                                });
+                            });
+                        });
+                    }
+                });
+            }
+                
+            // ADICIONAR PLANILHA
+            function adicionarPlanilha() {
+                const serie = document.querySelector('.addPlanilha input[id="serie"]').value;
+                const planilhaInput = document.getElementById('planilha');
+                const file = planilhaInput.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        const arrayBuffer = e.target.result;
+
+                        // Agora você pode trabalhar com o arrayBuffer, por exemplo, usar o SheetJS para ler a planilha
+                        var workbook = XLSX.read(arrayBuffer, { type: 'array' });
+                        var nomeDaPrimeiraFolha = workbook.SheetNames[0];
+                        var dadosJson = XLSX.utils.sheet_to_json(workbook.Sheets[nomeDaPrimeiraFolha]);
+
+                        // Faça algo com os dados, por exemplo, envie para o Firestore
+                        db1.collection(ANO)
+                            .doc('planilhas')
+                            .collection('existente')
+                            .doc(serie).set({})
+                            .then((response) => {
+                                db1.collection(ANO)
+                                    .doc('planilhas')
+                                    .collection(serie)
+                                    .doc().set({
+                                        json: JSON.stringify(dadosJson)
+                                    })
+                                    .then((res) => {
+                                        swal({
+                                            title: 'Parabens',
+                                            text: `Planilha do ${serie} adicionada com sucesso!`,
+                                            buttons: {
+                                                confirm: 'Ok',
+                                            },
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    })
+                                    .catch(error => {
+                                        console.error('Erro ao adicionar a planilha:', error);
+                                    });
+                            });
+                    };
+
+                    reader.readAsArrayBuffer(file);
+                }
+            }
+
+            // VER PLANILHAS
+            function verPlanilhas() {
+                const div = document.querySelector('.verPlanilhas');
+                db1.collection(ANO)
+                .doc('planilhas')
+                .collection('existente')
+                .onSnapshot((data) => {
+                    data.docs.map((val) => {
+                        const serie = val.id;
+                        db1.collection(ANO)
+                        .doc('planilhas')
+                        .collection(serie)
+                        .onSnapshot((data) => {
+                            data.docs.map((val) => {
+                                const id = val.id;
+                                div.innerHTML += `
+                                    <li>
+                                        <h1>${serie}</h1>
+                                        <ion-icon onclick="excluirPlanilha('${serie}', '${id}')" name="trash"></ion-icon>
+                                    </li>
+                                `;
+                            });
+                        });
+                    });
+                });
+            }
+
+            function excluirPlanilha(serie, id) {
+                swal({
+                    title: 'AVISO',
+                    text: `Você deseje excluir a planilha "${serie}"?`,
+                    buttons: {
+                        confirm: 'Sim',
+                        cancel: 'Não',
+                    },
+                }).then((resposta) => {
+                    if (resposta) {
+                        db1.collection(ANO)
+                        .doc('planilhas')
+                        .collection('existente')
+                        .doc(serie).delete().then((response) => {
+                            db1.collection(ANO)
+                            .doc('planilhas')
+                            .collection(serie)
+                            .doc(id).delete().then((res) => {
+                                swal({
+                                    title: 'Parabens',
+                                    text: `Planilha do ${serie} excluida com sucesso!`,
+                                    buttons: {
+                                        confirm: 'Ok',
+                                    },
+                                }).then(() => {
+                                    window.location.reload();
+                                });
+                            });
+                        });
+                    }
+                });
+            }
+
+
+       </script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    
+</html>

@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="../img/icon.png" type="x-icon">
-        <title> Controle Letícia | Inicio </title>
+        <title> Controle Letícia | Conversas </title>
 
 		<style scoped>
 
@@ -26,6 +26,7 @@
 			}
 
 			*  {
+                border: 0px;
 				padding: 0px;
 				margin: 0px;
 				box-sizing: border-box;
@@ -47,44 +48,44 @@
            	}
 
             /* ALERTA MODIFICADO */
-      .swal-modal {
-            background-color: var(--one);
-            border: 3px solid white;
-            border-radius: 10px;
-        }
+            .swal-modal {
+                background-color: var(--one);
+                border: 3px solid white;
+                border-radius: 10px;
+            }
 
-        .swal-title {
-            width: 100%;
-            height: 100%;
-            font-size: 22px;
-            color: var(--white);
-            border-bottom: 2px solid var(--white);
-            padding: 0px 0px 20px 0px;
-            letter-spacing: 0.5px;
-        }
+            .swal-title {
+                width: 100%;
+                height: 100%;
+                font-size: 22px;
+                color: var(--white);
+                border-bottom: 2px solid var(--white);
+                padding: 0px 0px 20px 0px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-text {
-            color: var(--white);
-            margin: 20px 0px 0px 0px;
-            font-size: 20px;
-            letter-spacing: 0.5px;
-        }
+            .swal-text {
+                color: var(--white);
+                margin: 20px 0px 0px 0px;
+                font-size: 20px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-button {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--confirm {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--cancel {
-            background-color: var(--red);
-            color: white;
-        }
+            .swal-button {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--confirm {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--cancel {
+                background-color: var(--red);
+                color: white;
+            }
 
             /* NAVGATION */
 
             .navgation {
-                width: 100vw;
+                width: 100vw;   
                 height: 100px;
                 display: flex;
                 background: var(--one);
@@ -131,7 +132,6 @@
                 color: var(--white);
                 border: 2px solid var(--white);
                 cursor: pointer;
-                z-index: 800;
             }
 
             .menuPerfil .column {
@@ -214,192 +214,24 @@
             .container {
                 width: 100vw;
                 height: auto;
-                min-height: 100vh;
                 display: flex;
                 flex-direction: row;
+                padding: 0px;
+                margin: 0px;
             }
 
             .content {
                 width: 100%;
-                max-width: 100%;
                 height: auto;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                margin: 15px 0px;
+                min-height: 100vh;
             }
 
-            .content article {
-                width: 46%;
-                height: auto;
-                min-height: max-content;
-                background: var(--white);
-                color: var(--one);
-                margin: 10px;
-                display: flex;
-                flex-direction: column;
-                box-shadow: 0px 0px 10px var(--one);
-                padding: 30px 20px 5px 20px;
-                border-radius: 12px;
-            }
-
-            @media (max-width: 782px) {
-                .content article {
-                    width: 85%;
-                }
-            }
-
-            .content article .titulo {
+            .content iframe {
                 width: 100%;
-                height: auto;
-                border-radius: 0px 0px 10px 10px;
-                background: var(--white);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                border: 1px solid var(--one);
-                box-shadow: 0px 0px 1px var(--one);
-                position: relative;
+                height: 100%;
             }
-
-            .content article .titulo .detalhe {
-                width: 100.6%;
-                height: 15px;
-                background: var(--one);
-                position: absolute;
-                top: -15px;
-                border-radius: 10px 10px 0px 0px;
-            }
-
-            .content article .titulo h1 {
-                width: 100%;
-                color: var(--one);
-                font-size: 17px;
-                font-weight: 600;
-                letter-spacing: 0px;
-                margin: 12px 0px 15px 0px;
-            }
-
-            .content article .gerenciador {
-                width: 100%;
-                height: auto;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin: 20px 0px;
-                padding: 0px;
-            }
-            
-
-            .content article .gerenciador .pergunta {
-                width: 100%;
-                height: auto;
-                background: var(--white);
-                display: flex;
-                flex-direction: column;
-                position: relative;
-                padding: 12px 20px;
-                border-radius: 10px;
-                border: 1px solid var(--one);
-                box-shadow: 0px 0px 1px var(--one);
-            }
-
-            .content article .gerenciador .pergunta h1 {
-                width: 100%;
-                color: var(--one);
-                font-size: 16px;
-                font-weight: 600;
-                letter-spacing: 0.3px;
-                margin: 5px 0px 8px 0px;
-            }
-
-            .content article .gerenciador .pergunta  button {
-                width: max-content;
-                height: max-content;
-                background: var(--one);
-                color: var(--white);
-                border-radius: 8px;
-                border: 1px solid var(--one);
-                box-shadow: 0px 0px 1px var(--one);
-                cursor: pointer;
-                font-size: 13px;
-                font-weight: 500;
-                letter-spacing: 0.5px;
-                margin: 10px 0px;
-                padding: 10px;
-            } .content article .gerenciador button:hover {
-                background: transparent;
-                color: var(--one);
-                transition: all .2s ease-in-out;
-            }
-
-            
-            /* POPUP LOGAR */
-
-            .popup-logar {
-                width: 80%;
-                max-width: 670px;
-                height: max-content;
-                min-height: 300px;
-                background: var(--one);
-                color: var(--white);
-                position: relative;
-                flex-direction: column;
-                align-items: center;
-                padding: 15px;
-                border-radius: 15px;
-                z-index: 500;
-                margin: 20px 0px;
-                border: 2px solid var(--white);
-            }
-
-            .popup-logar h1 {
-                font-size: 20px;
-                font-weight: 600;
-                letter-spacing: 0.3px;
-                margin: 10px 0px 0px 0px;
-                text-transform: uppercase;
-                text-align: center;
-                width: 90%;
-                line-height: 24px;
-            }
-
-            .popup-logar ul {
-            margin: 10px 0px 0px 0px;
-            width: 90%;
-            height: auto;
-            }
-
-            .popup-logar ul li {
-            list-style: none;
-            width: 100%;
-            height: auto;
-            padding: 15px;
-            cursor: pointer;
-            background: var(--white);
-            color: var(--one);
-            margin: 20px 0px;
-            border-radius: 10px;
-            border: 2px solid var(--white);
-            } .popup-logar ul li:hover {
-            background: transparent;
-            color: var(--white);
-            box-shadow: 0px 0px 15px var(--white);
-            transition: all .3s ease-in-out;
-            }
-
-            .popup-logar ul li h2 {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-transform: capitalize;
-            }
-
 
             </style>
-
            </head>
 
            <body>
@@ -437,8 +269,8 @@
 
                         <ul>
     
-                             <!-- HOME -->
-                             <li onclick="irPagina('index')" class="selecionado">
+                            <!-- HOME -->
+                            <li onclick="irPagina('index')">
                                 <ion-icon name="home"></ion-icon>
                                 <div class="none">
                                     <p>Página Inicial</p>
@@ -446,7 +278,7 @@
                             </li>
     
                             <!-- CHAT -->
-                            <li onclick="irPagina('conversas')">
+                            <li onclick="irPagina('conversas')" class="selecionado">
                                 <ion-icon name="chatbubbles-outline"></ion-icon>
                                 <div class="none">
                                     <p>Conversas</p>
@@ -477,63 +309,17 @@
                   <!-- CONTENT -->
                   <section class="content">
                   
-                    <div class="popup-logar" style="display: flex; opacity: 1;">
-                        <h1>Selecione o que você gostaria de gerenciar</h1>
-                        <ul>
-                          
-                          <li onclick="irPagina('site')">
-                            <h2>Website</h2>
-                          </li>
-                        
-                          <li onclick="irPagina('app')">
-                            <h2>Aplicativo</h2>
-                          </li>
-                        
-                          <li onclick="irPagina('banco')">
-                            <h2>Banco de Dados</h2>
-                          </li>
-                        
-                        </ul>
-                    </div>
-
+                    <iframe src="https://app-leticia.netlify.app/mensagens/" frameborder="0"></iframe>
+                
                   </section>
 
                 </main>
-
 
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             </body>
 
        <!-- JavaScript -->
        <script>
-
-        function aplicativo() {
-            window.open('https://app-leticia.netlify.app/');
-        }
-
-        function website() {
-            window.open('https://escola-leticia.netlify.app/');
-        }
-
-        function bancodedados() {
-            window.open('https://console.firebase.google.com/');
-        }
-
-        // IR PARA A PAGINA
-        function irPagina(pagina) {
-            window.location.href = `./${pagina}.html`;
-        }
-
-        // ABRIR FORMULARIO COM A CLASSE
-        function abrirForm(classe, gerenciador) {
-            const gerenciado = document.querySelector(`.${gerenciador} .gerenciador`);
-            const forms = document.querySelectorAll(`.${gerenciador} .formulario`);
-            forms.forEach((form) => {
-                form.style.display = "none";
-            });
-            gerenciado.style.display = "none";
-            document.querySelector(`.${classe}`).style.display = "flex";
-        }
 
         var c = 0;
         function menuPerfil() {
@@ -553,17 +339,9 @@
             await window.location.reload();
         }
 
-        // PAGINAS
-        function home() {
-            window.location.href = "./index.html";
-        }
-
-        function formularios() {
-            window.location.href = "./formularios.html";
-        }
-
-        function estatisticas() {
-            window.location.href = "./estatisticas.html";
+        // IR PARA A PAGINA
+        function irPagina(pagina) {
+            window.location.href = `./${pagina}.html`;
         }
 
         const menu = document.querySelector('.menu-lateral');
@@ -602,16 +380,14 @@
        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
        <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-storage-compat.js"></script>
 
-       <!------------------------------------->
-       <!-- BANCO DE DADOS GERAL (FIREBASE) -->
-       <!------------------------------------->
+       <!------------------------------->
+       <!-- BANCO DE DADOS (FIREBASE) -->
+       <!------------------------------->
 
        <script>
 
-          // BANCO DE DADOS DO APLICATIVO EM GERAL
-          const firebaseConfig1 = {
+          const firebaseConfig = {
             apiKey: "AIzaSyC6aMNEjsgeGK-rw4hzLUximzh1YQ6OEII",
             authDomain: "banco-de-dados-32cac.firebaseapp.com",
             projectId: "banco-de-dados-32cac",
@@ -620,9 +396,8 @@
             appId: "1:1001209948956:web:e28198053d747377aee8d9"
           };
 
-          firebase.initializeApp(firebaseConfig1);
-          const db1 = firebase.firestore();
-          const storage1 = firebase.storage();
+          firebase.initializeApp(firebaseConfig);
+          const db = firebase.firestore();
 
           // Pegar o ANO LETICO ATUAL
           const dataAtual = new Date();
@@ -635,22 +410,10 @@
             const senha = localStorage.getItem('senha');
             const perfis = document.querySelectorAll('.nome');
             perfis.forEach((perfil) => {
-                if (logado === 'SERVIDOR') {
-                    db1.collection(ANO)
+                if (logado === 'PROFESSOR') {
+                    db.collection(ANO)
                     .doc('restrito')
-                    .collection('direcao')
-                    .doc('login').get().then((doc) => {
-                        if (doc.data().usuario === usuario) {
-                            if (doc.data().senha === senha) {
-                                perfil.innerHTML = `Olá, ${usuario}`;
-                                return;
-                            }
-                        }
-                    });
-
-                    db1.collection(ANO)
-                    .doc('restrito')
-                    .collection('coordenacao')
+                    .collection('professor')
                     .doc('login').get().then((doc) => {
                         if (doc.data().usuario === usuario) {
                             if (doc.data().senha === senha) {
@@ -669,13 +432,14 @@
             if (!logado) {
                 window.location.href = '../index.html';
             }
+            
 
        </script>
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
+	  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    
 </html>

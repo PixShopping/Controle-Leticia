@@ -335,68 +335,165 @@
                 transition: all .2s ease-in-out;
             }
 
-            
-            /* POPUP LOGAR */
-
-            .popup-logar {
-                width: 80%;
-                max-width: 670px;
-                height: max-content;
-                min-height: 300px;
-                background: var(--one);
-                color: var(--white);
-                position: relative;
+            .formulario {
+                width: 100%;
+                max-width: 500px;
+                height: auto;
+                display: none;
                 flex-direction: column;
-                align-items: center;
-                padding: 15px;
-                border-radius: 15px;
-                z-index: 500;
+                padding: 0px 20px;
+                position: relative;
+                padding: 10px 20px;
+                color: var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                border-radius: 10px;
+                border: 1px solid var(--one);
                 margin: 20px 0px;
-                border: 2px solid var(--white);
             }
 
-            .popup-logar h1 {
+            .formulario h1 {
+                width: 100%;
+                color: var(--one);
                 font-size: 20px;
                 font-weight: 600;
                 letter-spacing: 0.3px;
-                margin: 10px 0px 0px 0px;
+                margin: 5px 0px 18px 0px;
+            }
+
+            .formulario label {
+                font-size: 15.5px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 0px 0px 0px 0px;
                 text-transform: uppercase;
-                text-align: center;
+            }
+
+            .formulario input {
+                width: 95%;
+                height: 40px;
+                background: transparent;
+                color: var(--one);
+                border-radius: 4px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                outline: none;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 5px 0px 15px 0px;
+                padding: 6px 12px;
+            } .formulario input:focus {
+                background: transparent;
+                transition: all .2s ease-in-out;
+            }
+
+            .formulario button {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 15px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 5px 0px;
+                border-radius: 4px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            } .formulario button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
+            }
+
+            .verAvisoSite, .lista {
+                width: 100%;
+                height: auto;
+                display: none;
+                flex-direction: column-reverse;
+                align-items: center;
+                border-radius: 10px;
+                color: var(--one);
+                margin: 20px 0px 20px 0px;
+                padding: 10px 0px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            }
+
+            .verAvisoSite li, .lista li {
                 width: 90%;
-                line-height: 24px;
+                height: auto;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                margin: 12px 0px;
+                border: 1.5px solid var(--one);
+                box-shadow: 0px 0px 5px var(--one);
+                border-radius: 10px;
             }
 
-            .popup-logar ul {
-            margin: 10px 0px 0px 0px;
-            width: 90%;
-            height: auto;
+            .verAvisoSite h1, .lista h1 {
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin: 0px 0px 0px 5px;
+                text-shadow: 0px 0px 5px var(--white);
             }
 
-            .popup-logar ul li {
-            list-style: none;
-            width: 100%;
-            height: auto;
-            padding: 15px;
-            cursor: pointer;
-            background: var(--white);
-            color: var(--one);
-            margin: 20px 0px;
-            border-radius: 10px;
-            border: 2px solid var(--white);
-            } .popup-logar ul li:hover {
-            background: transparent;
-            color: var(--white);
-            box-shadow: 0px 0px 15px var(--white);
-            transition: all .3s ease-in-out;
+            .verAvisoSite ion-icon, .lista ion-icon {
+                font-size: 25px;
+                padding: 3px;
+                border-radius: 8px;
+                margin: 0px 10px 0px auto;
+                background: var(--red);
+                color: white;
+                cursor: pointer;
+                border: 2px solid var(--red);
+            } .verAvisoSite ion-icon:hover, .lista ion-icon:hover {
+                background: transparent;
+                color: var(--red);
+                transition: all .3s ease-in-out;
+            } 
+
+            .verAvisoSite button, .lista button {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 15px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 5px 0px;
+                border-radius: 4px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+            } .verAvisoSite button:hover, .lista button:hover {
+                background: transparent;
+                color: var(--one);
+                transition: all .3s ease-in-out;
             }
 
-            .popup-logar ul li h2 {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-transform: capitalize;
-            }
+            /* BTN PLATAFORMAS */
 
+            .btn-plataformas {
+                width: max-content;
+                height: max-content;
+                background: var(--one);
+                color: var(--white);
+                cursor: pointer;
+                font-size: 14.5px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                margin: 20px 0px 0px 5px;
+                border-radius: 7px;
+                padding: 10px 15px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                align-self: flex-start;
+            }
 
             </style>
 
@@ -477,25 +574,46 @@
                   <!-- CONTENT -->
                   <section class="content">
                   
-                    <div class="popup-logar" style="display: flex; opacity: 1;">
-                        <h1>Selecione o que você gostaria de gerenciar</h1>
-                        <ul>
-                          
-                          <li onclick="irPagina('site')">
-                            <h2>Website</h2>
-                          </li>
-                        
-                          <li onclick="irPagina('app')">
-                            <h2>Aplicativo</h2>
-                          </li>
-                        
-                          <li onclick="irPagina('banco')">
-                            <h2>Banco de Dados</h2>
-                          </li>
-                        
-                        </ul>
-                    </div>
+                    <article class="site">
 
+                        <div class="titulo">
+                            <div class="detalhe"></div>
+                            <h1>Gerenciador do Site</h1>
+                        </div>
+                        
+                        <div class="gerenciador">
+
+                            <div class="pergunta">
+                                <h1>O que você deseja gerenciar?</h1>
+                                <button onclick="abrirForm('addAvisoSite', 'site')">Enviar Aviso ao Site</button>
+                                <button onclick="lerAvisoSite(), abrirForm('verAvisoSite', 'site')">Ver Avisos Existentes</button>
+                            </div>
+                            
+                            <button onclick="website()" class="btn-plataformas">Abrir Website</button>
+
+                        </div>
+                        
+                        <section class="formulario addAvisoSite">
+
+                            <h1>Enviar Comunicado ao Site</h1>
+        
+                            <label>Título</label>
+                            <input id="titulo" placeholder="Digite um título" type="text">
+        
+                            <label>Imagem</label>
+                            <input id="imagem" type="file" accept="image">
+        
+                            <button onclick="enviarComunicadoSite()">Enviar</button>
+        
+        
+                        </section>
+
+                        <section class="formulario verAvisoSite"></section>
+                    
+                    </article>
+
+                    
+                
                   </section>
 
                 </main>
@@ -670,6 +788,10 @@
                 window.location.href = '../index.html';
             }
 
+
+            
+
+
        </script>
 
 
@@ -677,5 +799,135 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-storage-compat.js"></script>
+
+    <!------------------------------------->
+    <!-- BANCO DE DADOS GERAL (FIREBASE) -->
+    <!------------------------------------->
+
+    <script>
+
+       // BANCO DE DADOS DO APLICATIVO EM GERAL
+       const firebaseConfig2 = {
+            apiKey: "AIzaSyAA46auin7rfkLJRNQizOqQ0tftYoCaUo4",
+            authDomain: "site-a6c21.firebaseapp.com",
+            projectId: "site-a6c21",
+            storageBucket: "site-a6c21.appspot.com",
+            messagingSenderId: "286901777025",
+            appId: "1:286901777025:web:08c29399979a4c2a435380",
+            measurementId: "G-8GMR8D5FL0"
+       };
+
+       firebase.initializeApp(firebaseConfig2);
+       const db2 = firebase.firestore();
+       const storage2 = firebase.storage();
+
+       // ENVIAR COMUNICADO AO SITE
+       async function enviarComunicadoSite() {
+            document.body.style.cursor = "wait";
+            const titulo = document.getElementById('titulo').value;
+            const imagem = document.getElementById('imagem');
+            const file = imagem.files[0];
+            if (file) {
+                
+                // Crie uma referência para o local de armazenamento da imagem
+                const nomeImagem = file.name;
+                const storageRef = storage2.ref("site/comunicados/" + nomeImagem);
+                
+                // Faça o upload da imagem para o Firebase Storage
+                db2.collection(ANO)
+                .doc('site')
+                .collection('comunicados')
+                .doc(titulo).set({
+                    data: firebase.firestore.FieldValue.serverTimestamp(),
+                    titulo: titulo,
+                    imagem: nomeImagem
+                }).then((response) => {
+                    storageRef.put(file).then(function (snapshot) {
+                        document.body.style.cursor = "default";
+                        swal({
+                            title: 'Parabens',
+                            text: 'Comunicado enviado com sucesso!',
+                            buttons: {
+                                confirm: 'Ok',
+                            },
+                        }).then((res) => {
+                            window.location.reload();
+                        })
+                    }).catch(function (error) {
+                        console.error("Erro ao enviar a imagem:", error);
+                    });
+                })
+                
+            } else {
+                swal({
+                    title: 'Aviso',
+                    text: 'Digite um título e adicione uma imagem!',
+                    buttons: {
+                        confirm: 'Ok',
+                    },
+                });
+            }
+        }
+
+        function lerAvisoSite() {
+            const div = document.querySelector('.verAvisoSite');
+            db2.collection(ANO)
+            .doc('site')
+            .collection('comunicados')
+            .orderBy("data")
+            .onSnapshot((data) => {
+                div.innerHTML = '';
+                data.docs.map((val) => {
+                    const titulo = val.data().titulo;
+                    const imagem = val.data().imagem;
+                    div.innerHTML += `
+                        <li>
+                            <h1>${titulo}</h1>
+                            <ion-icon onclick="excluirComunicadoSite('${titulo}', '${imagem}')" name="trash"></ion-icon>
+                        </li>
+                    `;
+                });
+            });
+        }
+
+        // EXCLUIR COMUNICADO DO SITE
+        function excluirComunicadoSite(titulo, imagem) {
+                swal({
+                    title: 'Aviso',
+                    text: `Você deseja excluir o comunicado ${titulo}`,
+                    buttons: {
+                        confirm: 'Sim',
+                        cancel: 'Não',
+                    },
+                }).then((resposta) => {
+                    if (resposta) {
+                        document.body.style.cursor = "wait";
+                        db2.collection(ANO)
+                        .doc('site')
+                        .collection('comunicados')
+                        .doc(titulo).delete().then((resposne) => {
+                            const storageRef = storage2.ref().child(`site/comunicados/${imagem}`);
+                            storageRef.delete().then((res) => {
+                                document.body.style.cursor = "default";
+                                swal({
+                                    title: 'Parabens',
+                                    text: 'Comunicado excluido com sucesso!',
+                                    buttons: {
+                                        confirm: 'Ok',
+                                    },
+                                }).then((res) => {
+                                    window.location.reload();
+                                });
+                            });
+                        });
+                    }
+                });
+            }
+
+    </script>
 
 </html>

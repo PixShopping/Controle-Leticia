@@ -345,15 +345,23 @@
                         <ul>
     
                             <!-- HOME -->
-                            <li onclick="home()">
+                            <li onclick="irPagina('index')">
                                 <ion-icon name="home"></ion-icon>
                                 <div class="none">
                                     <p>Página Inicial</p>
                                 </div>
                             </li>
     
+                            <!-- CHAT -->
+                            <li onclick="irPagina('conversas')">
+                                <ion-icon name="chatbubbles-outline"></ion-icon>
+                                <div class="none">
+                                    <p>Conversas</p>
+                                </div>
+                            </li>
+    
                             <!-- FORMULARIOS -->
-                            <li id="LIformularios" onclick="formularios()">
+                            <li onclick="irPagina('formularios')">
                                 <span class="material-symbols-outlined">assignment</span>
                                 <div class="none">
                                     <p>Formulários</p>
@@ -361,12 +369,13 @@
                             </li>
     
                             <!-- ESTATISTICAS -->
-                            <li class="selecionado">
+                            <li onclick="irPagina('estatisticas')" class="selecionado">
                                 <ion-icon name="stats-chart-outline"></ion-icon>
                                 <div class="none">
                                     <p>Estatísticas</p>
                                 </div>
                             </li>
+    
     
                         </ul>
     
@@ -524,6 +533,11 @@
 
             if (!logado) {
                 window.location.href = './index.html';
+            }
+
+            // IR PARA A PAGINA
+            function irPagina(pagina) {
+                window.location.href = `./${pagina}.html`;
             }
 
             // VERIFICANDO IDENTIDADE
