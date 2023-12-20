@@ -47,39 +47,40 @@
            	}
 
             /* ALERTA MODIFICADO */
-      .swal-modal {
-            background-color: var(--one);
-            border: 3px solid white;
-            border-radius: 10px;
-        }
+            .swal-modal {
+                background-color: var(--one);
+                border: 3px solid white;
+                border-radius: 10px;
+            }
 
-        .swal-title {
-            width: 100%;
-            height: 100%;
-            font-size: 22px;
-            color: var(--white);
-            border-bottom: 2px solid var(--white);
-            padding: 0px 0px 20px 0px;
-            letter-spacing: 0.5px;
-        }
+            .swal-title {
+                width: 100%;
+                height: 100%;
+                font-size: 22px;
+                color: var(--white);
+                border-bottom: 2px solid var(--white);
+                padding: 0px 0px 20px 0px;
+                letter-spacing: 0.5px;
+            }
 
-        .swal-text {
-            color: var(--white);
-            margin: 20px 0px 0px 0px;
-            font-size: 20px;
-            letter-spacing: 0.5px;
-        }
+            .swal-text {
+                color: var(--white);
+                margin: 20px 0px 0px 0px;
+                font-size: 20px;
+                letter-spacing: 0.5px;
+                text-align: center;
+            }
 
-        .swal-button {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--confirm {
-            background-color: var(--white);
-            color: var(--one);
-        } .swal-button--cancel {
-            background-color: var(--red);
-            color: white;
-        }
+            .swal-button {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--confirm {
+                background-color: var(--white);
+                color: var(--one);
+            } .swal-button--cancel {
+                background-color: var(--red);
+                color: white;
+            }
 
             /* NAVGATION */
 
@@ -312,7 +313,7 @@
                 font-size: 16px;
                 font-weight: 600;
                 letter-spacing: 0.3px;
-                margin: 5px 0px 8px 0px;
+                margin: 8px 0px 4px 0px;
             }
 
             .content article .gerenciador .pergunta  button {
@@ -419,6 +420,10 @@
                 padding: 10px 0px;
                 border: 1px solid var(--one);
                 box-shadow: 0px 0px 1px var(--one);
+            }
+
+            .series {
+                flex-direction: column;
             }
 
             .verAvisoSite li, .lista li {
@@ -598,11 +603,70 @@
 
                         </section>
 
+                        <!-- Adicionar Usuario Direção -->
+                        <section class="formulario adddirecao">
+
+                            <h1>Adicionar Usuario a Direção</h1>
+        
+                            <label>Nome</label>
+                            <input id="direcao" placeholder="ex: Fabio" type="text">
+        
+                            <button onclick="addUsuario('direcao')">Enviar</button>
+        
+                        </section>
+
+                        <!-- Ler Usuarios da Direcao -->
+                        <section class="lista usuariosdirecao">
+
+                        </section>
+
+                        <!-- Adicionar Usuario Coordenacao -->
+                        <section class="formulario addcoordenacao">
+
+                            <h1>Adicionar Usuario a Coordenação</h1>
+        
+                            <label>Nome</label>
+                            <input id="coordenacao" placeholder="ex: Fabio" type="text">
+        
+                            <button onclick="addUsuario('coordenacao')">Enviar</button>
+        
+                        </section>
+
+                        <!-- Ler Usuarios da Direcao -->
+                        <section class="lista usuarioscoordenacao">
+
+                        </section>
+
+                        <!-- Adicionar Usuario Professor -->
+                        <section class="formulario addprofessor">
+
+                            <h1>Adicionar Usuario a Coordenação</h1>
+        
+                            <label>Nome</label>
+                            <input id="professor" placeholder="ex: Fabio" type="text">
+        
+                            <button onclick="addUsuario('professor')">Enviar</button>
+        
+                        </section>
+
+                        <!-- Ler Usuarios da Direcao -->
+                        <section class="lista usuariosprofessor">
+
+                        </section>
+
+                        <!-- GERENCIADOR -->
                         <div class="gerenciador">
 
                             <div class="pergunta">
                                 <h1>O que você deseja gerenciar?</h1>
                                 <button onclick="lerSeries(), abrirForm('series', 'banco-de-dados')">Series</button>
+                                <button onclick="lerUsuarios('direcao'), abrirForm('usuariosdirecao', 'banco-de-dados')">Usuarios da Direção</button>
+                                <button onclick="lerUsuarios('coordenacao'), abrirForm('usuarioscoordenacao', 'banco-de-dados')">Usuarios da Coordenação</button>
+                                <button onclick="lerUsuarios('professor'), abrirForm('usuariosprofessor', 'banco-de-dados')">Usuarios da Professores</button>
+                                <h1>Gerenciador de Senha</h1>
+                                <button onclick="mudarSenha('direcao'), abrirForm('senhadirecao', 'banco-de-dados')">Mudar Senha da Direção</button>
+                                <button onclick="mudarSenha('coordenacao'), abrirForm('senhacoordenacao', 'banco-de-dados')">Mudar Senha da Coordenação</button>
+                                <button onclick="mudarSenha('professor'), abrirForm('senhaprofessor', 'banco-de-dados')">Mudar Senha dos Professores</button>
                             </div>
 
                             <button onclick="bancodedados()" class="btn-plataformas">Abrir Banco de Dados</button>
@@ -813,6 +877,11 @@
                 div.style.display = "none";
             }
 
+            function fecharUsuario(usuario) {
+                const div = document.querySelector(`.usuarios${usuario}`);
+                div.style.display = "none";
+            }
+
             function lerSeries() {
                 const div = document.querySelector('.series');
                 db1.collection(ANO)
@@ -820,9 +889,10 @@
                 .collection('series')
                 .onSnapshot((data) => {
                     div.innerHTML = `
+                        <h1 style="margin: 5px 0px; font-size: 20px;">Series Existentes</h1>
                         <button onclick="fecharSeries(), abrirForm('addSerie', 'banco-de-dados')">Adicionar Serie</button>
                     `;
-                    data.docs.map((val) => {
+                    data.docs.map((val, index) => {
                         const serie = val.id;
                         div.innerHTML += `
                             <li>
@@ -832,6 +902,56 @@
                         `;
                     });
                 });
+            }
+
+            // LER USUARIOS (Direcao, Coordenacao e professores)
+            function lerUsuarios(usuario) {
+                const div = document.querySelector(`.usuarios${usuario}`);
+                div.style.flexDirection = "column";
+                db1.collection(ANO)
+                .doc('restrito')
+                .collection(usuario)
+                .doc('login')
+                .collection('acessos')
+                .onSnapshot((data) => {
+                    div.innerHTML = `
+                        <h1 style="margin: 5px 0px; font-size: 20px;">Usuarios Existentes</h1>
+                        <button onclick="fecharUsuario('${usuario}'), abrirForm('add${usuario}', 'banco-de-dados')">Adicionar Usuario</button>
+                    `;
+                    data.docs.map((val, index) => {
+                        const nome = val.id;
+                        div.innerHTML += `
+                            <li>
+                                <h1>${nome}</h1>
+                                <ion-icon onclick="excluirUsuario('${usuario}', '${nome}')" name="trash"></ion-icon>
+                            </li>
+                        `;
+                    });
+                });
+            }
+
+            function addUsuario(usuario) {
+                const div = document.querySelector('.series');
+                const usu = document.querySelector(`.add${usuario} input[id="${usuario}"]`).value;
+                document.body.style.cursor = "wait";
+                db1.collection(ANO)
+                .doc('restrito')
+                .collection(usuario)
+                .doc('login')
+                .collection('acessos')
+                .doc(usu).set({})
+                .then((response) => {
+                    document.body.style.cursor = "default";
+                    swal({
+                        title: 'Parabens',
+                        text: 'Usuario adicionado com sucesso!',
+                        buttons: {
+                            confirm: 'Ok',
+                        },
+                    }).then((res) => {
+                        window.location.reload();
+                    });
+                })
             }
 
             function excluirSerie(serie) {
@@ -852,7 +972,39 @@
                             document.body.style.cursor = "default";
                             swal({
                                 title: 'Parabens',
-                                text: 'Comunicado excluido com sucesso!',
+                                text: 'Serie excluida com sucesso!',
+                                buttons: {
+                                    confirm: 'Ok',
+                                },
+                            }).then((res) => {
+                                window.location.reload();
+                            });
+                        });
+                    }
+                });
+            }
+
+            function excluirUsuario(usuario, nome) {
+                swal({
+                    title: 'Aviso',
+                    text: `Você deseja excluir o usuario '${nome}'`,
+                    buttons: {
+                        confirm: 'Sim',
+                        cancel: 'Não',
+                    },
+                }).then((resposta) => {
+                    if (resposta) {
+                        document.body.style.cursor = "wait";
+                        db1.collection(ANO)
+                        .doc('restrito')
+                        .collection(usuario)
+                        .doc('login')
+                        .collection('acessos')
+                        .doc(nome).delete().then((resposne) => {
+                            document.body.style.cursor = "default";
+                            swal({
+                                title: 'Parabens',
+                                text: `Usuario '${nome}' excluido com sucesso!`,
                                 buttons: {
                                     confirm: 'Ok',
                                 },

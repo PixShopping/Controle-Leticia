@@ -312,7 +312,7 @@
                 font-size: 16px;
                 font-weight: 600;
                 letter-spacing: 0.3px;
-                margin: 5px 0px 8px 0px;
+                margin: 8px 0px 4px 0px;
             }
 
             .content article .gerenciador .pergunta  button {
@@ -421,6 +421,8 @@
                 box-shadow: 0px 0px 1px var(--one);
             }
 
+            
+
             .verAvisoApp li, .lista li {
                 width: 90%;
                 height: auto;
@@ -474,6 +476,27 @@
                 background: transparent;
                 color: var(--one);
                 transition: all .3s ease-in-out;
+            }
+
+            .eventos {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+            }
+
+            .eventos button {
+                width: 100%;
+                height: 45px;
+                border-radius: 5px;
+                margin: 6px 0px;
+                display: flex;
+                align-items: center;
+            }
+
+            .eventos button img {
+                width: auto;
+                height: 100%;
+                margin: 0px 8px 0px 0px;
             }
 
             /* BTN PLATAFORMAS */
@@ -604,17 +627,62 @@
 
                         </section>
 
+                        <!-- LER EVENTOS -->
+                        <section class="lista eventos">
+
+                            <h1 style="font-size: 20px; margin: 5px 0px 10px 0px;">Eventos</h1>
+
+                            <button id="carnaval" onclick="escolherEvento('carnaval')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4145/4145808.png">
+                                Carnaval
+                            </button>
+                            <button id="festaJunina" onclick="escolherEvento('festaJunina')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/7979/7979775.png">
+                                Festa Junina
+                            </button>
+                            <button id="halloween" onclick="escolherEvento('halloween')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/685/685842.png">
+                                Halloween
+                            </button>
+                            <button id="pascoa" onclick="escolherEvento('pascoa')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4185/4185066.png">
+                                Pascoa
+                            </button>
+                            <button id="independencia" onclick="escolherEvento('independencia')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4087/4087516.png">
+                                Independencia
+                            </button>
+                            <button id="independencia" onclick="escolherEvento('independencia')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4797/4797130.png">
+                                Consciência Negra
+                            </button>
+                            <button id="diaDasMulheres" onclick="escolherEvento('diaDasMulheres')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/7409/7409662.png">
+                                Dia Das Mulheres
+                            </button>
+                            <button id="natal" onclick="escolherEvento('natal')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/744/744546.png">
+                                Natal
+                            </button>
+                            
+                            
+                        </section>
+
                         <div class="gerenciador">
 
                             <div class="pergunta">
-                                <h1>O que você deseja gerenciar?</h1>
+
+                                <h1>Gerenciar Planilhas</h1>
                                 <button onclick="abrirForm('addPlanilha', 'aplicativo')">Adicionar Planilha</button>
                                 <button onclick="verPlanilhas(), abrirForm('verPlanilhas', 'aplicativo')">Ver Planilhas Existentes</button>
                                 
-                                
+                                <h1>Gerenciar Avisos</h1>
                                 <button onclick="abrirForm('addAvisoApp', 'aplicativo')">Enviar Aviso ao App</button>
                                 <button onclick="lerAvisoApp(), abrirForm('verAvisoApp', 'aplicativo')">Ver Avisos Existentes</button>
-                            
+                                
+                                <h1>Gerenciar Evento Atual</h1>
+                                <button onclick="verEventoAtual(), abrirForm('eventos', 'aplicativo')">Evento Atual</button>
+                                
                             </div>
 
                             <button onclick="aplicativo()" class="btn-plataformas">Abrir Aplicativo</button>
@@ -1101,6 +1169,35 @@
                 });
             }
 
+            // ESCOLHER EVENTO
+            function escolherEvento(evento) {
+                db1.collection(ANO)
+                .doc('evento')
+                .set({
+                    nome: evento,
+                }).then((response) => {
+                    swal({
+                        title: 'Parabens',
+                        text: `Evento '${evento}' selecionado com sucesso!`,
+                        buttons: {
+                            confirm: 'Ok',
+                        },
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                })
+            }
+
+            function verEventoAtual() {
+                db1.collection(ANO)
+                .doc('evento')
+                .get().then((doc) => {
+                    const evento = doc.data().nome;
+                    const btn = document.getElementById(evento);
+                    btn.style.background = "var(--green)";
+                    btn.style.color = "var(--one)";
+                });
+            }
 
        </script>
 
