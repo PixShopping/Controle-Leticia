@@ -518,6 +518,14 @@
                 align-self: flex-start;
             }
 
+            .eventos .imagemIcon {
+                font-size: 25px;
+                margin: 0px 8px 0px -4px;
+                background: transparent;
+                border: none;
+                color: var(--tree);
+            }
+
             </style>
 
            </head>
@@ -632,39 +640,50 @@
 
                             <h1 style="font-size: 20px; margin: 5px 0px 10px 0px;">Eventos</h1>
 
+                            <button id="normal" onclick="escolherEvento('normal')">
+                                <ion-icon class="imagemIcon" name="school"></ion-icon>
+                                Normal
+                            </button>
                             <button id="carnaval" onclick="escolherEvento('carnaval')">
                                 <img src="https://cdn-icons-png.flaticon.com/512/4145/4145808.png">
                                 Carnaval
-                            </button>
-                            <button id="festaJunina" onclick="escolherEvento('festaJunina')">
-                                <img src="https://cdn-icons-png.flaticon.com/512/7979/7979775.png">
-                                Festa Junina
-                            </button>
-                            <button id="halloween" onclick="escolherEvento('halloween')">
-                                <img src="https://cdn-icons-png.flaticon.com/512/685/685842.png">
-                                Halloween
-                            </button>
-                            <button id="pascoa" onclick="escolherEvento('pascoa')">
-                                <img src="https://cdn-icons-png.flaticon.com/512/4185/4185066.png">
-                                Pascoa
-                            </button>
-                            <button id="independencia" onclick="escolherEvento('independencia')">
-                                <img src="https://cdn-icons-png.flaticon.com/512/4087/4087516.png">
-                                Independencia
-                            </button>
-                            <button id="independencia" onclick="escolherEvento('independencia')">
-                                <img src="https://cdn-icons-png.flaticon.com/512/4797/4797130.png">
-                                Consciência Negra
                             </button>
                             <button id="diaDasMulheres" onclick="escolherEvento('diaDasMulheres')">
                                 <img src="https://cdn-icons-png.flaticon.com/512/7409/7409662.png">
                                 Dia Das Mulheres
                             </button>
+                            <button id="pascoa" onclick="escolherEvento('pascoa')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4185/4185066.png">
+                                Pascoa
+                            </button>
+                            <button id="diaDoTrabalhador" onclick="escolherEvento('diaDoTrabalhador')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5347/5347689.png">
+                                Dia Do Trabalhador
+                            </button>
+                            <button id="festaJunina" onclick="escolherEvento('festaJunina')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/7979/7979775.png">
+                                Festa Junina
+                            </button>
+                            <button id="independencia" onclick="escolherEvento('independencia')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4087/4087516.png">
+                                Independência do Brasil
+                            </button>
+                            <button id="diaDosProfessores" onclick="escolherEvento('diaDosProfessores')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/906/906175.png">
+                                Dia Dos Professores
+                            </button>
+                            <button id="halloween" onclick="escolherEvento('halloween')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/685/685842.png">
+                                Halloween
+                            </button>
+                            <button id="conscienciaNegra" onclick="escolherEvento('conscienciaNegra')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4797/4797130.png">
+                                Consciência Negra
+                            </button>
                             <button id="natal" onclick="escolherEvento('natal')">
                                 <img src="https://cdn-icons-png.flaticon.com/512/744/744546.png">
                                 Natal
                             </button>
-                            
                             
                         </section>
 
