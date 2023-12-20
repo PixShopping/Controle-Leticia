@@ -187,7 +187,6 @@
             } .menu-lateral ul li:hover {
                 color: var(--tree);
                 transition: all .1s linear;
-                border-left: 4px solid var(--tree);
             }
 
             .menu-lateral ul li ion-icon {
@@ -486,35 +485,6 @@
         function estatisticas() {
             window.location.href = "./estatisticas.html";
         }
-
-        const container = document.querySelector('.container');
-        const menu = document.querySelector('.menu-lateral');
-        const selecionado = document.querySelector('.selecionado');
-        const lis = document.querySelectorAll('.menu-lateral ul li');
-        const divs = document.querySelectorAll('.menu-lateral ul li div')
-        lis.forEach((li) => {
-            li.addEventListener('mouseover', () => {
-                lis.forEach((li) => {
-                    li.style.justifyContent = "flex-start";
-                })
-                menu.style.width = "200px";
-                selecionado.style.border = "none";
-                divs.forEach((div) => {
-                    div.style.display = 'flex';
-                });
-            });
-            li.addEventListener('mouseout', () => {
-                lis.forEach((li) => {
-                    li.style.justifyContent = "center";
-                })
-                menu.style.width = "65px";
-                selecionado.style.borderLeft = "4px solid var(--tree)";
-                divs.forEach((div) => {
-                    div.style.display = 'none';
-                });
-            });
-
-        });
 
        </script>
 

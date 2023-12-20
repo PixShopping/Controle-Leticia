@@ -187,7 +187,6 @@
             } .menu-lateral ul li:hover {
                 color: var(--tree);
                 transition: all .1s linear;
-                border-left: 4px solid var(--tree);
             }
 
             .menu-lateral ul li ion-icon {
@@ -570,7 +569,7 @@
                                     <p>Estatísticas</p>
                                 </div>
                             </li>
-    
+                            
     
                         </ul>
     
@@ -658,15 +657,20 @@
                         <div class="gerenciador">
 
                             <div class="pergunta">
-                                <h1>O que você deseja gerenciar?</h1>
+                                
+                                <h1>Gerenciar Series</h1>
                                 <button onclick="lerSeries(), abrirForm('series', 'banco-de-dados')">Series</button>
-                                <button onclick="lerUsuarios('direcao'), abrirForm('usuariosdirecao', 'banco-de-dados')">Usuarios da Direção</button>
-                                <button onclick="lerUsuarios('coordenacao'), abrirForm('usuarioscoordenacao', 'banco-de-dados')">Usuarios da Coordenação</button>
-                                <button onclick="lerUsuarios('professor'), abrirForm('usuariosprofessor', 'banco-de-dados')">Usuarios da Professores</button>
-                                <h1>Gerenciador de Senha</h1>
+
+                                <h1>Gerenciar Usuarios</h1>
+                                <button onclick="lerUsuarios('direcao'), abrirForm('usuariosdirecao', 'banco-de-dados')">Direção</button>
+                                <button onclick="lerUsuarios('coordenacao'), abrirForm('usuarioscoordenacao', 'banco-de-dados')">Coordenação</button>
+                                <button onclick="lerUsuarios('professor'), abrirForm('usuariosprofessor', 'banco-de-dados')">Professores</button>
+                                
+                                <h1>Gerenciar Senha</h1>
                                 <button onclick="mudarSenha('direcao'), abrirForm('senhadirecao', 'banco-de-dados')">Mudar Senha da Direção</button>
                                 <button onclick="mudarSenha('coordenacao'), abrirForm('senhacoordenacao', 'banco-de-dados')">Mudar Senha da Coordenação</button>
                                 <button onclick="mudarSenha('professor'), abrirForm('senhaprofessor', 'banco-de-dados')">Mudar Senha dos Professores</button>
+                            
                             </div>
 
                             <button onclick="bancodedados()" class="btn-plataformas">Abrir Banco de Dados</button>
@@ -727,6 +731,38 @@
             
         }
 
+        function mostrarMais() {
+            const moreMais = document.querySelector('.moreMais');
+            const moreMenos = document.querySelector('.moreMenos');
+            const menu = document.querySelector('.menu-lateral');
+            moreMais.style.display = "none";
+            moreMenos.style.display = "flex";
+            menu.style.width = "300px";
+            const lis = document.querySelectorAll('.menu-lateral ul li div');
+            lis.forEach((li) => {
+                li.style.display = "flex";
+                li.style.margin = "0px auto 0px 0px";
+                li.style.padding = "0px 20px 0px 0px";
+            });
+        }
+
+        function mostrarMenos() {
+            const moreMais = document.querySelector('.moreMais');
+            const moreMenos = document.querySelector('.moreMenos');
+            const menu = document.querySelector('.menu-lateral');
+            moreMais.style.display = "flex";
+            moreMenos.style.display = "none";
+            menu.style.width = "auto";
+            const lis = document.querySelectorAll('.menu-lateral ul li div');
+            lis.forEach((li) => {
+                li.style.display = "none";
+                li.style.margin = "0px auto";
+                li.style.padding = "0px";
+            });
+        }
+
+
+
         async function sairDaConta() {
             await localStorage.clear();
             await window.location.reload();
@@ -745,35 +781,7 @@
             window.location.href = "./estatisticas.html";
         }
 
-        const menu = document.querySelector('.menu-lateral');
-        const selecionado = document.querySelector('.selecionado');
-        const lis = document.querySelectorAll('.menu-lateral ul li');
-        const divs = document.querySelectorAll('.menu-lateral ul li div')
-        lis.forEach((li) => {
-            li.addEventListener('mouseover', () => {
-                lis.forEach((li) => {
-                    li.style.justifyContent = "flex-start";
-                })
-        
-                menu.style.width = "200px";
-                selecionado.style.border = "none";
-                divs.forEach((div) => {
-                    div.style.display = 'flex';
-                });
-            });
-            li.addEventListener('mouseout', () => {
-                lis.forEach((li) => {
-                    li.style.justifyContent = "center";
-                })
-                menu.style.width = "65px";
-                selecionado.style.borderLeft = "4px solid var(--tree)";
-                divs.forEach((div) => {
-                    div.style.display = 'none';
-                });
-            });
-
-        });
-
+       
        </script>
 
 
