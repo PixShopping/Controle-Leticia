@@ -222,7 +222,7 @@
             .content {
                 width: 100%;
                 max-width: 100%;
-                height: auto;
+                height: max-content;
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -366,6 +366,13 @@
                 letter-spacing: 0.5px;
                 margin: 0px 0px 0px 0px;
                 text-transform: uppercase;
+                display: flex;
+                align-items: center;
+            }
+
+            .formulario label span {
+                margin: 0px 0px 0px 5px;
+                font-size: 17.5px;
             }
 
             .formulario input {
@@ -385,6 +392,23 @@
             } .formulario input:focus {
                 background: transparent;
                 transition: all .2s ease-in-out;
+            }
+
+            .formulario select {
+                width: 95%;
+                height: 40px;
+                background: transparent;
+                color: var(--one);
+                border-radius: 4px;
+                border: 1px solid var(--one);
+                box-shadow: 0px 0px 1px var(--one);
+                outline: none;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                margin: 5px 0px 15px 0px;
+                padding: 6px 12px;
+                cursor: pointer;
             }
 
             .formulario button {
@@ -421,7 +445,7 @@
                 box-shadow: 0px 0px 1px var(--one);
             }
 
-            .series {
+            .series, .form {
                 flex-direction: column;
             }
 
@@ -429,6 +453,7 @@
                 width: 90%;
                 height: auto;
                 display: flex;
+                flex-direction: row;
                 align-items: center;
                 padding: 10px;
                 margin: 12px 0px;
@@ -443,6 +468,9 @@
                 letter-spacing: 0.3px;
                 margin: 0px 0px 0px 5px;
                 text-shadow: 0px 0px 5px var(--white);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
             }
 
             .verAvisoSite ion-icon, .lista ion-icon {
@@ -459,6 +487,18 @@
                 color: var(--red);
                 transition: all .3s ease-in-out;
             } 
+
+            .lista ion-icon.iconNormal {
+                background: transparent;
+                color: var(--one);
+                border: none;
+                width: 25px;
+                height: 25px;
+                font-size: 25px;
+                padding: 0px;
+                border-radius: 0px;
+                margin: 0px 10px 0px 0px;
+            }
 
             .verAvisoSite button, .lista button {
                 width: max-content;
@@ -618,7 +658,7 @@
                         <section class="lista usuariosdirecao">
 
                         </section>
-
+                        
                         <!-- Adicionar Usuario Coordenacao -->
                         <section class="formulario addcoordenacao">
 
@@ -639,7 +679,7 @@
                         <!-- Adicionar Usuario Professor -->
                         <section class="formulario addprofessor">
 
-                            <h1>Adicionar Usuario a Coordenação</h1>
+                            <h1>Adicionar Professores</h1>
         
                             <label>Nome</label>
                             <input id="professor" placeholder="ex: Fabio" type="text">
@@ -650,6 +690,36 @@
 
                         <!-- Ler Usuarios da Direcao -->
                         <section class="lista usuariosprofessor">
+
+                        </section>
+
+                        <!-- Adicionar Formulario -->
+                        <section class="formulario addForm">
+
+                            <h1>Adicionar Formulário</h1>
+        
+                            <label>Nome</label>
+                            <input id="nomeForm" placeholder="ex: Controle" type="text">
+        
+                            <label>Icon <span id="mostrarIcone"></span></label>
+                            <select onchange="atualizarIcone()" id="iconForm">
+                                <!-- Icones -->
+                            </select>
+                            <!--<input id="iconForm" placeholder="ex: document" type="text">
+                            -->
+
+                            <label>Url do Formulário</label>
+                            <input id="formularioForm" placeholder="ex: https://docs.google.com/forms/" type="text">
+        
+                            <label>Url da Planilha</label>
+                            <input id="planilhaForm" placeholder="ex: https://docs.google.com/forms/" type="text">
+        
+                            <button onclick="addForm()">Enviar</button>
+        
+                        </section>
+
+                        <!-- Ler Formularios -->
+                        <section class="lista form">
 
                         </section>
 
@@ -666,11 +736,15 @@
                                 <button onclick="lerUsuarios('coordenacao'), abrirForm('usuarioscoordenacao', 'banco-de-dados')">Coordenação</button>
                                 <button onclick="lerUsuarios('professor'), abrirForm('usuariosprofessor', 'banco-de-dados')">Professores</button>
                                 
-                                <h1>Gerenciar Senha</h1>
+                                <!--<h1>Gerenciar Senha</h1>
                                 <button onclick="mudarSenha('direcao'), abrirForm('senhadirecao', 'banco-de-dados')">Mudar Senha da Direção</button>
                                 <button onclick="mudarSenha('coordenacao'), abrirForm('senhacoordenacao', 'banco-de-dados')">Mudar Senha da Coordenação</button>
                                 <button onclick="mudarSenha('professor'), abrirForm('senhaprofessor', 'banco-de-dados')">Mudar Senha dos Professores</button>
-                            
+                                -->
+
+                                <h1>Gerenciar Formulários</h1>
+                                <button onclick="lerForm(), abrirForm('form', 'banco-de-dados')">Ver Formulários</button>
+
                             </div>
 
                             <button onclick="bancodedados()" class="btn-plataformas">Abrir Banco de Dados</button>
@@ -880,8 +954,45 @@
                 })
             }
 
+            function addForm() {
+                const nome = document.getElementById('nomeForm').value;
+                const icon = document.getElementById('iconForm').value;
+                const formulario = document.getElementById('formularioForm').value;
+                const planilha = document.getElementById('planilhaForm').value;
+                const usuario = logado.toLowerCase();
+                if (nome && icon && formulario && planilha) {
+                    document.body.style.cursor = "wait";
+                    db1.collection('controle')
+                    .doc(usuario)
+                    .collection('formularios')
+                    .doc(nome).set({
+                        estatistica: planilha,
+                        url: formulario,
+                        icon: icon,
+                    })
+                    .then((response) => {
+                        document.body.style.cursor = "default";
+                        swal({
+                            title: 'Parabens',
+                            text: 'Formulário adicionado com sucesso!',
+                            buttons: {
+                                confirm: 'Ok',
+                            },
+                        }).then((res) => {
+                            window.location.reload();
+                        });
+                    })    
+                } 
+                
+            }
+
             function fecharSeries() {
                 const div = document.querySelector('.series');
+                div.style.display = "none";
+            }
+
+            function fecharForm() {
+                const div = document.querySelector('.form');
                 div.style.display = "none";
             }
 
@@ -906,6 +1017,30 @@
                             <li>
                                 <h1>${serie}</h1>
                                 <ion-icon onclick="excluirSerie('${serie}')" name="trash"></ion-icon>
+                            </li>
+                        `;
+                    });
+                });
+            }
+
+            function lerForm() {
+                const usuario = logado.toLowerCase();
+                const div = document.querySelector('.form');
+                db1.collection('controle')
+                .doc(usuario)
+                .collection('formularios')
+                .onSnapshot((data) => {
+                    div.innerHTML = `
+                        <h1 style="margin: 5px 0px; font-size: 20px;">Formulários Existentes</h1>
+                        <button onclick="fecharForm(), abrirForm('addForm', 'banco-de-dados')">Adicionar Formulario</button>
+                    `;
+                    data.docs.map((val, index) => {
+                        const formulario = val.id;
+                        const icon = val.data().icon;
+                        div.innerHTML += `
+                            <li>
+                                <h1><ion-icon class="iconNormal" name="${icon}"></ion-icon>${formulario}</h1>
+                                <ion-icon onclick="excluirForm('${formulario}')" name="trash"></ion-icon>
                             </li>
                         `;
                     });
@@ -992,6 +1127,37 @@
                 });
             }
 
+            function excluirForm(formulario) {
+                const usuario = logado.toLowerCase();
+                swal({
+                    title: 'Aviso',
+                    text: `Você deseja excluir o Formulário '${formulario}'`,
+                    buttons: {
+                        confirm: 'Sim',
+                        cancel: 'Não',
+                    },
+                }).then((resposta) => {
+                    if (resposta) {
+                        document.body.style.cursor = "wait";
+                        db1.collection('controle')
+                        .doc(usuario)
+                        .collection('formularios')
+                        .doc(formulario).delete().then((resposne) => {
+                            document.body.style.cursor = "default";
+                            swal({
+                                title: 'Parabens',
+                                text: 'Formulário excluido com sucesso!',
+                                buttons: {
+                                    confirm: 'Ok',
+                                },
+                            }).then((res) => {
+                                window.location.reload();
+                            });
+                        });
+                    }
+                });
+            }
+
             function excluirUsuario(usuario, nome) {
                 swal({
                     title: 'Aviso',
@@ -1024,16 +1190,60 @@
                 });
             }
 
-            
 
+            async function atualizarIcone() {
+                const span = document.getElementById('mostrarIcone');
+                const icone = document.getElementById('iconForm').value;
+                span.innerHTML = `<ion-icon name="${icone}"></ion-icon>`;
+            }
 
        </script>
 
+        <script>
+            const directoryUrl = 'https://unpkg.com/browse/ionicons@7.1.0/dist/ionicons/svg/';
+            const ionIconsSelect = document.getElementById('iconForm');
+
+            function extractSvgFileNames(html) {
+                const regex = /href="([^"]+\.svg)"/g;
+                const matches = [];
+                let match;
+
+                while ((match = regex.exec(html)) !== null) {
+                    matches.push(match[1]);
+                }
+
+                return matches;
+            }
+
+            fetch(directoryUrl)
+                .then(response => response.text())
+                .then(html => {
+                    const svgFileNames = extractSvgFileNames(html);
+
+                    svgFileNames.forEach(svgFileName => {
+                        // Remove a extensão .svg do nome do arquivo
+                        const iconName = svgFileName.replace(/\.svg$/, '');
+
+                        // Cria um novo elemento <option>
+                        const optionElement = document.createElement('option');
+
+                        // Usa emojis como alternativa para representar os ícones
+                        optionElement.textContent = `🔵 ${iconName}`;
+
+                        // Define o valor do <option> como o nome do ícone
+                        optionElement.value = iconName;
+
+                        // Adiciona o elemento <option> à lista de seleção
+                        ionIconsSelect.appendChild(optionElement);
+                    });
+                })
+                .catch(error => console.error('Erro ao obter lista de arquivos SVG:', error));
+        </script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    
+       
 
 </html>
