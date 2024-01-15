@@ -468,12 +468,13 @@
 			display: flex;
 			flex-direction: row;
 			align-items: center;
-			margin: 5px 0px 10px 0px;
+			margin: 5px 0px 15px 0px;
 		}
 
 		.lista li  button {
 			width: 95%;
 			height: 45px;
+			margin: 5px 0px;
 		}
 
 		.lista li button.verde {
@@ -1074,16 +1075,17 @@
 				<h1><ion-icon class="iconNormal" name="${icon}"></ion-icon>${formulario}</h1>
 				<ion-icon onclick="excluirForm('${formulario}')" name="trash"></ion-icon>
 			</div>`;
+			    
 			if (professor) {
-			  linha += `<button class="verde">Professor</button>`;	
+			  linha += `<button onclick="mudarPermissaoForm('${formulario}','professor', false)" class="verde">Professor</button>`;	
 			} else {
-			  linha += `<button class="vermelho">Professor</button>`;
+			  linha += `<button onclick="mudarPermissaoForm('${formulario}','professor', true)" class="vermelho">Professor</button>`;
 			}
 			    
 			if (funcionario) {
-			  linha += `<button class="verde">Funcionario</button>`;	
+			  linha += `<button onclick="mudarPermissaoForm('${formulario}','funcionario', false)" class="verde">Funcionario</button>`;	
 			} else {
-			  linha += `<button class="vermelho">Funcionario</button>`;
+			  linha += `<button onclick="mudarPermissaoForm('${formulario}','funcionario', true)" class="vermelho">Funcionario</button>`;
 			}
                         div.innerHTML += `
                             ${linha}
@@ -1092,6 +1094,15 @@
                     });
                 });
             }
+
+	    async function mudarPermissaoForm(id, servidor, status) {
+		    await db.collection('controle')
+		    .doc('servidor')
+		    .collection('formularios')
+		    .doc(id).update({
+			servidor: status,
+		    });
+	    }
 
             // LER USUARIOS (Direcao, Coordenacao e professores)
             function lerUsuarios(usuario) {
