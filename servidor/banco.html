@@ -1062,15 +1062,15 @@
 				<ion-icon onclick="excluirForm('${formulario}')" name="trash"></ion-icon>
 			</div>`;
 			if (professor) {
-			  linha += `<button class="verde">Esconder do Professor</button>`;	
+			  linha += `<button class="verde">Professor</button>`;	
 			} else {
-			  linha += `<button class="vermelho">Mostrar Para Professor</button>`;
+			  linha += `<button class="vermelho">Professor</button>`;
 			}
 			    
 			if (funcionario) {
-			  linha += `<button class="verde">Esconder do Funcionario</button>`;	
+			  linha += `<button class="verde">Funcionario</button>`;	
 			} else {
-			  linha += `<button class="vermelho">Mostrar Para Funcionario</button>`;
+			  linha += `<button class="vermelho">Funcionario</button>`;
 			}
                         div.innerHTML += `
                             ${linha}
