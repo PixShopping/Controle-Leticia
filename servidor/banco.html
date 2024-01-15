@@ -1095,14 +1095,19 @@
                 });
             }
 
-	    async function mudarPermissaoForm(id, servidor, status) {
-		    await db.collection('controle')
-		    .doc('servidor')
-		    .collection('formularios')
-		    .doc(id).update({
-			[servidor]: status,
-		    });
-	    }
+	   async function mudarPermissaoForm(id, servidor, status) {
+		    try {
+		        await db.collection('controle')
+		            .doc('servidor')
+		            .collection('formularios')
+		            .doc(id).update({
+		                [servidor]: status,
+		            });
+		        console.log('Atualização bem-sucedida!');
+		    } catch (error) {
+		        console.error('Erro durante a atualização:', error);
+		    }
+		}
 
             // LER USUARIOS (Direcao, Coordenacao e professores)
             function lerUsuarios(usuario) {
