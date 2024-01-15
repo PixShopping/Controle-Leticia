@@ -449,7 +449,7 @@
             const USUARIO = capitalizar(usuario);
             const inputSENHA = document.getElementById('senhaServidor');
             const SENHA = inputSENHA.value;
-            db.collection(`controle${ANO}`)
+            db.collection(`controle`)
             .doc('servidor')
             .get().then((doc) => {
               var usuario = doc.data().usuario;
@@ -491,7 +491,7 @@
             const USUARIO = capitalizar(usuario);
             const inputSENHA = document.getElementById('senhaProfessor');
             const SENHA = inputSENHA.value;
-            db.collection(`controle${ANO}`)
+            db.collection(`controle`)
             .doc('professor')
             .get().then((doc) => {
               var usuario = doc.data().usuario;
@@ -636,6 +636,19 @@
                   }
                 });
               });
+
+		db.collection(ANO)
+	      .doc("restrito")
+              .collection("funcionario")
+              .onSnapshot((data) => {
+                data.docs.forEach((val) => {
+                  const usuario = val.data().usuario;
+                  const senha = val.data().senha;
+                  if (RESPONSAVEL === usuario && SENHA === senha) {
+                    logarComFuncionario(usuario, senha);
+                  }
+                });
+              });
           }
 
           // LOGAR COM A DIREÇÃO
@@ -720,13 +733,60 @@
               }, 1500);
           }
 
-          // ENTRAR COM DIRECAO
+	       // ENTRAR COM DIRECAO
           function entrarComCoordenacao(usuario, senha) {
             localStorage.setItem('logado', 'SERVIDOR');
             localStorage.setItem('usuario', usuario);
             localStorage.setItem('senha', senha);
             window.location.href = './servidor/';
           }
+
+       // LOGAR COM FUNCIONARIO
+          function logarComFuncionario(usuario, senha) {
+              const popup = document.querySelector('.popup-logar');
+              const fosco = document.querySelector('.fosco');
+              var acessos = ``;
+              db.collection(ANO)
+              .doc('restrito')
+              .collection('funcionario')
+              .doc('login')
+              .collection('acessos')
+              .onSnapshot((data) => {
+                data.docs.map((val) => {
+                  const nome = val.id;
+                  acessos += `
+                    <li onclick="entrarComFuncionario('${usuario}','${senha}')">
+                      <h2>${nome}</h2>
+                    </li>
+                  `;
+                });
+                popup.innerHTML = `
+                  <h1>Selecione qual conta logar</h1>
+                  <ul>
+                    ${acessos}
+                  </ul>
+                `;
+              });
+              
+              
+              // MOSTRAR POPUP
+              popup.style.display = "flex";
+              fosco.style.display = "flex";
+
+              setTimeout(() => {
+                popup.style.opacity = 1;
+              }, 1500);
+          }
+
+       // ENTRAR COM FUNCIONARIO
+          function entrarComFuncionario(usuario, senha) {
+            localStorage.setItem('logado', 'FUNCIONARIO');
+            localStorage.setItem('usuario', usuario);
+            localStorage.setItem('senha', senha);
+            window.location.href = './funcionario/';
+          }
+
+          
 
           // LOGAR COMO PROFESSOR
           function logarComProfessor(usuario, senha) {
