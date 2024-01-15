@@ -1097,7 +1097,7 @@
 
 	   async function mudarPermissaoForm(id, servidor, status) {
 		    try {
-		        await db.collection('controle')
+		        await db1.collection('controle')
 		            .doc('servidor')
 		            .collection('formularios')
 		            .doc(id).update({
