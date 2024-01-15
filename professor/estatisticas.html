@@ -17,11 +17,11 @@
 				--tree: #336FA5;
 				--four: #4E8BB8;
 				--five: #6FADD2;
-                --six: #9ECAE3;
-                --gray: #b3abab;
-                --white: white;
-                --font: 'Ubuntu', sans-serif;
-                --green: rgb(20, 218, 20);
+		                --six: #9ECAE3;
+		                --gray: #b3abab;
+		                --white: white;
+		                --font: 'Ubuntu', sans-serif;
+		                --green: rgb(20, 218, 20);
 				--red: rgb(240, 36, 36);
 			}
 
@@ -42,9 +42,9 @@
 				user-select: none;
 				font-family: 'Arial', sans-serif;
 				overflow-x: hidden;
-                height: auto;
-                width: auto;
-            }
+				height: auto;
+				width: auto;
+		    }
 
             /* ALERTA MODIFICADO */
             .swal-modal {
@@ -528,19 +528,22 @@
                     const nome = val.id;
                     const icon = val.data().icon;
                     const estatistica = val.data().estatistica;
-                    content.innerHTML += `
-                        <section onclick="abrirFormulario('${estatistica}')">
-                            
-                            <div>
-                                <p>Professores</p>
-                            </div>
-
-                            <ion-icon name="${icon}"></ion-icon>
-                            <h1>${nome}</h1>
-                            <ion-icon class="seta" name="chevron-forward-outline"></ion-icon>
-                        
-                        </section>
-                    `;
+	  	    const validar = val.data()[user];
+		    if (validar) {
+		        content.innerHTML += `
+				<section onclick="abrirFormulario('${estatistica}')">
+				    
+				    <div>
+					<p>Professores</p>
+				    </div>
+	
+				    <ion-icon name="${icon}"></ion-icon>
+				    <h1>${nome}</h1>
+				    <ion-icon class="seta" name="chevron-forward-outline"></ion-icon>
+				
+				</section>
+			    `;	    
+		    }
                 });
             });
 
