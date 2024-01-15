@@ -521,7 +521,7 @@
             const content = document.querySelector('.content');
             const user = logado.toLowerCase();
             db.collection(`controle`)
-            .doc(user)
+            .doc('servidor')
             .collection('formularios')
             .onSnapshot((data) => {
                 data.docs.map((val) => {
