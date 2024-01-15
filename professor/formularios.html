@@ -527,26 +527,29 @@
           const content = document.querySelector('.content');
           const user = logado.toLowerCase();
           db.collection(`controle`)
-          .doc(user)
+          .doc('servidor')
           .collection('formularios')
           .onSnapshot((data) => {
             data.docs.map((val) => {
                 const nome = val.id;
                 const icon = val.data().icon;
                 const url = val.data().url;
-                content.innerHTML += `
-                    <section onclick="abrirFormulario('${url}')">
-                        
-                        <div>
-                            <p>Professores</p>
-                        </div>
-
-                        <ion-icon name="${icon}"></ion-icon>
-                        <h1>${nome}</h1>
-                        <ion-icon class="seta" name="chevron-forward-outline"></ion-icon>
-                    
-                    </section>
-                `;
+                const validar = val.data()[user];
+		if (validar) {
+			content.innerHTML += `
+	                    <section onclick="abrirFormulario('${url}')">
+	                        
+	                        <div>
+	                            <p>Professores</p>
+	                        </div>
+	
+	                        <ion-icon name="${icon}"></ion-icon>
+	                        <h1>${nome}</h1>
+	                        <ion-icon class="seta" name="chevron-forward-outline"></ion-icon>
+	                    
+	                    </section>
+	                `;
+		}
             });
           });
 
