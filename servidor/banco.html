@@ -453,7 +453,7 @@
                 width: 90%;
                 height: auto;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 align-items: center;
                 padding: 10px;
                 margin: 12px 0px;
@@ -1045,14 +1045,27 @@
                     data.docs.map((val, index) => {
                         const formulario = val.id;
                         const icon = val.data().icon;
+		    	const professor = val.data().professor;
+		    	const funcionario = val.data().funcionario;
+			var linha = `<li>
+			<div class="flex">
+				<h1><ion-icon class="iconNormal" name="${icon}"></ion-icon>${formulario}</h1>
+				<ion-icon onclick="excluirForm('${formulario}')" name="trash"></ion-icon>
+			</div>`;
+			if (professor) {
+			  linha += `<button class="verde">Esconder do Professor</button>`;	
+			} else {
+			  linha += `<button class="vermelho">Mostrar Para Professor</button>`;
+			}
+			    
+			if (funcionario) {
+			  linha += `<button class="verde">Esconder do Funcionario</button>`;	
+			} else {
+			  linha += `<button class="vermelho">Mostrar Para Funcionario</button>`;
+			}
                         div.innerHTML += `
-                            <li>
-			    	<div class="flex">
-					<h1><ion-icon class="iconNormal" name="${icon}"></ion-icon>${formulario}</h1>
-        	                        <ion-icon onclick="excluirForm('${formulario}')" name="trash"></ion-icon>
-				</div>
-                                
-                            </li>
+                            ${linha}
+			    </li>
                         `;
                     });
                 });
