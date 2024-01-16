@@ -17,11 +17,11 @@
 				--tree: #336FA5;
 				--four: #4E8BB8;
 				--five: #6FADD2;
-                --six: #9ECAE3;
-                --gray: #b3abab;
-                --white: white;
-                --font: 'Ubuntu', sans-serif;
-                --green: rgb(20, 218, 20);
+		                --six: #9ECAE3;
+		                --gray: #b3abab;
+		                --white: white;
+		                --font: 'Ubuntu', sans-serif;
+		                --green: rgb(20, 218, 20);
 				--red: rgb(240, 36, 36);
 			}
 
@@ -379,7 +379,7 @@
             const usuario = localStorage.getItem('usuario');
             const senha = localStorage.getItem('senha');
             const perfis = document.querySelectorAll('.nome');
-            perfis.forEach((perfil) => {
+            /*perfis.forEach((perfil) => {
                 if (logado === 'SERVIDOR') {
                     db.collection(ANO)
                     .doc('restrito')
@@ -409,7 +409,19 @@
                     localStorage.clear();
                     window.location.reload();
                 }
-            });
+            });*/
+
+	    const logado = localStorage.getItem('logado');
+            const usuario = localStorage.getItem('usuario');
+            const senha = localStorage.getItem('senha');
+            	if (logado === 'SERVIDOR') {
+		    perfil.innerHTML = `Olá, ${usuario}`;
+		    return;
+	    	} else {
+                    localStorage.clear();
+                    window.location.reload();
+                }
+            
 
             if (!logado) {
                 window.location.href = '../index.html';
