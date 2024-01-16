@@ -17,11 +17,11 @@
 				--tree: #336FA5;
 				--four: #4E8BB8;
 				--five: #6FADD2;
-                --six: #9ECAE3;
-                --gray: #b3abab;
-                --white: white;
-                --font: 'Ubuntu', sans-serif;
-                --green: rgb(20, 218, 20);
+		                --six: #9ECAE3;
+		                --gray: #b3abab;
+		                --white: white;
+		                --font: 'Ubuntu', sans-serif;
+		                --green: rgb(20, 218, 20);
 				--red: rgb(240, 36, 36);
 			}
 
@@ -816,18 +816,18 @@
        <script>
 
           // BANCO DE DADOS DO APLICATIVO EM GERAL
-          const firebaseConfig1 = {
-            apiKey: "AIzaSyC6aMNEjsgeGK-rw4hzLUximzh1YQ6OEII",
-            authDomain: "banco-de-dados-32cac.firebaseapp.com",
-            projectId: "banco-de-dados-32cac",
-            storageBucket: "banco-de-dados-32cac.appspot.com",
-            messagingSenderId: "1001209948956",
-            appId: "1:1001209948956:web:e28198053d747377aee8d9"
-          };
+          const firebaseConfig = {
+	    apiKey: "AIzaSyBwhSLGBcQEFJw1BYfIVG_VcVxzdmAwk1M",
+	    authDomain: "formularios-c458a.firebaseapp.com",
+	    projectId: "formularios-c458a",
+	    storageBucket: "formularios-c458a.appspot.com",
+	    messagingSenderId: "1075545337388",
+	    appId: "1:1075545337388:web:24185661999e1180c2ab89"
+	  };
 
-          firebase.initializeApp(firebaseConfig1);
-          const db1 = firebase.firestore();
-          const storage1 = firebase.storage();
+          firebase.initializeApp(firebaseConfig);
+          const db = firebase.firestore();
+          const storage = firebase.storage();
 
           // Pegar o ANO LETICO ATUAL
           const dataAtual = new Date();
@@ -841,7 +841,7 @@
             const perfis = document.querySelectorAll('.nome');
             perfis.forEach((perfil) => {
                 if (logado === 'SERVIDOR') {
-                    db1.collection(ANO)
+                    db.collection(ANO)
                     .doc('restrito')
                     .collection('direcao')
                     .doc('login').get().then((doc) => {
@@ -853,7 +853,7 @@
                         }
                     });
 
-                    db1.collection(ANO)
+                    db.collection(ANO)
                     .doc('restrito')
                     .collection('coordenacao')
                     .doc('login').get().then((doc) => {
@@ -878,7 +878,7 @@
 
             function lerAvisoApp() {
                 const div = document.querySelector('.verAvisoApp');
-                db1.collection(ANO)
+                db.collection(ANO)
                 .doc('avisos')
                 .collection('avisos')
                 .onSnapshot((data) => {
@@ -908,7 +908,7 @@
                 const file = inputFile.files[0];
                 if (file) {
                     // Crie uma referência para o local de armazenamento da imagem
-                    const storageRef = storage1.ref("imagens/" + file.name);
+                    const storageRef = storage.ref("imagens/" + file.name);
 
                     // Faça o upload da imagem para o Firebase Storage
                     await storageRef.put(file).then(function (snapshot) {
@@ -930,7 +930,7 @@
                 const corTexto = '#ffffff';
                 // Enviando Valores
                 if (imagem === 'null') {
-                    db1.collection(ANO)
+                    db.collection(ANO)
                     .doc('avisos')
                     .collection('avisos')
                     .doc(titulo)
@@ -954,7 +954,7 @@
                         });
                     });
                 } else {
-                    db1.collection(ANO)
+                    db.collection(ANO)
                     .doc('avisos')
                     .collection('avisos')
                     .add({
@@ -990,13 +990,13 @@
                 },
             }).then((res) => {
                 if (res) {
-                    db1.collection(ANO)
+                    db.collection(ANO)
                     .doc('avisos')
                     .collection('avisos')
                     .doc(id).delete();
                     
                     // DELETAR IMAGEM
-                    const arquivo = storage1.ref().child(`site/comunicados/${imagem}`);
+                    const arquivo = storage.ref().child(`site/comunicados/${imagem}`);
                     arquivo.delete().then((response) => {
                         swal({
                             title: "AVISO",
@@ -1027,11 +1027,11 @@
                 }).then((resposta) => {
                     if (resposta) {
                         document.body.style.cursor = "wait";
-                        db1.collection(ANO)
+                        db.collection(ANO)
                         .doc('site')
                         .collection('comunicados')
                         .doc(titulo).delete().then((resposne) => {
-                            const storageRef = storage1.ref().child(`site/comunicados/${imagem}`);
+                            const storageRef = storage.ref().child(`site/comunicados/${imagem}`);
                             storageRef.delete().then((res) => {
                                 document.body.style.cursor = "default";
                                 swal({
@@ -1067,12 +1067,12 @@
                         var dadosJson = XLSX.utils.sheet_to_json(workbook.Sheets[nomeDaPrimeiraFolha]);
 
                         // Faça algo com os dados, por exemplo, envie para o Firestore
-                        db1.collection(ANO)
+                        db.collection(ANO)
                             .doc('planilhas')
                             .collection('existente')
                             .doc(serie).set({})
                             .then((response) => {
-                                db1.collection(ANO)
+                                db.collection(ANO)
                                     .doc('planilhas')
                                     .collection(serie)
                                     .doc().set({
@@ -1102,13 +1102,13 @@
             // VER PLANILHAS
             function verPlanilhas() {
                 const div = document.querySelector('.verPlanilhas');
-                db1.collection(ANO)
+                db.collection(ANO)
                 .doc('planilhas')
                 .collection('existente')
                 .onSnapshot((data) => {
                     data.docs.map((val) => {
                         const serie = val.id;
-                        db1.collection(ANO)
+                        db.collection(ANO)
                         .doc('planilhas')
                         .collection(serie)
                         .onSnapshot((data) => {
@@ -1136,11 +1136,11 @@
                     },
                 }).then((resposta) => {
                     if (resposta) {
-                        db1.collection(ANO)
+                        db.collection(ANO)
                         .doc('planilhas')
                         .collection('existente')
                         .doc(serie).delete().then((response) => {
-                            db1.collection(ANO)
+                            db.collection(ANO)
                             .doc('planilhas')
                             .collection(serie)
                             .doc(id).delete().then((res) => {
@@ -1161,7 +1161,7 @@
 
             // ESCOLHER EVENTO
             function escolherEvento(evento) {
-                db1.collection(ANO)
+                db.collection(ANO)
                 .doc('evento')
                 .set({
                     nome: evento,
@@ -1179,7 +1179,7 @@
             }
 
             function verEventoAtual() {
-                db1.collection(ANO)
+                db.collection(ANO)
                 .doc('evento')
                 .get().then((doc) => {
                     const evento = doc.data().nome;
