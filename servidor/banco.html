@@ -1046,9 +1046,11 @@
                         const serie = val.id;
                         div.innerHTML += `
                             <li>
-                                <h1>${serie}</h1>
-                                <ion-icon onclick="excluirSerie('${serie}')" name="trash"></ion-icon>
-                            </li>
+                                <div class"flex">
+				  <h1>${serie}</h1>
+				  <ion-icon onclick="excluirSerie('${serie}')" name="trash"></ion-icon>
+                            	</div>
+			    </li>
                         `;
                     });
                 });
